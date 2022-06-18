@@ -15,12 +15,12 @@ public class GUI_button_TMP : MonoBehaviour
        }
        else 
        {
-          button = new GameObject();
+          GameObject button = new GameObject();
           button.name = "Button";
           button.transform.SetParent(Canvas.transform);
           button.AddComponent<Image>(); 
           button.AddComponent<Button>(); 
-          GUI_text = new GameObject();
+          GameObject GUI_text = new GameObject();
           GUI_text.name = "Text (TMP)";
           GUI_text.transform.SetParent(button.transform);
           GUI_text.AddComponent<TextMeshProUGUI>(); 
@@ -29,14 +29,14 @@ public class GUI_button_TMP : MonoBehaviour
           button.GetComponent<RectTransform>().sizeDelta = size;
           GUI_text.GetComponent<RectTransform>().anchorMin = new Vector2 (0, 0);
           GUI_text.GetComponent<RectTransform>().anchorMax = new Vector2 (1, 1);
-          GUI_text.GetComponent<TextMeshProUGUI>().color = color_of_text;
+          GUI_text.GetComponent<TextMeshProUGUI>().color = colorOfText; 
+          GUI_text.GetComponent<TextMeshProUGUI>().fontSize = fontSize;
        }
     }
-    public GameObject button;
-    public GameObject GUI_text;
     public GameObject Canvas;
-    public string text;
-    public TextAlignmentOptions align;
-    public Color color_of_text;
+    public string text = "Button";
+    public int fontSize = 24;
+    public TextAlignmentOptions align = TextAlignmentOptions.Center;
+    public Color colorOfText = Color.black;
     public Vector2 size = new Vector2 (160, 30);
 }
