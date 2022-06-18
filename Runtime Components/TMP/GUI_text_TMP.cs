@@ -14,20 +14,19 @@ public class GUI_text_TMP : MonoBehaviour
        }
        else 
        {
-          GUI_text = new GameObject();
+          GameObject GUI_text = new GameObject();
           GUI_text.name = "Text (TMP)";
           GUI_text.transform.SetParent(Canvas.transform);
           GUI_text.AddComponent<TextMeshProUGUI>(); 
           GUI_text.GetComponent<TextMeshProUGUI>().text = text;
           GUI_text.GetComponent<TextMeshProUGUI>().alignment = align;
-          GUI_text.GetComponent<TextMeshProUGUI>().color = color_of_text;
-          GUI_text.GetComponent<TextMeshProUGUI>().fontSize = font_size;
+          GUI_text.GetComponent<TextMeshProUGUI>().color = colorOfText;
+          GUI_text.GetComponent<TextMeshProUGUI>().fontSize = fontSize;
        }
     }
-    public GameObject GUI_text;
     public GameObject Canvas;
-    public string text;
-    public Color color_of_text;
-    public int font_size;
-    public TextAlignmentOptions align;
+    public string text = "New Text";
+    public Color colorOfText = Color.white;
+    public int fontSize = 36;
+    public TextAlignmentOptions align = TextAlignmentOptions.Left;
 }
