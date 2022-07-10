@@ -8,11 +8,14 @@ public class text_TMP : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       threeD_text = new GameObject();
+       GameObject threeD_text = new GameObject();
        threeD_text.name = "Text (TMP)";
        threeD_text.AddComponent<TextMeshPro>(); 
        threeD_text.GetComponent<TextMeshPro>().text = text;
+       threeD_text.GetComponent<TextMeshPro>().color = color;
+       threeD_text.GetComponent<TextMeshPro>().alignment = tao;
     }
-    public GameObject threeD_text;
-    public string text;
+    public Color color = Color.white;
+    public TextAlignmentOptions tao;
+    public string text = "Sample text";
 }
