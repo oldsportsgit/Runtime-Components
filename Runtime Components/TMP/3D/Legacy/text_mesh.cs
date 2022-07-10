@@ -7,11 +7,20 @@ public class text_mesh : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       textmesh = new GameObject();
+       GameObject textmesh = new GameObject();
        textmesh.name = "New Text";
        textmesh.AddComponent<TextMesh>(); 
        textmesh.GetComponent<TextMesh>().text = text;
+       textmesh.GetComponent<TextMesh>().fontSize = FontSize;
+       textmesh.GetComponent<TextMesh>().color = ColorOfText;
+       textmesh.GetComponent<TextMesh>().alignment = Alignment;
+       textmesh.GetComponent<TextMesh>().characterSize = CharacterSize;
+       textmesh.GetComponent<TextMesh>().anchor = TextAnchor.MiddleCenter;
+       textmesh.GetComponent<MeshRenderer>().allowOcclusionWhenDynamic = false;
     }
-    public GameObject textmesh;
-    public string text;
+    public string text = "Hello World";
+    public int FontSize;
+    public Color ColorOfText = Color.white;
+    public TextAlignment Alignment;
+    public float CharacterSize = 1;
 }
