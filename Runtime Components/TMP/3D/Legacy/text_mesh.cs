@@ -7,9 +7,7 @@ public class text_mesh : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-       GameObject textmesh = new GameObject();
-       textmesh.name = "New Text";
-       textmesh.AddComponent<TextMesh>(); 
+       GameObject textmesh = new GameObject("New Text", typeof(TextMesh));
        textmesh.GetComponent<TextMesh>().text = text;
        textmesh.GetComponent<TextMesh>().fontSize = FontSize;
        textmesh.GetComponent<TextMesh>().color = ColorOfText;
