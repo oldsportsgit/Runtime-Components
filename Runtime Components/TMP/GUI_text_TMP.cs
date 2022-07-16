@@ -14,10 +14,8 @@ public class GUI_text_TMP : MonoBehaviour
        }
        else 
        {
-          GameObject GUI_text = new GameObject();
-          GUI_text.name = "Text (TMP)";
+          GameObject GUI_text = new GameObject("Text (TMP)", typeof(TextMeshProUGUI));
           GUI_text.transform.SetParent(Canvas.transform);
-          GUI_text.AddComponent<TextMeshProUGUI>(); 
           GUI_text.GetComponent<TextMeshProUGUI>().text = text;
           GUI_text.GetComponent<TextMeshProUGUI>().alignment = align;
           GUI_text.GetComponent<TextMeshProUGUI>().color = colorOfText;
