@@ -79,10 +79,8 @@ byte[] BackgroundSprite = new byte[]
 	0x82
 };
           Backgroundtex.LoadImage(BackgroundSprite);
-          GameObject Panel = new GameObject();
-          Panel.name = "Panel";
+          GameObject Panel = new GameObject("Panel", typeof(Image));
           Panel.transform.SetParent(Canvas.transform);
-          Panel.AddComponent<Image>(); 
           Panel.GetComponent<Image>().sprite = Sprite.Create(Backgroundtex, new Rect(0.0f, 0.0f, Backgroundtex.width, Backgroundtex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4 (10,10,10,10));
           Panel.GetComponent<Image>().type = Image.Type.Sliced;
           Panel.GetComponent<Image>().color = colorOfTheImage;
