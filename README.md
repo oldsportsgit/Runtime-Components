@@ -12,3 +12,7 @@ https://github.com/Unity-Technologies/NavMeshComponents
 GUI_ScrollView.cs
 
 GUI_DropDown_TMP.cs
+
+## Important! Project is getting rewritten
+So i want to put the scripts in a seperate dll because
+it is supposed to kinda replace OnGUI
