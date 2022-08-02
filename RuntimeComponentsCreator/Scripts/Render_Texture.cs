@@ -2,8 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Render_Texture : MonoBehaviour
+namespace AssetBundle
 {
+ public class Render_Texture : MonoBehaviour
+ {
     public RenderTexture rt;
     public RenderTextureFormat rtf;
     public int width;
@@ -18,4 +20,5 @@ public class Render_Texture : MonoBehaviour
         rt.wrapMode = WrapMode;
         rt.Create();
     }
+ }
 }

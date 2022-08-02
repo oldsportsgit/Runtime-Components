@@ -3,10 +3,12 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Simple_Scene : MonoBehaviour
+namespace AssetBundle
 {
+ public class Simple_Scene : MonoBehaviour
+ {
     // Start is called before the first frame update
-    void Start()
+    public static void Scene(string SceneName)
     {
         Scene newScene = SceneManager.CreateScene(SceneName);
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
@@ -17,5 +19,5 @@ public class Simple_Scene : MonoBehaviour
         DirectionalLight.GetComponent<Light>().type = LightType.Directional;
         DirectionalLight.GetComponent<Transform>().localEulerAngles = new Vector3(50,-30,0);
     }
-    public string SceneName = "New Scene";
+ }
 }

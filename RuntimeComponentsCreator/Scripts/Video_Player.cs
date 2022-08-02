@@ -4,8 +4,10 @@ using UnityEngine;
 using UnityEngine.Video;
 //you could use the UnityWebRequest to download a videoclip and put it in "clip"
 
-public class Video_Player : MonoBehaviour
+namespace AssetBundle
 {
+ public class Video_Player : MonoBehaviour
+ {
     // Start is called before the first frame update
     void Start()
     {
@@ -16,4 +18,5 @@ public class Video_Player : MonoBehaviour
     public GameObject Player;
     public VideoClip Clip;
     public RenderTexture rt;
+ }
 }

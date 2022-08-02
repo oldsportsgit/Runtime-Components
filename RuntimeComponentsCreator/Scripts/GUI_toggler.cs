@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GUI_toggler : MonoBehaviour
+namespace UI
 {
+ public class GUI_toggler : MonoBehaviour
+ {
     // Start is called before the first frame update
-    void Start()
+    public static void Toggle(GameObject Canvas, Color ColorOfText)
     {
-       if(Canvas == null)
-       {
-          Debug.LogError("Canvas cannot be null");
-       }
-       else 
-       {
 	     Texture2D tex = new Texture2D(2, 2);
 	     byte[] UISprite = new byte[] 
           {
@@ -233,8 +229,7 @@ Checkmark_image.LoadImage(Checkmark_byte);
           Checkmark.GetComponent<RectTransform>().offsetMax = new Vector2(0,0);
           Toggle.GetComponent<Toggle>().graphic = Checkmark.GetComponent<Image>();     
           Checkmark.GetComponent<RectTransform>().position = new Vector3(-70,0,0f);  
-       }
     }
-    public GameObject Canvas;
-    public Color ColorOfText = Color.black;
+ }
 }
+ 

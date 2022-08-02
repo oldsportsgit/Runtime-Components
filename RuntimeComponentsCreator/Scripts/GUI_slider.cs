@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GUI_slider : MonoBehaviour
+namespace UI 
 {
+ public class GUI_slider : MonoBehaviour
+ {
     // Start is called before the first frame update
-    void Start()
+    public static void Slider(GameObject Canvas)
     {
-       if(Canvas == null)
-       {
-          Debug.LogError("Canvas cannot be null");
-       }
-       else 
-       {
 	     byte[] Background_Image = new byte[] 
           {
 	0x89, 0x50, 0x4E, 0x47, 0x0D, 0x0A, 0x1A, 0x0A, 0x00, 0x00, 0x00, 0x0D,
@@ -319,7 +315,6 @@ public class GUI_slider : MonoBehaviour
           Handle.GetComponent<RectTransform>().sizeDelta = new Vector2 (20,0);
           Slider.GetComponent<Slider>().handleRect = Handle.GetComponent<RectTransform>();
           Slider.GetComponent<Slider>().targetGraphic = Handle.GetComponent<Image>();
-       }
     }
-    public GameObject Canvas;
+ }
 }

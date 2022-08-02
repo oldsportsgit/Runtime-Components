@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GUI_Scrollbar : MonoBehaviour
+namespace UI
 {
+ public class GUI_Scrollbar : MonoBehaviour
+ {
     // Start is called before the first frame update
-    void Start()
+    public static void Slider(GameObject Canvas, Vector2 size, Vector2 position)
     {
-       if(Canvas == null)
-       {
-          Debug.LogError("Canvas cannot be null");
-       }
-       else 
-       {
 	     Texture2D backgroundtex = new Texture2D(2, 2);
 	     byte[] Background = new byte[] 
           {
@@ -134,7 +130,8 @@ public class GUI_Scrollbar : MonoBehaviour
           GameObject scrollbar = new GameObject("Scrollbar", typeof(Image), typeof(Scrollbar));
           scrollbar.transform.SetParent(Canvas.transform);
           scrollbar.GetComponent<Image>().type = Image.Type.Sliced;
-          scrollbar.GetComponent<RectTransform>().sizeDelta = new Vector2 (160, 20);
+          scrollbar.GetComponent<RectTransform>().sizeDelta = size;
+          scrollbar.GetComponent<RectTransform>().anchoredPosition = position;
           scrollbar.GetComponent<Image>().sprite = Sprite.Create(backgroundtex, new Rect(0.0f, 0.0f, backgroundtex.width, backgroundtex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4 (10,10,10,10));
           GameObject slidingArea = new GameObject("Sliding Area", typeof(RectTransform));
           slidingArea.transform.SetParent(scrollbar.transform);
@@ -147,7 +144,6 @@ public class GUI_Scrollbar : MonoBehaviour
           handle.transform.SetParent(slidingArea.transform);
           handle.GetComponent<RectTransform>().sizeDelta = new Vector2 (20, 20);
           scrollbar.GetComponent<Scrollbar>().handleRect = handle.GetComponent<RectTransform>();
-       }
     }
-    public GameObject Canvas;
+ }
 }

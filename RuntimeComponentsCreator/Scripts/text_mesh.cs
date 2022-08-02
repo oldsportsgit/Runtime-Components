@@ -2,10 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class text_mesh : MonoBehaviour
+namespace ThreeD
 {
+ public class text_mesh : MonoBehaviour
+ {
     // Start is called before the first frame update
-    void Start()
+    public static void Text(Vector3 Position, Vector3 Rotation, Vector3 Scale, string text, int FontSize, Color ColorOfText, TextAlignment Alignment, float CharacterSize)
     {
        GameObject textmesh = new GameObject("New Text", typeof(TextMesh));
        textmesh.GetComponent<TextMesh>().text = text;
@@ -15,10 +17,9 @@ public class text_mesh : MonoBehaviour
        textmesh.GetComponent<TextMesh>().characterSize = CharacterSize;
        textmesh.GetComponent<TextMesh>().anchor = TextAnchor.MiddleCenter;
        textmesh.GetComponent<MeshRenderer>().allowOcclusionWhenDynamic = false;
+       textmesh.GetComponent<Transform>().position = Position;
+       textmesh.GetComponent<Transform>().eulerAngles = Rotation;
+       textmesh.GetComponent<Transform>().localScale = Scale;
     }
-    public string text = "Hello World";
-    public int FontSize;
-    public Color ColorOfText = Color.white;
-    public TextAlignment Alignment;
-    public float CharacterSize = 1;
+ }
 }

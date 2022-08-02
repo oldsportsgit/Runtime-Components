@@ -4,17 +4,14 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class GUI_button_TMP : MonoBehaviour
+namespace UI
 {
+  public class GUI_button_TMP : MonoBehaviour
+  {
+    
     // Start is called before the first frame update
-    void Start()
+    public static void Button(GameObject Canvas, Vector2 size, Vector2 Position, string text, Color colorOfText, int fontSize, TextAlignmentOptions align)
     {
-       if(Canvas == null)
-       {
-          Debug.LogError("Canvas cannot be null");
-       }
-       else 
-       {
           Texture2D tex = new Texture2D(2, 2);
 	     byte[] UISprite = new byte[] 
           {
@@ -101,13 +98,7 @@ public class GUI_button_TMP : MonoBehaviour
           GUI_text.GetComponent<RectTransform>().anchorMin = new Vector2(0,0);
           GUI_text.GetComponent<RectTransform>().offsetMax = new Vector2(0,0);
           GUI_text.GetComponent<RectTransform>().offsetMin = new Vector2(0,0);
+          GUI_text.GetComponent<RectTransform>().anchoredPosition = Position;
        }
-    }
-
-    public GameObject Canvas;
-    public string text = "Button";
-    public int fontSize = 24;
-    public TextAlignmentOptions align = TextAlignmentOptions.Center;
-    public Color colorOfText = Color.black;
-    public Vector2 size = new Vector2 (160, 30);
+   }
 }

@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GUI_Panel : MonoBehaviour
+namespace UI 
 {
+ public class GUI_Panel : MonoBehaviour
+ {
     // Start is called before the first frame update
-    void Start()
+    public static void Panel(GameObject Canvas, Color colorOfTheImage)
     {
-       if(Canvas == null)
-       {
-          Debug.LogError("Canvas cannot be null");
-       }
-       else 
-       {
 Texture2D Backgroundtex = new Texture2D(2, 2);
 byte[] BackgroundSprite = new byte[] 
 {
@@ -89,8 +85,6 @@ byte[] BackgroundSprite = new byte[]
           Panel.GetComponent<RectTransform>().sizeDelta = new Vector2 (0,0);
           Panel.GetComponent<RectTransform>().offsetMax = new Vector2(0,0);
           Panel.GetComponent<RectTransform>().offsetMin = new Vector2(0,0);
-       }
     }
-    public GameObject Canvas;
-    public Color colorOfTheImage = new Color(1f, 1f, 1f, 0.4f);
+ }
 }

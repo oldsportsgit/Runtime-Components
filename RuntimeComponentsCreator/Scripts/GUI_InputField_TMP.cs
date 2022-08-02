@@ -6,17 +6,13 @@ using UnityEngine.UI;
 using System.Reflection;
 using System;
 
-public class GUI_InputField_TMP : MonoBehaviour
+namespace UI 
 {
+ public class GUI_InputField_TMP : MonoBehaviour
+ {
     // Start is called before the first frame update
-    void Start()
+    public static void InputField(GameObject Canvas)
     {
-       if(Canvas == null)
-       {
-          Debug.LogError("Canvas cannot be null");
-       }
-       else 
-       {
        Texture2D tex = new Texture2D(2, 2);
 byte[] InputFieldBackground = new byte[] 
 {
@@ -125,7 +121,6 @@ tex.LoadImage(InputFieldBackground);
           InputField.GetComponent<TMP_InputField>().textComponent = text.GetComponent<TextMeshProUGUI>();
           InputField.GetComponent<TMP_InputField>().fontAsset = text.GetComponent<TextMeshProUGUI>().font;
           InputField.GetComponent<TMP_InputField>().placeholder = Placeholder.GetComponent<TextMeshProUGUI>();
-       }
     } 
-    public GameObject Canvas;
+ }
 }

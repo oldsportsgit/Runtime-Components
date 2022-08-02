@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GUI_ScrollView : MonoBehaviour
+namespace UI
 {
+ public class GUI_ScrollView : MonoBehaviour
+ {
     // Start is called before the first frame update
-    void Start()
+    public static void ScrollView(GameObject Canvas)
     {
-       if(Canvas == null)
-       {
-          Debug.LogError("Canvas cannot be null");
-       }
-       else 
-       {
        Texture2D backgroundtex = new Texture2D(2, 2);
 byte[] Background = new byte[] 
 {
@@ -190,13 +186,16 @@ byte[] UIMaskSprite = new byte[]
           ScrollbarV.GetComponent<RectTransform>().anchorMin = new Vector2(1,0);
           ScrollbarV.GetComponent<RectTransform>().anchorMax = new Vector2(1,0);
           ScrollbarV.GetComponent<RectTransform>().pivot = new Vector2(1,1);
-          GameObject slidingArea1 = new GameObject("Sliding Area", typeof(RectTransform));
-          slidingArea1.transform.SetParent(ScrollbarV.transform);
+          GameObject slidingAreaV = new GameObject("Sliding Area", typeof(RectTransform));
+          slidingAreaV.transform.SetParent(ScrollbarV.transform);
           GameObject handle1 = new GameObject("Handle", typeof(Image));
           handle1.GetComponent<Image>().type = Image.Type.Sliced;
           handle1.GetComponent<Image>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4 (10,10,10,10));
-          handle1.transform.SetParent(slidingArea1.transform);
-          handle1.GetComponent<RectTransform>().sizeDelta = new Vector2 (20, 20);
+          handle1.transform.SetParent(slidingAreaV.transform);
+          slidingAreaV.GetComponent<RectTransform>().anchorMin = new Vector2 (0, 0);
+          slidingAreaV.GetComponent<RectTransform>().anchorMax = new Vector2 (1, 1);
+          slidingAreaV.GetComponent<RectTransform>().anchoredPosition = new Vector2(+90, -100);
+          slidingAreaV.GetComponent<RectTransform>().sizeDelta = new Vector2 (+250, +180);
           scrollView.GetComponent<ScrollRect>().content = Content.GetComponent<RectTransform>();
           scrollView.GetComponent<ScrollRect>().viewport = Viewport.GetComponent<RectTransform>();
           scrollView.GetComponent<ScrollRect>().horizontalScrollbar = ScrollbarH.GetComponent<Scrollbar>();
@@ -212,9 +211,6 @@ byte[] UIMaskSprite = new byte[]
           ScrollbarV.GetComponent<Image>().type = Image.Type.Sliced;
           ScrollbarV.GetComponent<Scrollbar>().targetGraphic = handle1.GetComponent<Image>();
           ScrollbarV.GetComponent<Scrollbar>().direction = Scrollbar.Direction.BottomToTop;
-          slidingArea1.GetComponent<RectTransform>().anchorMin = new Vector2 (0, 0);
-          slidingArea1.GetComponent<RectTransform>().anchorMax = new Vector2 (1, 1);
-       }    
     }
-    public GameObject Canvas;
+ }
 }

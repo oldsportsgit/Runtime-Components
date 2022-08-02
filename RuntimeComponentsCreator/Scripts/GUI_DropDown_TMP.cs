@@ -4,17 +4,13 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-public class GUI_DropDown_TMP : MonoBehaviour
+namespace UI
 {
+ public class GUI_DropDown_TMP : MonoBehaviour
+ {
     // Start is called before the first frame update
     void Start()
     {
-       if(Canvas == null)
-       {
-          Debug.LogError("Canvas cannot be null");
-       }
-       else 
-       {
        Texture2D DropdownArrowtex = new Texture2D(2, 2);
 byte[] DropdownArrow = new byte[] 
 {
@@ -302,88 +298,87 @@ byte[] UIMask = new byte[]
 };
           UIMasktex.LoadImage(UIMask);
           tex.LoadImage(UISprite);
-          GameObject Dropdown = new GameObject();
-          Dropdown.name = "Dropdown";
+          GameObject Dropdown = new GameObject("Dropdown", typeof(Image), typeof(TMP_Dropdown));
           Dropdown.transform.SetParent(Canvas.transform);
-          Dropdown.AddComponent<Image>(); 
-          Dropdown.AddComponent<TMP_Dropdown>();
           Dropdown.GetComponent<Image>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4 (10,10,10,10));
           Dropdown.GetComponent<RectTransform>().sizeDelta = new Vector2 (160, 30);
           Dropdown.GetComponent<Image>().type = Image.Type.Sliced;
-          GameObject Label = new GameObject();
-          Label.name = "Label"; 
+          fd[0].text = "Option A";
+          fd[1].text = "Option B";
+          fd[2].text = "Option C";
+          Dropdown.GetComponent<TMP_Dropdown>().options.AddRange(fd);
+          GameObject Label = new GameObject("Label", typeof(TextMeshProUGUI));
           Label.transform.SetParent(Dropdown.transform);
-          Label.AddComponent<TextMeshProUGUI>();
           Label.GetComponent<TextMeshProUGUI>().fontSize = 14;
           Label.GetComponent<TextMeshProUGUI>().color = Color.black;
-          Label.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
-          GameObject Arrow = new GameObject();
-          Arrow.name = "Arrow"; 
+          Label.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Left;
+          Label.GetComponent<RectTransform>().anchorMax = new Vector2(1,1);
+          Label.GetComponent<RectTransform>().anchorMin = new Vector2(0,0);
+          Label.GetComponent<RectTransform>().sizeDelta = new Vector2 (25, 6);
+          GameObject Arrow = new GameObject("Arrow", typeof(Image));
           Arrow.transform.SetParent(Dropdown.transform);
-          Arrow.AddComponent<Image>();
+          Arrow.GetComponent<RectTransform>().anchorMax = new Vector2(1,0.5f);
+          Arrow.GetComponent<RectTransform>().anchorMin = new Vector2(1,0.5f);
+          Arrow.GetComponent<RectTransform>().sizeDelta = new Vector2 (20, 20);
+          Arrow.GetComponent<RectTransform>().anchoredPosition = new Vector2(-15,0);
           Arrow.GetComponent<Image>().sprite = Sprite.Create(DropdownArrowtex, new Rect(0.0f, 0.0f, DropdownArrowtex.width, DropdownArrowtex.height), new Vector2(20f, 20f), 200.0f, 0, SpriteMeshType.Tight, new Vector4 (0,0,0,0));
-          GameObject Template = new GameObject();
-          Template.name = "Template"; 
+          GameObject Template = new GameObject("Template", typeof(Image), typeof(ScrollRect)); 
           Template.transform.SetParent(Dropdown.transform);
           Template.SetActive(false);
-          Template.AddComponent<Image>();
           Template.GetComponent<Image>().sprite = Dropdown.GetComponent<Image>().sprite;
           Template.GetComponent<Image>().type = Image.Type.Sliced;
-          Template.AddComponent<ScrollRect>();
+          Template.GetComponent<RectTransform>().anchorMax = new Vector2(1,0);
+          Template.GetComponent<RectTransform>().anchorMin = new Vector2(0,0);
+          Template.GetComponent<RectTransform>().pivot = new Vector2(0.5f, 1);
           Template.GetComponent<ScrollRect>().movementType = ScrollRect.MovementType.Clamped;
-          GameObject Viewport = new GameObject();
-          Viewport.name = "Viewport"; 
+          Template.GetComponent<ScrollRect>().horizontal = false;
+          Template.GetComponent<ScrollRect>().verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHideAndExpandViewport;
+          Template.GetComponent<ScrollRect>().verticalScrollbarSpacing = -3;
+          GameObject Viewport = new GameObject("Viewport", typeof(Mask), typeof(Image));
           Viewport.transform.SetParent(Template.transform);
-          Viewport.AddComponent<Mask>();
-          Viewport.AddComponent<Image>();
           Viewport.GetComponent<Image>().sprite = Sprite.Create(UIMasktex, new Rect(0.0f, 0.0f, UIMasktex.width, UIMasktex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4 (10,10,10,10));
           Viewport.GetComponent<Image>().type = Image.Type.Sliced;
-          GameObject Scrollbar = new GameObject();
-          Scrollbar.name = "Scrollbar"; 
-          Scrollbar.transform.SetParent(Template.transform);
-          Scrollbar.AddComponent<Image>();
-          Scrollbar.AddComponent<Scrollbar>();
-          Scrollbar.GetComponent<Image>().sprite = Sprite.Create(Backgroundtex, new Rect(0.0f, 0.0f, Backgroundtex.width, Backgroundtex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4 (10,10,10,10));
-          Scrollbar.GetComponent<Image>().type = Image.Type.Sliced;
-          GameObject slidingArea = new GameObject();
-          slidingArea.name = "Sliding Area"; 
-          slidingArea.transform.SetParent(Scrollbar.transform);
-          slidingArea.AddComponent<RectTransform>();
-          GameObject Handle = new GameObject();
-          Handle.name = "Handle"; 
+          Viewport.GetComponent<Mask>().showMaskGraphic = false;
+          GameObject scrollbar = new GameObject("Scrollbar", typeof(Image), typeof(Scrollbar));
+          scrollbar.transform.SetParent(Template.transform);
+          scrollbar.GetComponent<Image>().sprite = Sprite.Create(Backgroundtex, new Rect(0.0f, 0.0f, Backgroundtex.width, Backgroundtex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4 (10,10,10,10));
+          scrollbar.GetComponent<Image>().type = Image.Type.Sliced;
+          GameObject slidingArea = new GameObject("Sliding Area", typeof(RectTransform));
+          slidingArea.transform.SetParent(scrollbar.transform);
+          GameObject Handle = new GameObject("Handle", typeof(Image));
           Handle.transform.SetParent(slidingArea.transform);
-          Handle.AddComponent<Image>();
-          Handle.GetComponent<Image>().sprite = Scrollbar.GetComponent<Image>().sprite;
+          Handle.GetComponent<Image>().sprite = scrollbar.GetComponent<Image>().sprite;
           Handle.GetComponent<Image>().type = Image.Type.Sliced;
-          GameObject Content = new GameObject();
-          Content.name = "Content"; 
+          scrollbar.GetComponent<Scrollbar>().targetGraphic = Handle.GetComponent<Image>();
+          scrollbar.GetComponent<Scrollbar>().handleRect = Handle.GetComponent<RectTransform>();
+          scrollbar.GetComponent<Scrollbar>().direction = Scrollbar.Direction.BottomToTop;
+          GameObject Content = new GameObject("Content", typeof(RectTransform));
           Content.transform.SetParent(Viewport.transform);
-          Content.AddComponent<RectTransform>();
-          GameObject Item = new GameObject();
-          Item.name = "Item"; 
+          GameObject Item = new GameObject("Item", typeof(Toggle));
+          Item.GetComponent<Toggle>().isOn = true;
           Item.transform.SetParent(Content.transform);
-          Item.AddComponent<Toggle>();
-          GameObject ItemBackground = new GameObject();
-          ItemBackground.name = "Item Background"; 
+          GameObject ItemBackground = new GameObject("Item Background", typeof(Image));
+          Item.GetComponent<Toggle>().targetGraphic = ItemBackground.GetComponent<Image>();
           ItemBackground.transform.SetParent(Item.transform);
-          ItemBackground.AddComponent<Image>();
-          GameObject ItemCheckmark = new GameObject();
-          ItemCheckmark.name = "Item Checkmark"; 
+          GameObject ItemCheckmark = new GameObject("Item Checkmark", typeof(Image));
+          Item.GetComponent<Toggle>().graphic = ItemCheckmark.GetComponent<Image>();
           ItemCheckmark.transform.SetParent(Item.transform);
-          ItemCheckmark.AddComponent<Image>();
           ItemCheckmark.GetComponent<Image>().sprite = Sprite.Create(Checkmarktex, new Rect(0.0f, 0.0f, Checkmarktex.width, Checkmarktex.height), new Vector2(12f, 12f), 200.0f, 0, SpriteMeshType.Tight, new Vector4 (0,0,0,0));
-          GameObject ItemLabel = new GameObject();
-          ItemLabel.name = "Item Label"; 
+          GameObject ItemLabel = new GameObject("Item Label", typeof(TextMeshProUGUI));
+          ItemLabel.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Left;
+          ItemLabel.GetComponent<TextMeshProUGUI>().text = "Option A";
+          ItemLabel.GetComponent<TextMeshProUGUI>().fontSize = 14;
+          ItemLabel.GetComponent<TextMeshProUGUI>().color = Color.black;
           ItemLabel.transform.SetParent(Item.transform);
-          ItemLabel.AddComponent<TextMeshProUGUI>();
           Dropdown.GetComponent<TMP_Dropdown>().targetGraphic = Dropdown.GetComponent<Image>();
           Dropdown.GetComponent<TMP_Dropdown>().template = Template.GetComponent<RectTransform>();
           Dropdown.GetComponent<TMP_Dropdown>().captionText = Label.GetComponent<TextMeshProUGUI>();
           Dropdown.GetComponent<TMP_Dropdown>().itemText = ItemLabel.GetComponent<TextMeshProUGUI>();
           Template.GetComponent<ScrollRect>().content = Content.GetComponent<RectTransform>();
           Template.GetComponent<ScrollRect>().viewport = Viewport.GetComponent<RectTransform>();
-          Template.GetComponent<ScrollRect>().verticalScrollbar = Scrollbar.GetComponent<Scrollbar>();
-       }
+          Template.GetComponent<ScrollRect>().verticalScrollbar = scrollbar.GetComponent<Scrollbar>();
     }
     public GameObject Canvas;
+    public TMP_Dropdown.OptionData[] fd = new TMP_Dropdown.OptionData[3];
+ } 
 }
