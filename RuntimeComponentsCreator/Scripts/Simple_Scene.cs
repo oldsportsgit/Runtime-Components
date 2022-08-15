@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AssetBundle
+namespace RuntimeComponents.AssetBundle
 {
  public class Simple_Scene : MonoBehaviour
  {

@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Video;
 //you could use the UnityWebRequest to download a videoclip and put it in "clip"
 
-namespace AssetBundle
+namespace RuntimeComponents.AssetBundle
 {
  public class Video_Player : MonoBehaviour
  {

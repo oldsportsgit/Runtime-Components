@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace AssetBundle
+namespace RuntimeComponents.AssetBundle
 {
  public class Render_Texture : MonoBehaviour
  {

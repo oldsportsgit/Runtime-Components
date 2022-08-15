@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace UI
+namespace RuntimeComponents.UI
 {
  public class GUI_Scrollbar : MonoBehaviour
  {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-namespace ThreeD
+namespace RuntimeComponents.ThreeD
 {
  public class text_TMP : MonoBehaviour
  {

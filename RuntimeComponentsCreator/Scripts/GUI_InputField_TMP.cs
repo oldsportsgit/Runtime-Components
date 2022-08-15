@@ -6,7 +6,7 @@ using UnityEngine.UI;
 using System.Reflection;
 using System;
 
-namespace UI 
+namespace RuntimeComponents.UI
 {
  public class GUI_InputField_TMP : MonoBehaviour
  {

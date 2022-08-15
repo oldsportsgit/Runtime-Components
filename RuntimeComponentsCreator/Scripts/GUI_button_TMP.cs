@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
 
-namespace UI
+namespace RuntimeComponents.UI
 {
   public class GUI_button_TMP : MonoBehaviour
   {
