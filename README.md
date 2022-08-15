@@ -7,8 +7,8 @@ if you want to bake the navmesh at runtime use this
 https://github.com/Unity-Technologies/NavMeshComponents
 
 ## What isn't working
-GUI_ScrollView.cs
+GUI_ScrollView.cs Partially
 
-GUI_DropDown_TMP.cs
+GUI_DropDown_TMP.cs Partially
 
 SaveGameObjectAsPrefab Partially
