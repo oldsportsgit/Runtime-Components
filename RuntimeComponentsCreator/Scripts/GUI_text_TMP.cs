@@ -10,7 +10,7 @@ namespace RuntimeComponents.UI
     // Start is called before the first frame update
     public static void text_TMP(GameObject Canvas, Vector2 position, string text, Color colorOfText, int fontSize, TextAlignmentOptions align)
     {
-          GameObject GUI_text = new GameObject("Text (TMP)", typeof(TextMeshProUGUI));
+          GUI_text = new GameObject("Text (TMP)", typeof(TextMeshProUGUI));
           GUI_text.transform.SetParent(Canvas.transform);
           GUI_text.GetComponent<TextMeshProUGUI>().text = text;
           GUI_text.GetComponent<TextMeshProUGUI>().alignment = align;
@@ -18,5 +18,16 @@ namespace RuntimeComponents.UI
           GUI_text.GetComponent<TextMeshProUGUI>().fontSize = fontSize;
           GUI_text.GetComponent<RectTransform>().anchoredPosition = position;
     }
+
+    public static void Change(GameObject Canvas, Vector2 position, string text, Color colorOfText, int fontSize, TextAlignmentOptions align)
+    {
+          GUI_text.transform.SetParent(Canvas.transform);
+          GUI_text.GetComponent<TextMeshProUGUI>().text = text;
+          GUI_text.GetComponent<TextMeshProUGUI>().alignment = align;
+          GUI_text.GetComponent<TextMeshProUGUI>().color = colorOfText;
+          GUI_text.GetComponent<TextMeshProUGUI>().fontSize = fontSize;
+          GUI_text.GetComponent<RectTransform>().anchoredPosition = position;
+    }
+    private static GameObject GUI_text;
  }
 }
