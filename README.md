@@ -1,8 +1,8 @@
 # Overview of the Runtime Components Creator
 
-The Runtime Components Create or RCC for short scripts for unity that create for 
-example a button while the game is running and it will create as if you created
-the button in this case in the editor
+The Runtime Components Creator or RCC for short, contains scripts that create for
+example a button while the game is running, of course you can also create asset
+Bundles with it like Render textures, and a Scene
 
 if you want to bake the navmesh at runtime use this
 https://github.com/Unity-Technologies/NavMeshComponents
