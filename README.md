@@ -1,6 +1,6 @@
-# Overview of the Runtime Components Creator
+# Overview of the Runtime Components 
 
-The Runtime Components Creator or RCC for short, contains scripts that create for
+The Runtime Components or RC for short, contains scripts that create for
 example a button while the game is running, of course you can also create asset
 Bundles with it like Render textures, and a Scene
 
