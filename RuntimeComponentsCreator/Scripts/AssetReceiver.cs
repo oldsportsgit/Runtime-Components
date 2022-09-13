@@ -1,12 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Video;
 using TMPro;
 
-namespace RuntimeComponents.AssetBundle
+public class AssetReceiver 
 {
- public class AssetReceiver 
- {
     public static Material GetMaterialByName(string name)
     {
        Material[] Materials = Resources.FindObjectsOfTypeAll(typeof(Material)) as Material[];
@@ -104,5 +103,32 @@ namespace RuntimeComponents.AssetBundle
         }
         return TMP_FontAssetvar;
     }
- }
+
+    public static Sprite GetSpriteByName(string name)
+    {
+        Sprite[] Sprites = Resources.FindObjectsOfTypeAll(typeof(Sprite)) as Sprite[];
+        Sprite Spritevar = null;
+        for (int i = 0; i < Sprites.Length; i++)
+        {
+            if (Sprites[i].name == name)
+            {
+                Spritevar = Sprites[i];
+            }
+        }
+        return Spritevar;
+    }
+
+    public static VideoClip GetVideoClipByName(string name)
+    {
+        VideoClip[] VideoClips = Resources.FindObjectsOfTypeAll(typeof(VideoClip)) as VideoClip[];
+        VideoClip VideoClipvar = null;
+        for (int i = 0; i < VideoClips.Length; i++)
+        {
+            if (VideoClips[i].name == name)
+            {
+                VideoClipvar = VideoClips[i];
+            }
+        }
+        return VideoClipvar;
+    }
 }
