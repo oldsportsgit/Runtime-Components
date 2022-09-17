@@ -204,5 +204,19 @@ namespace RuntimeComponents.AssetBundle
         }
         return LightProbesvar;
     }
+    
+    public static Texture2D GetTexture2DByName(string name)
+    {
+        Texture2D[] Texture2Ds = Resources.FindObjectsOfTypeAll(typeof(Texture2D)) as Texture2D[];
+        Texture2D Texture2Dvar = null;
+        for (int i = 0; i < Texture2Ds.Length; i++)
+        {
+            if (Texture2Ds[i].name == name)
+            {
+                Texture2Dvar = Texture2Ds[i];
+            }
+        }
+        return Texture2Dvar;
+    }
  }
 }
