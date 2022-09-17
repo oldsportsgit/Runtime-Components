@@ -2,10 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
+using UnityEngine.Audio;
 using TMPro;
 
-public class AssetReceiver 
+namespace RuntimeComponents.AssetBundle
 {
+ public class AssetReceiver : MonoBehaviour
+ {
     public static Material GetMaterialByName(string name)
     {
        Material[] Materials = Resources.FindObjectsOfTypeAll(typeof(Material)) as Material[];
@@ -131,4 +134,75 @@ public class AssetReceiver
         }
         return VideoClipvar;
     }
+
+    public static RenderTexture GetRenderTextureByName(string name)
+    {
+        RenderTexture[] RenderTextures = Resources.FindObjectsOfTypeAll(typeof(RenderTexture)) as RenderTexture[];
+        RenderTexture RenderTexturevar = null;
+        for (int i = 0; i < RenderTextures.Length; i++)
+        {
+            if (RenderTextures[i].name == name)
+            {
+                RenderTexturevar = RenderTextures[i];
+            }
+        }
+        return RenderTexturevar;
+    }
+
+    public static AudioMixer GetaudioMixerByName(string name)
+    {
+        AudioMixer[] AudioMixers = Resources.FindObjectsOfTypeAll(typeof(AudioMixer)) as AudioMixer[];
+        AudioMixer AudioMixervar = null;
+        for (int i = 0; i < AudioMixers.Length; i++)
+        {
+            if (AudioMixers[i].name == name)
+            {
+               AudioMixervar = AudioMixers[i];
+            }
+        }
+        return AudioMixervar;
+    }
+
+    public static AudioMixerSnapshot GetaudioMixerSnapshotByName(string name)
+    {
+        AudioMixerSnapshot[] AudioMixerSnapshots = Resources.FindObjectsOfTypeAll(typeof(AudioMixerSnapshot)) as AudioMixerSnapshot[];
+        AudioMixerSnapshot AudioMixerSnapshotvar = null;
+        for (int i = 0; i < AudioMixerSnapshots.Length; i++)
+        {
+            if (AudioMixerSnapshots[i].name == name)
+            {
+               AudioMixerSnapshotvar = AudioMixerSnapshots[i];
+            }
+        }
+        return AudioMixerSnapshotvar;
+    }
+
+    public static AudioMixerGroup GetaudioMixerGroupByName(string name)
+    {
+        AudioMixerGroup[] AudioMixerGroups = Resources.FindObjectsOfTypeAll(typeof(AudioMixerGroup)) as AudioMixerGroup[];
+        AudioMixerGroup AudioMixerGroupvar = null;
+        for (int i = 0; i < AudioMixerGroups.Length; i++)
+        {
+            if (AudioMixerGroups[i].name == name)
+            {
+                AudioMixerGroupvar = AudioMixerGroups[i];
+            }
+        }
+        return AudioMixerGroupvar;
+    }
+
+    public static LightProbes GetLightProbesByName(string name)
+    {
+        LightProbes[] lightProbes = Resources.FindObjectsOfTypeAll(typeof(LightProbes)) as LightProbes[];
+        LightProbes LightProbesvar = null;
+        for (int i = 0; i < lightProbes.Length; i++)
+        {
+            if (lightProbes[i].name == name)
+            {
+                LightProbesvar = lightProbes[i];
+            }
+        }
+        return LightProbesvar;
+    }
+ }
 }

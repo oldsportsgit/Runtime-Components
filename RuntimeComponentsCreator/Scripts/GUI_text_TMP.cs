@@ -8,26 +8,21 @@ namespace RuntimeComponents.UI
  public class GUI_text_TMP : MonoBehaviour
  {
     // Start is called before the first frame update
-    public static void text_TMP(GameObject Canvas, Vector2 position, string text, Color colorOfText, int fontSize, TextAlignmentOptions align, int id)
+    public static void text_TMP(GameObject Canvas, Vector2 position, string text, Color colorOfText, int fontSize, TextAlignmentOptions align)
     {         
-          GameObject gobj = new GameObject("Text (TMP)", typeof(TextMeshProUGUI));
-          GUI_text.Add(gobj);
-          GUI_text[id].transform.SetParent(Canvas.transform);
-          GUI_text[id].GetComponent<TextMeshProUGUI>().text = text;
-          GUI_text[id].GetComponent<TextMeshProUGUI>().alignment = align;
-          GUI_text[id].GetComponent<TextMeshProUGUI>().color = colorOfText;
-          GUI_text[id].GetComponent<TextMeshProUGUI>().fontSize = fontSize;
-          GUI_text[id].GetComponent<RectTransform>().anchoredPosition = position;
+          GameObject TMPtext = new GameObject("Text (TMP)", typeof(TextMeshProUGUI));
+          GUI_text.Add(TMPtext);
+          TMPtext.transform.SetParent(Canvas.transform);
+          TMPtext.GetComponent<TextMeshProUGUI>().text = text;
+          TMPtext.GetComponent<TextMeshProUGUI>().alignment = align;
+          TMPtext.GetComponent<TextMeshProUGUI>().color = colorOfText;
+          TMPtext.GetComponent<TextMeshProUGUI>().fontSize = fontSize;
+          TMPtext.GetComponent<RectTransform>().anchoredPosition = position;
     }
 
-    public static void Change(GameObject Canvas, Vector2 position, string text, Color colorOfText, int fontSize, TextAlignmentOptions align, int id)
+    public static GameObject GetRootGameObject(int id)
     {
-          GUI_text[id].transform.SetParent(Canvas.transform);
-          GUI_text[id].GetComponent<TextMeshProUGUI>().text = text;
-          GUI_text[id].GetComponent<TextMeshProUGUI>().alignment = align;
-          GUI_text[id].GetComponent<TextMeshProUGUI>().color = colorOfText;
-          GUI_text[id].GetComponent<TextMeshProUGUI>().fontSize = fontSize;
-          GUI_text[id].GetComponent<RectTransform>().anchoredPosition = position;
+       return GUI_text[id];
     }
     private static List<GameObject> GUI_text = new List<GameObject>();
  }

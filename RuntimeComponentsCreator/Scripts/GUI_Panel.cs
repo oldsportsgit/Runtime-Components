@@ -20,6 +20,7 @@ namespace RuntimeComponents.UI
                 }
           }
           GameObject Panel = new GameObject("Panel", typeof(Image));
+          GUI_panel.Add(Panel);
           Panel.transform.SetParent(Canvas.transform);
           Panel.GetComponent<Image>().sprite = sprite;
           Panel.GetComponent<Image>().type = Image.Type.Sliced;
@@ -30,5 +31,11 @@ namespace RuntimeComponents.UI
           Panel.GetComponent<RectTransform>().offsetMax = new Vector2(0,0);
           Panel.GetComponent<RectTransform>().offsetMin = new Vector2(0,0);
     }
+
+    public static GameObject GetRootGameObject(int id)
+    {
+       return GUI_panel[id];
+    }
+    private static List<GameObject> GUI_panel = new List<GameObject>();
  }
 }

@@ -8,7 +8,7 @@ namespace RuntimeComponents.AssetBundle
  public class Simple_Scene : MonoBehaviour
  {
     // Start is called before the first frame update
-    public static void Scene(string SceneName)
+    public static void CreateScene(string SceneName)
     {
         Scene newScene = SceneManager.CreateScene(SceneName);
         SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
