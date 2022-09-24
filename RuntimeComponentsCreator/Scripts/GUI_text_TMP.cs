@@ -8,13 +8,13 @@ namespace RuntimeComponents.UI
  public class GUI_text_TMP : MonoBehaviour
  {
     // Start is called before the first frame update
-    public static void text_TMP(GameObject Canvas, Vector2 position, string text, Color colorOfText, int fontSize, TextAlignmentOptions align)
+    public static void text_TMP(GameObject Canvas, Vector2 position, string text, Color colorOfText, int fontSize)
     {         
           GameObject TMPtext = new GameObject("Text (TMP)", typeof(TextMeshProUGUI));
           GUI_text.Add(TMPtext);
           TMPtext.transform.SetParent(Canvas.transform);
           TMPtext.GetComponent<TextMeshProUGUI>().text = text;
-          TMPtext.GetComponent<TextMeshProUGUI>().alignment = align;
+          TMPtext.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
           TMPtext.GetComponent<TextMeshProUGUI>().color = colorOfText;
           TMPtext.GetComponent<TextMeshProUGUI>().fontSize = fontSize;
           TMPtext.GetComponent<RectTransform>().anchoredPosition = position;

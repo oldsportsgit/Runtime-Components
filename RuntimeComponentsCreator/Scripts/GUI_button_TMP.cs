@@ -9,8 +9,10 @@ namespace RuntimeComponents.UI
 {
   public class GUI_button_TMP : MonoBehaviour
   {
-    public static void Button(GameObject Canvas, Vector2 size, Vector2 Position, string text, Color colorOfText, int fontSize, TextAlignmentOptions align)
+    public static void Button(GameObject Canvas, Vector3 Position, string text, Color colorOfText, int fontSize)
     {
+          GameObject button = new GameObject("Button", typeof(Image), typeof(Button));
+          GUI_Button.Add(button);
           Texture2D tex = new Texture2D(2, 2);
 	     byte[] UISprite = new byte[] 
           {
@@ -81,13 +83,13 @@ namespace RuntimeComponents.UI
 };
           tex.LoadImage(UISprite);
           button.transform.SetParent(Canvas.transform);
-          button.GetComponent<Image>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4 (10,10,10,10));
+          button.GetComponent<Image>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4(10, 10, 10, 10));
           button.GetComponent<Image>().type = Image.Type.Sliced;
           GameObject GUI_text = new GameObject("Text (TMP)", typeof(TextMeshProUGUI));
           GUI_text.transform.SetParent(button.transform);
           GUI_text.GetComponent<TextMeshProUGUI>().text = text;
-          GUI_text.GetComponent<TextMeshProUGUI>().alignment = align;
-          button.GetComponent<RectTransform>().sizeDelta = size;
+          GUI_text.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Center;
+		  button.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
           GUI_text.GetComponent<RectTransform>().anchorMin = new Vector2 (0, 0);
           GUI_text.GetComponent<RectTransform>().anchorMax = new Vector2 (1, 1);
           GUI_text.GetComponent<TextMeshProUGUI>().color = colorOfText; 
