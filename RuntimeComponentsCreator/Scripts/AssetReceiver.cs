@@ -5,6 +5,7 @@ using UnityEngine.Video;
 using UnityEngine.Audio;
 using TMPro;
 
+//the asset receiver is just a simplified version of getting a specific file
 namespace RuntimeComponents.AssetBundle
 {
  public class AssetReceiver : MonoBehaviour
