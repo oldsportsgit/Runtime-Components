@@ -7,12 +7,11 @@ namespace RuntimeComponents.UI
 {
     public class GUIInteractables
     {
-        public static void ButtonCreateStore(string Name, GameObject Canvas, Vector2 Position, string text)
+        public static GameObject Button(string Name, GameObject Canvas, Vector2 Position, string text)
         {
             GameObject button = new GameObject(Name, typeof(Image), typeof(Button));
             button.transform.SetParent(Canvas.transform);
             button.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-            GUI_Button.Add(button);
             Texture2D tex = new Texture2D(2, 2);
             byte[] UISprite = new byte[]
              {
@@ -99,66 +98,34 @@ namespace RuntimeComponents.UI
             rect.offsetMax = new Vector2(0, 0);
             rect.offsetMin = new Vector2(0, 0);
             button.GetComponent<RectTransform>().anchoredPosition = Position;
+            return button;
         }
 
-        private static List<GameObject> GUI_Button = new List<GameObject>();
-
-        public static GameObject[] GUI_ButtonsArray
-        {
-            get
-            {
-                return GUI_Button.ToArray();
-            }
-        }
-
-        public static void CanvasCreateStore(string name)
+        public static GameObject CanvasReturn(string name)
         {
             GameObject Canvas = new GameObject(name, typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
             Canvas.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
-            GUI_Canvas.Add(Canvas);
-        }
-
-        public static GameObject CanvasCreateReturn(string name)
-        {
-            GameObject Canvas = new GameObject(name, typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
-            Canvas.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
-            GUI_Canvas.Add(Canvas);
             return Canvas;
         }
 
-        private static List<GameObject> GUI_Canvas = new List<GameObject>();
-
-        public static GameObject[] GUI_CanvasArray
+        public static void CanvasCreate(string name)
         {
-            get
-            {
-                return GUI_Canvas.ToArray();
-            }
+            GameObject Canvas = new GameObject(name, typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
+            Canvas.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
         }
 
-        public static void text_TMPCreateStore(string name, GameObject Canvas, Vector2 position, string text)
+        public static GameObject text_TMP(string name, GameObject Canvas, Vector2 position, string text)
         {
             GameObject TMPtext = new GameObject(name, typeof(TextMeshProUGUI));
-            GUI_text.Add(TMPtext);
             TMPtext.transform.SetParent(Canvas.transform);
             TMPtext.GetComponent<TextMeshProUGUI>().text = text;
             TMPtext.GetComponent<RectTransform>().anchoredPosition = position;
+            return TMPtext;
         }
 
-        private static List<GameObject> GUI_text = new List<GameObject>();
-
-        public static GameObject[] GUI_textArray
-        {
-            get
-            {
-                return GUI_text.ToArray();
-            }
-        }
-
-        public static void PanelCreateStore(string name, GameObject Canvas, Vector2 Position)
+        public static GameObject Panel(string name, GameObject Canvas, Vector2 Position)
         {
             GameObject Panel = new GameObject(name, typeof(Image));
-            GUI_panel.Add(Panel);
             Texture2D Backgroundtex = new Texture2D(2, 2);
             byte[] BackgroundSprite = new byte[]
             {
@@ -236,22 +203,12 @@ namespace RuntimeComponents.UI
             PanelRect.offsetMax = new Vector2(0, 0);
             PanelRect.offsetMin = new Vector2(0, 0);
             PanelRect.anchoredPosition = Position;
+            return Panel;
         }
 
-        private static List<GameObject> GUI_panel = new List<GameObject>();
-
-        public static GameObject[] GUI_panelArray
-        {
-            get
-            {
-                return GUI_panel.ToArray();
-            }
-        }
-
-        public static void SliderCreateStore(string name, GameObject Canvas, Vector2 position)
+        public static GameObject Slider(string name, GameObject Canvas, Vector2 position)
         {
             GameObject Slider = new GameObject(name, typeof(Slider));
-            GUI_Sliders.Add(Slider);
             Slider.transform.SetParent(Canvas.transform);
             Slider.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 20);
             byte[] Background_Image = new byte[]
@@ -561,22 +518,12 @@ namespace RuntimeComponents.UI
             Slider.GetComponent<Slider>().handleRect = Handle.GetComponent<RectTransform>();
             Slider.GetComponent<Slider>().targetGraphic = Handle.GetComponent<Image>();
             Slider.GetComponent<RectTransform>().anchoredPosition = position;
+            return Slider;
         }
 
-        private static List<GameObject> GUI_Sliders = new List<GameObject>();
-
-        public static GameObject[] GUI_SliderArray
-        {
-            get
-            {
-                return GUI_Sliders.ToArray();
-            }
-        }
-
-        public static void TogglerCreateStore(string name, GameObject Canvas, Vector2 position)
+        public static GameObject Toggler(string name, GameObject Canvas, Vector2 position)
         {
             GameObject Toggle = new GameObject(name, typeof(Toggle));
-            GUI_togglers.Add(Toggle);
             Texture2D tex = new Texture2D(2, 2);
             byte[] UISprite = new byte[]
              {
@@ -809,19 +756,10 @@ namespace RuntimeComponents.UI
             CheckmarkRect.position = new Vector3(-70, 0, 0f);
             Toggle.GetComponent<RectTransform>().anchoredPosition = position;
             Toggle.GetComponent<Toggle>().graphic = Checkmark.GetComponent<Image>();
+            return Toggle;
         }
 
-        private static List<GameObject> GUI_togglers = new List<GameObject>();
-
-        public static GameObject[] GUI_TogglersArray
-        {
-            get
-            {
-                return GUI_togglers.ToArray();
-            }
-        }
-
-        public static void ScrollViewCreateStore(GameObject canvas)
+        public static GameObject ScrollView(GameObject canvas)
         {
             Texture2D backgroundtex = new Texture2D(2, 2);
             byte[] Background = new byte[]
@@ -967,7 +905,6 @@ namespace RuntimeComponents.UI
             tex.LoadImage(UISprite);
             backgroundtex.LoadImage(Background);
             GameObject scrollView = new GameObject("Scroll View", typeof(Image), typeof(ScrollRect));
-            GUI_scrollviews.Add(scrollView);
             scrollView.transform.SetParent(canvas.transform);
             Image scrollViewImg = scrollView.GetComponent<Image>();
             scrollViewImg.type = Image.Type.Sliced;
@@ -1046,19 +983,10 @@ namespace RuntimeComponents.UI
             ScrollbarV.GetComponent<Image>().type = Image.Type.Sliced;
             ScrollbarV.GetComponent<Scrollbar>().targetGraphic = handle1.GetComponent<Image>();
             ScrollbarV.GetComponent<Scrollbar>().direction = Scrollbar.Direction.BottomToTop;
+            return scrollView;
         }
 
-        private static List<GameObject> GUI_scrollviews = new List<GameObject>();
-
-        public static GameObject[] GUI_scrollviewsArray
-        {
-            get
-            {
-                return GUI_scrollviews.ToArray();
-            }
-        }
-
-        public static void ScrollbarCreateStore(GameObject Canvas, Vector2 position)
+        public static GameObject scrollbar(GameObject Canvas, Vector2 position)
         {
             Texture2D backgroundtex = new Texture2D(2, 2);
             byte[] Background = new byte[]
@@ -1178,7 +1106,6 @@ namespace RuntimeComponents.UI
             tex.LoadImage(UISprite);
             backgroundtex.LoadImage(Background);
             GameObject scrollbar = new GameObject("Scrollbar", typeof(Image), typeof(Scrollbar));
-            GUI_scroolbars.Add(scrollbar);
             scrollbar.transform.SetParent(Canvas.transform);
             scrollbar.GetComponent<Image>().type = Image.Type.Sliced;
             scrollbar.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 20);
@@ -1198,19 +1125,10 @@ namespace RuntimeComponents.UI
             handle.GetComponent<RectTransform>().sizeDelta = new Vector2(20, 20);
             handle.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
             scrollbar.GetComponent<Scrollbar>().handleRect = handle.GetComponent<RectTransform>();
+            return scrollbar;
         }
 
-        private static List<GameObject> GUI_scroolbars = new List<GameObject>();
-
-        public static GameObject[] GUI_scroolbarsArray
-        {
-            get
-            {
-                return GUI_scroolbars.ToArray();
-            }
-        }
-
-        public static void InputFieldCreateStore(GameObject Canvas)
+        public static GameObject InputFieldCreateStore(GameObject Canvas)
         {
             Texture2D tex = new Texture2D(2, 2);
             byte[] InputFieldBackground = new byte[]
@@ -1286,7 +1204,6 @@ namespace RuntimeComponents.UI
             };
             tex.LoadImage(InputFieldBackground);
             GameObject InputField = new GameObject("InputField (TMP)", typeof(Image), typeof(TMP_InputField));
-            GUI_tmpinputfield.Add(InputField);
             InputField.transform.SetParent(Canvas.transform);
             InputField.GetComponent<Image>().type = Image.Type.Sliced;
             InputField.GetComponent<Image>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4(10, 10, 10, 10));
@@ -1328,22 +1245,12 @@ namespace RuntimeComponents.UI
             InputField.GetComponent<TMP_InputField>().textComponent = text.GetComponent<TextMeshProUGUI>();
             InputField.GetComponent<TMP_InputField>().fontAsset = text.GetComponent<TextMeshProUGUI>().font;
             InputField.GetComponent<TMP_InputField>().placeholder = Placeholder.GetComponent<TextMeshProUGUI>();
+            return InputField;
         }
 
-        private static List<GameObject> GUI_tmpinputfield = new List<GameObject>();
-
-        public static GameObject[] GUI_tmpinputfieldArray
-        {
-            get
-            {
-                return GUI_tmpinputfield.ToArray();
-            }
-        }
-
-        public static void DropDown_TMPCreateStore(GameObject Canvas)
+        public static GameObject DropDown_TMP(GameObject Canvas)
         {
             GameObject Dropdown = new GameObject("Dropdown", typeof(UnityEngine.UI.Image), typeof(TMP_Dropdown));
-            GUI_Dropdown.Add(Dropdown);
             Dropdown.transform.SetParent(Canvas.transform);
             Dropdown.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
             Texture2D DropdownArrowtex = new Texture2D(2, 2);
@@ -1768,16 +1675,7 @@ namespace RuntimeComponents.UI
             Template.GetComponent<ScrollRect>().content = Content.GetComponent<RectTransform>();
             Template.GetComponent<ScrollRect>().viewport = Viewport.GetComponent<RectTransform>();
             Template.GetComponent<ScrollRect>().verticalScrollbar = scrollbar.GetComponent<Scrollbar>();
-        }
-
-        private static List<GameObject> GUI_Dropdown = new List<GameObject>();
-
-        public static GameObject[] GUI_GUI_DropdownArray
-        {
-            get
-            {
-                return GUI_Dropdown.ToArray();
-            }
+            return Dropdown;
         }
     }
 }
