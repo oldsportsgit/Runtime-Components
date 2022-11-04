@@ -6,10 +6,3 @@ Bundles with it like Render textures, and a Scene
 
 if you want to bake the navmesh at runtime use this
 https://github.com/Unity-Technologies/NavMeshComponents
-
-## What isn't working currently (a overhaul is coming today)
-GUI_ScrollView.cs Partially
-
-GUI_DropDown_TMP.cs Partially
-
-SaveGameObject Partially
