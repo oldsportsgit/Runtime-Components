@@ -1,7 +1,6 @@
 using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
-using System.Collections.Generic;
 
 namespace RuntimeComponents.UI
 {
@@ -1128,7 +1127,7 @@ namespace RuntimeComponents.UI
             return scrollbar;
         }
 
-        public static GameObject InputFieldCreateStore(GameObject Canvas)
+        public static GameObject InputField(GameObject Canvas)
         {
             Texture2D tex = new Texture2D(2, 2);
             byte[] InputFieldBackground = new byte[]
