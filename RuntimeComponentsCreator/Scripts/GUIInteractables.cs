@@ -2,7 +2,7 @@ using UnityEngine.UI;
 using TMPro;
 using UnityEngine;
 
-namespace RuntimeComponents.UI
+namespace RuntimeComponents
 {
     public class GUIInteractables
     {
@@ -105,12 +105,6 @@ namespace RuntimeComponents.UI
             GameObject Canvas = new GameObject(name, typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
             Canvas.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
             return Canvas;
-        }
-
-        public static void CanvasCreate(string name)
-        {
-            GameObject Canvas = new GameObject(name, typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
-            Canvas.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
         }
 
         public static GameObject text_TMP(string name, GameObject Canvas, Vector2 position, string text)

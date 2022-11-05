@@ -3,11 +3,10 @@ using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace RuntimeComponents.AssetBundle
+namespace RuntimeComponents
 {
- public class Simple_Scene : MonoBehaviour
+ public class Simple_Scene
  {
-    // Start is called before the first frame update
     public static void CreateScene(string SceneName)
     {
         Scene newScene = SceneManager.CreateScene(SceneName);

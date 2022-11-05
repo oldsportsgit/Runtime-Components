@@ -8,7 +8,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace AssetBundle
+namespace RuntimeComponents
 {
     public class SaveGameObject : MonoBehaviour
     {
