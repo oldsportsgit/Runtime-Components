@@ -1,12 +1,12 @@
 using UnityEngine.UI;
-using TMPro;
 using UnityEngine;
+using TMPro;
 
 namespace RuntimeComponents
 {
     public class GUIInteractables
     {
-        public static GameObject Button(string Name, GameObject Canvas, Vector2 Position, string text)
+        public static GameObject LegacyButton(string Name, GameObject Canvas, Vector2 Position, string text)
         {
             GameObject button = new GameObject(Name, typeof(Image), typeof(Button));
             button.transform.SetParent(Canvas.transform);
@@ -78,17 +78,17 @@ namespace RuntimeComponents
     0x50, 0x65, 0x59, 0x0F, 0xC2, 0xB7, 0x83, 0x7F, 0x00, 0xF0, 0x1C, 0x47,
     0x04, 0x5F, 0xD5, 0x0F, 0x9A, 0x00, 0x00, 0x00, 0x00, 0x49, 0x45, 0x4E,
     0x44, 0xAE, 0x42, 0x60, 0x82
-   };
+    };
             tex.LoadImage(UISprite);
             button.GetComponent<Image>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4(10, 10, 10, 10));
             button.GetComponent<Image>().type = Image.Type.Sliced;
-            GameObject GUI_text = new GameObject("Text (TMP)", typeof(TextMeshProUGUI));
+            GameObject GUI_text = new GameObject("Text (Legacy)", typeof(Text));
             GUI_text.transform.SetParent(button.transform);
-            TextMeshProUGUI textMeshProUGUI = GUI_text.GetComponent<TextMeshProUGUI>();
-            textMeshProUGUI.text = text;
-            textMeshProUGUI.alignment = TextAlignmentOptions.Center;
-            textMeshProUGUI.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
-            textMeshProUGUI.fontSize = 24;
+            Text textt = GUI_text.GetComponent<Text>();
+            textt.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+            textt.text = text;
+            textt.alignment = TextAnchor.MiddleCenter;
+            textt.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
             RectTransform rect = GUI_text.GetComponent<RectTransform>();
             rect.anchorMin = new Vector2(0, 0);
             rect.anchorMax = new Vector2(1, 1);
@@ -107,11 +107,15 @@ namespace RuntimeComponents
             return Canvas;
         }
 
-        public static GameObject text_TMP(string name, GameObject Canvas, Vector2 position, string text)
+        public static GameObject text(string name, GameObject Canvas, Vector2 position, string text)
         {
-            GameObject TMPtext = new GameObject(name, typeof(TextMeshProUGUI));
+            GameObject TMPtext = new GameObject(name, typeof(Text));
             TMPtext.transform.SetParent(Canvas.transform);
-            TMPtext.GetComponent<TextMeshProUGUI>().text = text;
+            Text textt = TMPtext.GetComponent<Text>();
+            textt.text = text;
+            textt.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+            textt.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
+            TMPtext.GetComponent<RectTransform>().sizeDelta = new Vector2(160,30);
             TMPtext.GetComponent<RectTransform>().anchoredPosition = position;
             return TMPtext;
         }
@@ -707,15 +711,6 @@ namespace RuntimeComponents
     0x42, 0x60, 0x82
             };
             Checkmark_image.LoadImage(Checkmark_byte);
-            Font[] fonts = Resources.FindObjectsOfTypeAll(typeof(Font)) as Font[];
-            Font font = null;
-            for (int i = 0; i < fonts.Length; i++)
-            {
-                if (fonts[i].name == "Arial")
-                {
-                    font = fonts[i];
-                }
-            }
             Toggle.transform.SetParent(Canvas.transform);
             Toggle.GetComponent<Toggle>().isOn = true;
             Toggle.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 20);
@@ -733,7 +728,7 @@ namespace RuntimeComponents
             Label.transform.SetParent(Toggle.transform);
             Text LabelText = Label.GetComponent<Text>();
             LabelText.GetComponent<Text>().text = "Toggle";
-            LabelText.GetComponent<Text>().font = font;
+            LabelText.GetComponent<Text>().font = Resources.GetBuiltinResource<Font>("Arial.ttf"); 
             LabelText.GetComponent<Text>().color = new Vector4(0.20f, 0.20f, 0.20f, 1);
             RectTransform LabelRect = Label.GetComponent<RectTransform>();
             LabelRect.anchorMin = new Vector2(0, 0);
@@ -1122,7 +1117,7 @@ namespace RuntimeComponents
             return scrollbar;
         }
 
-        public static GameObject InputField(string name, GameObject Canvas, Vector2 position)
+        public static GameObject LegacyInputField(string name, GameObject Canvas, Vector2 position)
         {
             Texture2D tex = new Texture2D(2, 2);
             byte[] InputFieldBackground = new byte[]
@@ -1197,56 +1192,49 @@ namespace RuntimeComponents
     0x00, 0x49, 0x45, 0x4E, 0x44, 0xAE, 0x42, 0x60, 0x82
             };
             tex.LoadImage(InputFieldBackground);
-            GameObject InputField = new GameObject(name, typeof(Image), typeof(TMP_InputField));
+            GameObject InputField = new GameObject(name, typeof(Image), typeof(InputField));
             InputField.transform.SetParent(Canvas.transform);
             InputField.GetComponent<Image>().type = Image.Type.Sliced;
             InputField.GetComponent<Image>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4(10, 10, 10, 10));
             InputField.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-            GameObject Text_area = new GameObject("Text Area", typeof(RectMask2D));
-            Text_area.transform.SetParent(InputField.transform);
-            RectTransform Text_areaRect = Text_area.GetComponent<RectTransform>();
-            Text_areaRect.anchorMax = new Vector2(1, 1);
-            Text_areaRect.anchorMin = new Vector2(0, 0);
-            Text_areaRect.anchoredPosition = new Vector2(0, -0.50f);
-            Text_areaRect.sizeDelta = new Vector2(-20, -13);
-            GameObject Placeholder = new GameObject("Placeholder", typeof(TextMeshProUGUI), typeof(LayoutElement));
-            Placeholder.transform.SetParent(Text_area.transform);
-            Placeholder.GetComponent<LayoutElement>().ignoreLayout = true;
+            GameObject Placeholder = new GameObject("Placeholder", typeof(Text));
+            Placeholder.transform.SetParent(InputField.transform);
             RectTransform PlaceholderRect = Placeholder.GetComponent<RectTransform>();
             PlaceholderRect.anchorMax = new Vector2(1, 1);
             PlaceholderRect.anchorMin = new Vector2(0, 0);
             PlaceholderRect.offsetMax = new Vector2(0, 0);
             PlaceholderRect.offsetMin = new Vector2(0, 0);
-            PlaceholderRect.anchoredPosition = Vector2.zero;
-            PlaceholderRect.sizeDelta = Vector2.zero;
-            Placeholder.GetComponent<TextMeshProUGUI>().text = "Enter text...";
-            Placeholder.GetComponent<TextMeshProUGUI>().enableWordWrapping = false;
-            Placeholder.GetComponent<TextMeshProUGUI>().fontSize = 14;
-            Placeholder.GetComponent<TextMeshProUGUI>().fontStyle = FontStyles.Italic;
-            Placeholder.GetComponent<TextMeshProUGUI>().color = new Color(0f, 0f, 0f, 0.5f);
-            GameObject text = new GameObject("Text", typeof(TextMeshProUGUI));
-            text.transform.SetParent(Text_area.transform);
+            PlaceholderRect.anchoredPosition = new Vector2(0,-0.50f);
+            PlaceholderRect.sizeDelta = new Vector2(-20,-13);
+            Text PlaceholderText = Placeholder.GetComponent<Text>();
+            PlaceholderText.text = "Enter text...";
+            PlaceholderText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+            PlaceholderText.fontStyle = FontStyle.Italic;
+            PlaceholderText.color = new Color(0.20f, 0.20f, 0.20f, 0.5f);
+            GameObject text = new GameObject("Text (Legacy)", typeof(Text));
+            text.transform.SetParent(InputField.transform);
             RectTransform textRect = text.GetComponent<RectTransform>();
             textRect.anchorMax = new Vector2(1, 1);
             textRect.anchorMin = new Vector2(0, 0);
             textRect.offsetMax = new Vector2(0, 0);
             textRect.offsetMin = new Vector2(0, 0);
-            textRect.sizeDelta = Vector2.zero;
-            textRect.anchoredPosition = Vector2.zero;
-            text.GetComponent<TextMeshProUGUI>().fontSize = 14;
-            text.GetComponent<TextMeshProUGUI>().color = Color.black;
-            TMP_InputField IFTMP = InputField.GetComponent<TMP_InputField>();
-            IFTMP.textViewport = Text_area.GetComponent<RectTransform>();
-            IFTMP.textComponent = text.GetComponent<TextMeshProUGUI>();
-            IFTMP.fontAsset = text.GetComponent<TextMeshProUGUI>().font;
-            IFTMP.placeholder = Placeholder.GetComponent<TextMeshProUGUI>();
+            textRect.sizeDelta = new Vector2(-20,-13);
+            textRect.anchoredPosition = new Vector2(0,-0.50f);
+            Text textt = text.GetComponent<Text>();
+            textt.fontSize = 14;
+            textt.color = new Color(0.20f, 0.20f, 0.20f, 1f);
+            textt.supportRichText = false;
+            textt.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+            InputField IFTMP = InputField.GetComponent<InputField>();
+            IFTMP.textComponent = text.GetComponent<Text>();
+            IFTMP.placeholder = Placeholder.GetComponent<Text>();
             InputField.GetComponent<RectTransform>().anchoredPosition = position;
             return InputField;
         }
 
-        public static GameObject DropDown_TMP(string name ,GameObject Canvas, Vector2 position)
+        public static GameObject LegacyDropDown(string name, GameObject Canvas, Vector2 position)
         {
-            GameObject Dropdown = new GameObject(name, typeof(UnityEngine.UI.Image), typeof(TMP_Dropdown));
+            GameObject Dropdown = new GameObject(name, typeof(UnityEngine.UI.Image), typeof(Dropdown));
             Dropdown.transform.SetParent(Canvas.transform);
             Dropdown.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
             Texture2D DropdownArrowtex = new Texture2D(2, 2);
@@ -1536,13 +1524,13 @@ namespace RuntimeComponents
             };
             UIMasktex.LoadImage(UIMask);
             tex.LoadImage(UISprite);
-            TMP_Dropdown.OptionData optionData = new TMP_Dropdown.OptionData();
+            Dropdown.OptionData optionData = new Dropdown.OptionData();
             optionData.text = "Option A";
-            TMP_Dropdown.OptionData optionDate = new TMP_Dropdown.OptionData();
+            Dropdown.OptionData optionDate = new Dropdown.OptionData();
             optionDate.text = "Option B";
-            TMP_Dropdown.OptionData optionDatc = new TMP_Dropdown.OptionData();
+            Dropdown.OptionData optionDatc = new Dropdown.OptionData();
             optionDatc.text = "Option C";
-            TMP_Dropdown.OptionData[] fd = new TMP_Dropdown.OptionData[]
+            Dropdown.OptionData[] fd = new Dropdown.OptionData[]
             {
                 optionData,
                 optionDate,
@@ -1551,12 +1539,12 @@ namespace RuntimeComponents
             Dropdown.GetComponent<Image>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4(10, 10, 10, 10));
             Dropdown.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
             Dropdown.GetComponent<Image>().type = Image.Type.Sliced;
-            Dropdown.GetComponent<TMP_Dropdown>().options.AddRange(fd);
-            GameObject Label = new GameObject("Label", typeof(TextMeshProUGUI));
+            Dropdown.GetComponent<Dropdown>().options.AddRange(fd);
+            GameObject Label = new GameObject("Label", typeof(Text));
             Label.transform.SetParent(Dropdown.transform);
-            Label.GetComponent<TextMeshProUGUI>().fontSize = 14;
-            Label.GetComponent<TextMeshProUGUI>().color = new Vector4(0.20f, 0.20f, 0.20f, 1);
-            Label.GetComponent<TextMeshProUGUI>().alignment = TextAlignmentOptions.Left;
+            Label.GetComponent<Text>().font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+            Label.GetComponent<Text>().color = new Vector4(0.20f, 0.20f, 0.20f, 1);
+            Label.GetComponent<Text>().alignment = TextAnchor.MiddleLeft;
             RectTransform LabelRT = Label.GetComponent<RectTransform>();
             LabelRT.anchorMax = new Vector2(1, 1);
             LabelRT.anchorMin = new Vector2(0, 0);
@@ -1588,7 +1576,7 @@ namespace RuntimeComponents
             TPTMP.horizontal = false;
             TPTMP.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHideAndExpandViewport;
             TPTMP.verticalScrollbarSpacing = -3;
-            GameObject Viewport = new GameObject("Viewport", typeof(Mask), typeof(Image));
+            GameObject Viewport = new GameObject("Viewport", typeof(Image), typeof(Mask));
             Viewport.GetComponent<RectTransform>().sizeDelta = new Vector2(-18, -0);
             Viewport.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
             Viewport.transform.SetParent(Template.transform);
@@ -1633,7 +1621,7 @@ namespace RuntimeComponents
             ContentRect.pivot = new Vector2(0.5f, 1);
             ContentRect.anchorMax = new Vector2(1, 1);
             ContentRect.anchorMin = new Vector2(0, 1);
-            ContentRect.sizeDelta = new Vector2(0,28);
+            ContentRect.sizeDelta = new Vector2(0, 28);
             ContentRect.anchoredPosition = Vector2.zero;
             GameObject Item = new GameObject("Item", typeof(Toggle));
             Item.GetComponent<Toggle>().isOn = true;
@@ -1660,22 +1648,22 @@ namespace RuntimeComponents
             ICRect.anchorMin = new Vector2(0, 0.5f);
             ICRect.sizeDelta = new Vector2(20, 20);
             ICRect.anchoredPosition = new Vector2(10, 0);
-            GameObject ItemLabel = new GameObject("Item Label", typeof(TextMeshProUGUI));
+            GameObject ItemLabel = new GameObject("Item Label", typeof(Text));
             ItemLabel.transform.SetParent(Item.transform);
             ItemLabel.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1);
             ItemLabel.GetComponent<RectTransform>().anchorMin = new Vector2(0, 0);
-            TextMeshProUGUI ItemLabelTMPU = ItemLabel.GetComponent<TextMeshProUGUI>();
-            ItemLabelTMPU.alignment = TextAlignmentOptions.Left;
+            Text ItemLabelTMPU = ItemLabel.GetComponent<Text>();
+            ItemLabelTMPU.alignment = TextAnchor.MiddleLeft;
+            ItemLabelTMPU.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
             ItemLabelTMPU.text = "Option A";
-            ItemLabelTMPU.fontSize = 14;
             ItemLabelTMPU.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
             ItemLabel.GetComponent<RectTransform>().sizeDelta = new Vector2(-30, -3);
             ItemLabel.GetComponent<RectTransform>().anchoredPosition = new Vector2(5, -0.50f);
-            TMP_Dropdown DDTMP = Dropdown.GetComponent<TMP_Dropdown>();
+            Dropdown DDTMP = Dropdown.GetComponent<Dropdown>();
             DDTMP.targetGraphic = Dropdown.GetComponent<Image>();
             DDTMP.template = Template.GetComponent<RectTransform>();
-            DDTMP.captionText = Label.GetComponent<TextMeshProUGUI>();
-            DDTMP.itemText = ItemLabel.GetComponent<TextMeshProUGUI>();
+            DDTMP.captionText = Label.GetComponent<Text>();
+            DDTMP.itemText = ItemLabel.GetComponent<Text>();
             Template.GetComponent<ScrollRect>().content = Content.GetComponent<RectTransform>();
             Template.GetComponent<ScrollRect>().viewport = Viewport.GetComponent<RectTransform>();
             Template.GetComponent<ScrollRect>().verticalScrollbar = scrollbar.GetComponent<Scrollbar>();
