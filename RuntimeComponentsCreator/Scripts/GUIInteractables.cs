@@ -1,10 +1,17 @@
 using UnityEngine.UI;
 using UnityEngine;
+using TMPro;
 
 namespace RuntimeComponents
 {
+    /// <summary>
+    /// Class for creating basic UI Objects.
+    /// </summary>
     public class GUIInteractables
     {
+        /// <summary>
+        /// Creates a legacy Button.
+        /// </summary>
         public static GameObject LegacyButton(string Name, GameObject Canvas, Vector2 Position, string text)
         {
             GameObject button = new GameObject(Name, typeof(Image), typeof(Button));
@@ -99,13 +106,19 @@ namespace RuntimeComponents
             return button;
         }
 
-        public static GameObject CanvasReturn(string name)
+        /// <summary>
+        /// Creates a Canvas.
+        /// </summary>
+        public static GameObject Canvas(string name)
         {
             GameObject Canvas = new GameObject(name, typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
             Canvas.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
             return Canvas;
         }
 
+        /// <summary>
+        /// Creates a UI text.
+        /// </summary>
         public static GameObject text(string name, GameObject Canvas, Vector2 position, string text)
         {
             GameObject TMPtext = new GameObject(name, typeof(Text));
@@ -119,6 +132,9 @@ namespace RuntimeComponents
             return TMPtext;
         }
 
+        /// <summary>
+        /// Creates a panel.
+        /// </summary>
         public static GameObject Panel(string name, GameObject Canvas, Vector2 Position)
         {
             GameObject Panel = new GameObject(name, typeof(Image));
@@ -202,6 +218,9 @@ namespace RuntimeComponents
             return Panel;
         }
 
+        /// <summary>
+        /// Creates a slider.
+        /// </summary>
         public static GameObject Slider(string name, GameObject Canvas, Vector2 position)
         {
             GameObject Slider = new GameObject(name, typeof(Slider));
@@ -517,6 +536,9 @@ namespace RuntimeComponents
             return Slider;
         }
 
+        /// <summary>
+        /// Creates a Toggler.
+        /// </summary>
         public static GameObject Toggler(string name, GameObject Canvas, Vector2 position)
         {
             GameObject Toggle = new GameObject(name, typeof(Toggle));
@@ -746,6 +768,9 @@ namespace RuntimeComponents
             return Toggle;
         }
 
+        /// <summary>
+        /// Creates a ScrollView.
+        /// </summary>
         public static GameObject ScrollView(string name, GameObject canvas, Vector2 position)
         {
             Texture2D backgroundtex = new Texture2D(2, 2);
@@ -974,6 +999,9 @@ namespace RuntimeComponents
             return scrollView;
         }
 
+        /// <summary>
+        /// Creates a scrollbar.
+        /// </summary>
         public static GameObject scrollbar(string name, GameObject Canvas, Vector2 position)
         {
             Texture2D backgroundtex = new Texture2D(2, 2);
@@ -1116,6 +1144,9 @@ namespace RuntimeComponents
             return scrollbar;
         }
 
+        /// <summary>
+        /// Creates a legacy InputField.
+        /// </summary>
         public static GameObject LegacyInputField(string name, GameObject Canvas, Vector2 position)
         {
             Texture2D tex = new Texture2D(2, 2);
@@ -1231,6 +1262,9 @@ namespace RuntimeComponents
             return InputField;
         }
 
+        /// <summary>
+        /// Creates a legacy DropDown.
+        /// </summary>
         public static GameObject LegacyDropDown(string name, GameObject Canvas, Vector2 position)
         {
             GameObject Dropdown = new GameObject(name, typeof(UnityEngine.UI.Image), typeof(Dropdown));
