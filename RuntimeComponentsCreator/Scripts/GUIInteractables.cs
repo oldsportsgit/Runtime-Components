@@ -10,7 +10,7 @@ namespace RuntimeComponents
     public class GUIInteractables
     {
         /// <summary>
-        /// Creates a Legacy Button.
+        /// Creates a legacy Button.
         /// </summary>
         public static GameObject LegacyButton(string Name, GameObject Canvas, Vector2 Position, string text)
         {
@@ -526,11 +526,12 @@ namespace RuntimeComponents
             Handle_Slide_AreaRect.sizeDelta = new Vector2(-20, 0);
             Handle_Slide_AreaRect.position = new Vector3(0, 0, 0);
             GameObject Handle = new GameObject("Handle", typeof(Image));
+            RectTransform HandleRect = Handle.GetComponent<RectTransform>();
             Handle.transform.SetParent(Handle_Slide_Area.transform);
             Handle.GetComponent<Image>().sprite = Sprite.Create(Knob_Sprite, new Rect(0.0f, 0.0f, Knob_Sprite.width, Knob_Sprite.height), new Vector2(20f, 20f), 200.0f, 0, SpriteMeshType.Tight, new Vector4(0, 0, 0, 0));
-            Handle.GetComponent<RectTransform>().localPosition = new Vector3(0, 0, 0);
-            Handle.GetComponent<RectTransform>().sizeDelta = new Vector2(20, 0);
-            Slider.GetComponent<Slider>().handleRect = Handle.GetComponent<RectTransform>();
+            HandleRect.localPosition = new Vector3(0, 0, 0);
+            HandleRect.sizeDelta = new Vector2(20, 0);
+            Slider.GetComponent<Slider>().handleRect = HandleRect;
             Slider.GetComponent<Slider>().targetGraphic = Handle.GetComponent<Image>();
             Slider.GetComponent<RectTransform>().anchoredPosition = position;
             return Slider;
@@ -1138,9 +1139,10 @@ namespace RuntimeComponents
             handle.GetComponent<Image>().type = Image.Type.Sliced;
             handle.GetComponent<Image>().sprite = Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4(10, 10, 10, 10));
             handle.transform.SetParent(slidingArea.transform);
-            handle.GetComponent<RectTransform>().sizeDelta = new Vector2(20, 20);
-            handle.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
-            scrollbar.GetComponent<Scrollbar>().handleRect = handle.GetComponent<RectTransform>();
+            RectTransform handleRect = handle.GetComponent<RectTransform>();
+            handleRect.sizeDelta = new Vector2(20, 20);
+            handleRect.anchoredPosition = Vector2.zero;
+            scrollbar.GetComponent<Scrollbar>().handleRect = handleRect;
             return scrollbar;
         }
 
@@ -1575,9 +1577,10 @@ namespace RuntimeComponents
             Dropdown.GetComponent<Dropdown>().options.AddRange(fd);
             GameObject Label = new GameObject("Label", typeof(Text));
             Label.transform.SetParent(Dropdown.transform);
-            Label.GetComponent<Text>().font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-            Label.GetComponent<Text>().color = new Vector4(0.20f, 0.20f, 0.20f, 1);
-            Label.GetComponent<Text>().alignment = TextAnchor.MiddleLeft;
+            Text LabelText = Label.GetComponent<Text>();
+            LabelText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+            LabelText.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
+            LabelText.alignment = TextAnchor.MiddleLeft;
             RectTransform LabelRT = Label.GetComponent<RectTransform>();
             LabelRT.anchorMax = new Vector2(1, 1);
             LabelRT.anchorMin = new Vector2(0, 0);
@@ -1683,23 +1686,25 @@ namespace RuntimeComponents
             ICRect.anchoredPosition = new Vector2(10, 0);
             GameObject ItemLabel = new GameObject("Item Label", typeof(Text));
             ItemLabel.transform.SetParent(Item.transform);
-            ItemLabel.GetComponent<RectTransform>().anchorMax = new Vector2(1, 1);
-            ItemLabel.GetComponent<RectTransform>().anchorMin = new Vector2(0, 0);
+            RectTransform ItemLabelRect = ItemLabel.GetComponent<RectTransform>();
             Text ItemLabelTMPU = ItemLabel.GetComponent<Text>();
             ItemLabelTMPU.alignment = TextAnchor.MiddleLeft;
             ItemLabelTMPU.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
             ItemLabelTMPU.text = "Option A";
             ItemLabelTMPU.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
-            ItemLabel.GetComponent<RectTransform>().sizeDelta = new Vector2(-30, -3);
-            ItemLabel.GetComponent<RectTransform>().anchoredPosition = new Vector2(5, -0.50f);
+            ItemLabelRect.anchorMax = new Vector2(1, 1);
+            ItemLabelRect.anchorMin = new Vector2(0, 0);
+            ItemLabelRect.sizeDelta = new Vector2(-30, -3);
+            ItemLabelRect.anchoredPosition = new Vector2(5, -0.50f);
             Dropdown DDTMP = Dropdown.GetComponent<Dropdown>();
             DDTMP.targetGraphic = Dropdown.GetComponent<Image>();
             DDTMP.template = Template.GetComponent<RectTransform>();
             DDTMP.captionText = Label.GetComponent<Text>();
             DDTMP.itemText = ItemLabel.GetComponent<Text>();
-            Template.GetComponent<ScrollRect>().content = Content.GetComponent<RectTransform>();
-            Template.GetComponent<ScrollRect>().viewport = Viewport.GetComponent<RectTransform>();
-            Template.GetComponent<ScrollRect>().verticalScrollbar = scrollbar.GetComponent<Scrollbar>();
+            ScrollRect TemplateScrollRect = Template.GetComponent<ScrollRect>();
+            TemplateScrollRect.content = Content.GetComponent<RectTransform>();
+            TemplateScrollRect.viewport = Viewport.GetComponent<RectTransform>();
+            TemplateScrollRect.verticalScrollbar = scrollbar.GetComponent<Scrollbar>();
             Dropdown.GetComponent<RectTransform>().anchoredPosition = position;
             return Dropdown;
         }
