@@ -10,7 +10,7 @@ namespace RuntimeComponents
     public class GUIInteractables
     {
         /// <summary>
-        /// Creates a legacy Button.
+        /// Creates a Legacy Button.
         /// </summary>
         public static GameObject LegacyButton(string Name, GameObject Canvas, Vector2 Position, string text)
         {
@@ -117,7 +117,7 @@ namespace RuntimeComponents
         }
 
         /// <summary>
-        /// Creates a UI text.
+        /// Creates a Legacy UI text.
         /// </summary>
         public static GameObject text(string name, GameObject Canvas, Vector2 position, string text)
         {
