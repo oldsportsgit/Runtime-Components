@@ -4,8 +4,14 @@ using UnityEngine.UI;
 
 namespace RuntimeComponents
 {
+    /// <summary>
+    /// Class for creating basic TextMeshPro UI Objects.
+    /// </summary>
     public class GUIInteractablesTMP 
     {
+        /// <summary>
+        /// Creates a TextMeshPro Button.
+        /// </summary>
         public static GameObject ButtonTMP(string Name, GameObject Canvas, Vector2 Position, string text)
         {
             GameObject button = new GameObject(Name, typeof(Image), typeof(Button));
@@ -100,6 +106,9 @@ namespace RuntimeComponents
             return button;
         }
 
+        /// <summary>
+        /// Creates a TextMeshProUGUI Object.
+        /// </summary>
         public static GameObject textTMP(string name, GameObject Canvas, Vector2 position, string text)
         {
             GameObject TMPtext = new GameObject(name, typeof(TextMeshProUGUI));
@@ -109,6 +118,9 @@ namespace RuntimeComponents
             return TMPtext;
         }
 
+        /// <summary>
+        /// Creates a TextMeshPro InputField.
+        /// </summary>
         public static GameObject InputFieldTMP(string name, GameObject Canvas, Vector2 position)
         {
             Texture2D tex = new Texture2D(2, 2);
@@ -231,6 +243,9 @@ namespace RuntimeComponents
             return InputField;
         }
 
+        /// <summary>
+        /// Creates a TextMeshPro DropDown.
+        /// </summary>
         public static GameObject DropDownTMP(string name, GameObject Canvas, Vector2 position)
         {
             GameObject Dropdown = new GameObject(name, typeof(UnityEngine.UI.Image), typeof(TMP_Dropdown));
