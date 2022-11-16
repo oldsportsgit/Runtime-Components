@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 //the asset receiver is just a simplified version of getting a specific file
@@ -18,6 +19,20 @@ namespace RuntimeComponents.AssetBundle
                 }
             }
             return matvar;
+        }
+
+        public static GameObject[] GetAllPrefabs()
+        {
+            GameObject[] prefabs = Resources.FindObjectsOfTypeAll<GameObject>();
+            List<GameObject> cprefabs = new List<GameObject>();
+            for (int i = 0; i < prefabs.Length; i++)
+            {
+                if (!prefabs[i].scene.IsValid())
+                {
+                    cprefabs.Add(prefabs[i]);
+                }
+            }
+            return cprefabs.ToArray();
         }
     }
 }
