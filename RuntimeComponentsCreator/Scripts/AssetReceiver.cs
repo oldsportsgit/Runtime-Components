@@ -27,7 +27,7 @@ namespace RuntimeComponents.AssetBundle
             List<GameObject> cprefabs = new List<GameObject>();
             for (int i = 0; i < prefabs.Length; i++)
             {
-                if (!prefabs[i].scene.IsValid())
+                if (!prefabs[i].scene.IsValid() & prefabs[i].transform.parent == null)
                 {
                     cprefabs.Add(prefabs[i]);
                 }
