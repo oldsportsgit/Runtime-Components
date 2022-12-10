@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
-//the asset receiver is just a simplified version of getting a specific file
 namespace RuntimeComponents.AssetBundle
 {
-    public class AssetReceiver
+    public class GameAssets
     {
         public static T GetAssetInMemoryByName<T>(string name) where T : UnityEngine.Object
         {
@@ -33,6 +33,18 @@ namespace RuntimeComponents.AssetBundle
                 }
             }
             return cprefabs.ToArray();
+        }
+
+        public static void CreateScene(string SceneName)
+        {
+            Scene newScene = SceneManager.CreateScene(SceneName);
+            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+            SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
+            GameObject MainCamera = new GameObject("Main Camera", typeof(Camera), typeof(AudioListener));
+            GameObject DirectionalLight = new GameObject("Directional Light", typeof(Light));
+            RenderSettings.sun = DirectionalLight.GetComponent<Light>();
+            DirectionalLight.GetComponent<Light>().type = LightType.Directional;
+            DirectionalLight.GetComponent<Transform>().localEulerAngles = new Vector3(50, -30, 0);
         }
     }
 }
