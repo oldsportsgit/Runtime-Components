@@ -1,6 +1,6 @@
-# Overview of the Runtime Components  
+# Overview of the Runtime Constructors
 
-The Runtime Components or RC for short, Has Scripts that allow you to 
+The Runtime Constructors or RC for short, Has Scripts that allow you to 
 
 -Get any asset loaded in memory 
 
