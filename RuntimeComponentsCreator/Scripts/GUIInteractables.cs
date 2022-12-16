@@ -9,34 +9,6 @@ namespace RuntimeComponents
     /// </summary>
     public class GUIInteractables
     {
-        /// <summary>
-        /// Make a single press button.
-        /// </summary>
-        public static GameObject LegacyButton(string Name, GameObject Canvas, Vector2 Position, string text)
-        {
-            GameObject button = new GameObject(Name, typeof(Image), typeof(Button));
-            button.transform.SetParent(Canvas.transform);
-            button.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-            button.GetComponent<Image>().sprite = UISprite();
-            button.GetComponent<Image>().type = Image.Type.Sliced;
-            GameObject GUI_text = new GameObject("Text (Legacy)", typeof(Text));
-            GUI_text.transform.SetParent(button.transform);
-            Text textt = GUI_text.GetComponent<Text>();
-            textt.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
-            textt.text = text;
-            textt.alignment = TextAnchor.MiddleCenter;
-            textt.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
-            RectTransform rect = GUI_text.GetComponent<RectTransform>();
-            rect.anchorMin = new Vector2(0, 0);
-            rect.anchorMax = new Vector2(1, 1);
-            rect.anchorMax = new Vector2(1, 1);
-            rect.anchorMin = new Vector2(0, 0);
-            rect.offsetMax = new Vector2(0, 0);
-            rect.offsetMin = new Vector2(0, 0);
-            button.GetComponent<RectTransform>().anchoredPosition = Position;
-            return button;
-        }
-
         private static Sprite UISprite()
         {
             Texture2D tex = new Texture2D(2, 2);
@@ -602,6 +574,34 @@ namespace RuntimeComponents
         };
         tex.LoadImage(InputFieldBackground);
             return Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4(10, 10, 10, 10));
+        }
+
+        /// <summary>
+        /// Make a single press button.
+        /// </summary>
+        public static GameObject LegacyButton(string Name, GameObject Canvas, Vector2 Position, string text)
+        {
+            GameObject button = new GameObject(Name, typeof(Image), typeof(Button));
+            button.transform.SetParent(Canvas.transform);
+            button.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
+            button.GetComponent<Image>().sprite = UISprite();
+            button.GetComponent<Image>().type = Image.Type.Sliced;
+            GameObject GUI_text = new GameObject("Text (Legacy)", typeof(Text));
+            GUI_text.transform.SetParent(button.transform);
+            Text textt = GUI_text.GetComponent<Text>();
+            textt.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+            textt.text = text;
+            textt.alignment = TextAnchor.MiddleCenter;
+            textt.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
+            RectTransform rect = GUI_text.GetComponent<RectTransform>();
+            rect.anchorMin = new Vector2(0, 0);
+            rect.anchorMax = new Vector2(1, 1);
+            rect.anchorMax = new Vector2(1, 1);
+            rect.anchorMin = new Vector2(0, 0);
+            rect.offsetMax = new Vector2(0, 0);
+            rect.offsetMin = new Vector2(0, 0);
+            button.GetComponent<RectTransform>().anchoredPosition = Position;
+            return button;
         }
 
         /// <summary>
