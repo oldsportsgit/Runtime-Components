@@ -1,13 +1,13 @@
-using TMPro;
-using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine;
+using TMPro;
 
 namespace RuntimeComponents
 {
     /// <summary>
     /// Class for creating basic TextMeshPro UI Objects.
     /// </summary>
-    public class GUIInteractablesTMP : GUIInteractables
+    public class GUIInteractablesTMP
     {
         private static Sprite UISprite()
         {
@@ -419,17 +419,26 @@ namespace RuntimeComponents
             return Sprite.Create(UImasktex, new Rect(0.0f, 0.0f, UImasktex.width, UImasktex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4(10, 10, 10, 10));
         }
 
+        private static void AddLayerForEach(GameObject Base)
+        {
+            Transform[] transforms = Base.GetComponentsInChildren<Transform>(true);
+            for (int i = 0; i < transforms.Length; i++)
+            {
+                transforms[i].gameObject.layer = 5;
+            }
+        }
+
         /// <summary>
         /// Creates a TextMeshPro Button.
         /// </summary>
         public static GameObject ButtonTMP(string Name, GameObject Canvas, Vector2 Position, string text)
         {
             GameObject button = new GameObject(Name, typeof(Image), typeof(Button));
+            GameObject GUI_text = new GameObject("Text (TMP)", typeof(TextMeshProUGUI));
             button.transform.SetParent(Canvas.transform);
             button.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
             button.GetComponent<Image>().sprite = UISprite();
             button.GetComponent<Image>().type = Image.Type.Sliced;
-            GameObject GUI_text = new GameObject("Text (TMP)", typeof(TextMeshProUGUI));
             GUI_text.transform.SetParent(button.transform);
             TextMeshProUGUI textMeshProUGUI = GUI_text.GetComponent<TextMeshProUGUI>();
             textMeshProUGUI.text = text;
@@ -439,11 +448,10 @@ namespace RuntimeComponents
             RectTransform rect = GUI_text.GetComponent<RectTransform>();
             rect.anchorMin = new Vector2(0, 0);
             rect.anchorMax = new Vector2(1, 1);
-            rect.anchorMax = new Vector2(1, 1);
-            rect.anchorMin = new Vector2(0, 0);
             rect.offsetMax = new Vector2(0, 0);
             rect.offsetMin = new Vector2(0, 0);
             button.GetComponent<RectTransform>().anchoredPosition = Position;
+            AddLayerForEach(button);
             return button;
         }
 
@@ -456,6 +464,7 @@ namespace RuntimeComponents
             TMPtext.transform.SetParent(Canvas.transform);
             TMPtext.GetComponent<TextMeshProUGUI>().text = text;
             TMPtext.GetComponent<RectTransform>().anchoredPosition = position;
+            TMPtext.layer = 5;
             return TMPtext;
         }
 
@@ -465,18 +474,19 @@ namespace RuntimeComponents
         public static GameObject InputFieldTMP(string name, GameObject Canvas, Vector2 position)
         {
             GameObject InputField = new GameObject(name, typeof(Image), typeof(TMP_InputField));
+            GameObject Text_area = new GameObject("Text Area", typeof(RectMask2D));
+            GameObject Placeholder = new GameObject("Placeholder", typeof(TextMeshProUGUI), typeof(LayoutElement));
+            GameObject text = new GameObject("Text", typeof(TextMeshProUGUI));
             InputField.transform.SetParent(Canvas.transform);
             InputField.GetComponent<Image>().type = Image.Type.Sliced;
             InputField.GetComponent<Image>().sprite = InputFieldBackground();
             InputField.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-            GameObject Text_area = new GameObject("Text Area", typeof(RectMask2D));
             Text_area.transform.SetParent(InputField.transform);
             RectTransform Text_areaRect = Text_area.GetComponent<RectTransform>();
             Text_areaRect.anchorMax = new Vector2(1, 1);
             Text_areaRect.anchorMin = new Vector2(0, 0);
             Text_areaRect.anchoredPosition = new Vector2(0, -0.50f);
             Text_areaRect.sizeDelta = new Vector2(-20, -13);
-            GameObject Placeholder = new GameObject("Placeholder", typeof(TextMeshProUGUI), typeof(LayoutElement));
             Placeholder.transform.SetParent(Text_area.transform);
             Placeholder.GetComponent<LayoutElement>().ignoreLayout = true;
             RectTransform PlaceholderRect = Placeholder.GetComponent<RectTransform>();
@@ -492,7 +502,6 @@ namespace RuntimeComponents
             PlaceholderText.fontSize = 14;
             PlaceholderText.fontStyle = FontStyles.Italic;
             PlaceholderText.color = new Vector4(0.20f, 0.20f, 0.20f, 0.5f);
-            GameObject text = new GameObject("Text", typeof(TextMeshProUGUI));
             text.transform.SetParent(Text_area.transform);
             RectTransform textRect = text.GetComponent<RectTransform>();
             textRect.anchorMax = new Vector2(1, 1);
@@ -509,6 +518,7 @@ namespace RuntimeComponents
             IFTMP.fontAsset = text.GetComponent<TextMeshProUGUI>().font;
             IFTMP.placeholder = Placeholder.GetComponent<TextMeshProUGUI>();
             InputField.GetComponent<RectTransform>().anchoredPosition = position;
+            AddLayerForEach(InputField);
             return InputField;
         }
 
@@ -518,25 +528,32 @@ namespace RuntimeComponents
         public static GameObject DropDownTMP(string name, GameObject Canvas, Vector2 position)
         {
             GameObject Dropdown = new GameObject(name, typeof(UnityEngine.UI.Image), typeof(TMP_Dropdown));
+            GameObject Label = new GameObject("Label", typeof(TextMeshProUGUI));
+            GameObject Arrow = new GameObject("Arrow", typeof(Image));
+            GameObject Template = new GameObject("Template", typeof(Image), typeof(ScrollRect));
+            GameObject Viewport = new GameObject("Viewport", typeof(Mask), typeof(Image));
+            GameObject Content = new GameObject("Content", typeof(RectTransform));
+            GameObject Item = new GameObject("Item", typeof(Toggle));
+            GameObject ItemBackground = new GameObject("Item Background", typeof(Image));
+            GameObject ItemCheckmark = new GameObject("Item Checkmark", typeof(Image));
+            GameObject ItemLabel = new GameObject("Item Label", typeof(TextMeshProUGUI));
+            GameObject scrollbar = new GameObject("Scrollbar", typeof(Image), typeof(Scrollbar));
+            GameObject slidingArea = new GameObject("Sliding Area", typeof(RectTransform));
+            GameObject Handle = new GameObject("Handle", typeof(Image));
             Dropdown.transform.SetParent(Canvas.transform);
             Dropdown.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-            TMP_Dropdown.OptionData optionData = new TMP_Dropdown.OptionData();
-            optionData.text = "Option A";
-            TMP_Dropdown.OptionData optionDate = new TMP_Dropdown.OptionData();
-            optionDate.text = "Option B";
-            TMP_Dropdown.OptionData optionDatc = new TMP_Dropdown.OptionData();
-            optionDatc.text = "Option C";
-            TMP_Dropdown.OptionData[] fd = new TMP_Dropdown.OptionData[]
-            {
-                optionData,
-                optionDate,
-                optionDatc
-            };
+            TMP_Dropdown.OptionData optionDataA = new TMP_Dropdown.OptionData();
+            optionDataA.text = "Option A";
+            TMP_Dropdown.OptionData optionDataB = new TMP_Dropdown.OptionData();
+            optionDataB.text = "Option B";
+            TMP_Dropdown.OptionData optionDataC = new TMP_Dropdown.OptionData();
+            optionDataC.text = "Option C";
             Dropdown.GetComponent<Image>().sprite = UISprite();
             Dropdown.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
             Dropdown.GetComponent<Image>().type = Image.Type.Sliced;
-            Dropdown.GetComponent<TMP_Dropdown>().options.AddRange(fd);
-            GameObject Label = new GameObject("Label", typeof(TextMeshProUGUI));
+            Dropdown.GetComponent<TMP_Dropdown>().options.Add(optionDataA);
+            Dropdown.GetComponent<TMP_Dropdown>().options.Add(optionDataB);
+            Dropdown.GetComponent<TMP_Dropdown>().options.Add(optionDataC);
             Label.transform.SetParent(Dropdown.transform);
             TextMeshProUGUI LabelText = Label.GetComponent<TextMeshProUGUI>();
             LabelText.fontSize = 14;
@@ -547,7 +564,6 @@ namespace RuntimeComponents
             LabelRT.anchorMin = new Vector2(0, 0);
             LabelRT.sizeDelta = new Vector2(-35, -13);
             LabelRT.anchoredPosition = new Vector2(-7.50f, -0.50f);
-            GameObject Arrow = new GameObject("Arrow", typeof(Image));
             Arrow.transform.SetParent(Dropdown.transform);
             RectTransform ArrowRT = Arrow.GetComponent<RectTransform>();
             ArrowRT.anchorMax = new Vector2(1, 0.5f);
@@ -555,7 +571,6 @@ namespace RuntimeComponents
             ArrowRT.sizeDelta = new Vector2(20, 20);
             ArrowRT.anchoredPosition = new Vector2(-15, 0);
             Arrow.GetComponent<Image>().sprite = DropdownArrow();
-            GameObject Template = new GameObject("Template", typeof(Image), typeof(ScrollRect));
             Template.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 150);
             Template.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 2);
             Template.transform.SetParent(Dropdown.transform);
@@ -573,7 +588,6 @@ namespace RuntimeComponents
             TPTMP.horizontal = false;
             TPTMP.verticalScrollbarVisibility = ScrollRect.ScrollbarVisibility.AutoHideAndExpandViewport;
             TPTMP.verticalScrollbarSpacing = -3;
-            GameObject Viewport = new GameObject("Viewport", typeof(Mask), typeof(Image));
             Viewport.GetComponent<RectTransform>().sizeDelta = new Vector2(-18, -0);
             Viewport.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
             Viewport.transform.SetParent(Template.transform);
@@ -586,7 +600,6 @@ namespace RuntimeComponents
             VPTMP.anchorMin = new Vector2(0, 0);
             VPTMP.sizeDelta = new Vector2(-18, 0);
             VPTMP.anchoredPosition = Vector2.zero;
-            GameObject scrollbar = new GameObject("Scrollbar", typeof(Image), typeof(Scrollbar));
             scrollbar.transform.SetParent(Template.transform);
             scrollbar.GetComponent<Image>().sprite = Background();
             RectTransform sbrt = scrollbar.GetComponent<RectTransform>();
@@ -595,14 +608,12 @@ namespace RuntimeComponents
             sbrt.anchorMin = new Vector2(1, 0);
             sbrt.sizeDelta = new Vector2(20, 0);
             sbrt.anchoredPosition = Vector2.zero;
-            GameObject slidingArea = new GameObject("Sliding Area", typeof(RectTransform));
             slidingArea.transform.SetParent(scrollbar.transform);
             RectTransform slareart = slidingArea.GetComponent<RectTransform>();
             slareart.anchorMax = new Vector2(1, 1);
             slareart.anchorMin = new Vector2(0, 0);
             slareart.sizeDelta = new Vector2(-20, -20);
             slareart.anchoredPosition = Vector2.zero;
-            GameObject Handle = new GameObject("Handle", typeof(Image));
             Handle.transform.SetParent(slidingArea.transform);
             Handle.GetComponent<Image>().sprite = scrollbar.GetComponent<Image>().sprite;
             Handle.GetComponent<Image>().type = Image.Type.Sliced;
@@ -612,7 +623,6 @@ namespace RuntimeComponents
             scrollbarbar.targetGraphic = Handle.GetComponent<Image>();
             scrollbarbar.handleRect = Handle.GetComponent<RectTransform>();
             scrollbarbar.direction = Scrollbar.Direction.BottomToTop;
-            GameObject Content = new GameObject("Content", typeof(RectTransform));
             Content.transform.SetParent(Viewport.transform);
             RectTransform ContentRect = Content.GetComponent<RectTransform>();
             ContentRect.pivot = new Vector2(0.5f, 1);
@@ -620,7 +630,6 @@ namespace RuntimeComponents
             ContentRect.anchorMin = new Vector2(0, 1);
             ContentRect.sizeDelta = new Vector2(0, 28);
             ContentRect.anchoredPosition = Vector2.zero;
-            GameObject Item = new GameObject("Item", typeof(Toggle));
             Item.GetComponent<Toggle>().isOn = true;
             Item.transform.SetParent(Content.transform);
             RectTransform ItemRect = Item.GetComponent<RectTransform>();
@@ -628,7 +637,6 @@ namespace RuntimeComponents
             ItemRect.anchorMin = new Vector2(0, 0.5f);
             ItemRect.sizeDelta = new Vector2(0, 20);
             ItemRect.anchoredPosition = Vector2.zero;
-            GameObject ItemBackground = new GameObject("Item Background", typeof(Image));
             Item.GetComponent<Toggle>().targetGraphic = ItemBackground.GetComponent<Image>();
             ItemBackground.transform.SetParent(Item.transform);
             RectTransform ItemBackgroundRect = ItemBackground.GetComponent<RectTransform>();
@@ -636,7 +644,6 @@ namespace RuntimeComponents
             ItemBackgroundRect.anchorMin = new Vector2(0, 0);
             ItemBackgroundRect.sizeDelta = Vector2.zero;
             ItemBackgroundRect.anchoredPosition = Vector2.zero;
-            GameObject ItemCheckmark = new GameObject("Item Checkmark", typeof(Image));
             Item.GetComponent<Toggle>().graphic = ItemCheckmark.GetComponent<Image>();
             ItemCheckmark.transform.SetParent(Item.transform);
             ItemCheckmark.GetComponent<Image>().sprite = Checkmark();
@@ -645,7 +652,6 @@ namespace RuntimeComponents
             ICRect.anchorMin = new Vector2(0, 0.5f);
             ICRect.sizeDelta = new Vector2(20, 20);
             ICRect.anchoredPosition = new Vector2(10, 0);
-            GameObject ItemLabel = new GameObject("Item Label", typeof(TextMeshProUGUI));
             ItemLabel.transform.SetParent(Item.transform);
             TextMeshProUGUI ItemLabelTMPU = ItemLabel.GetComponent<TextMeshProUGUI>();
             ItemLabelTMPU.alignment = TextAlignmentOptions.Left;
@@ -667,6 +673,7 @@ namespace RuntimeComponents
             TemplateScrollRect.viewport = Viewport.GetComponent<RectTransform>();
             TemplateScrollRect.verticalScrollbar = scrollbar.GetComponent<Scrollbar>();
             Dropdown.GetComponent<RectTransform>().anchoredPosition = position;
+            AddLayerForEach(Dropdown);
             return Dropdown;
         }
     }
