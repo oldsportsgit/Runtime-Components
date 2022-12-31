@@ -3,7 +3,7 @@ using UnityEngine;
 using TMPro;
 using System;
 
-namespace RuntimeComponents
+namespace RuntimeConstructers
 {
     /// <summary>
     /// Class for creating basic TextMeshPro UI Objects.

@@ -1,6 +1,6 @@
 {
-    "name": "RuntimeComponentsCreator",
-    "rootNamespace": "RuntimeComponentsCreator",
+    "name": "RuntimeConstructers",
+    "rootNamespace": "RuntimeConstructers",
     "references": [
         "UnityEngine.TestRunner",
         "UnityEditor.TestRunner",

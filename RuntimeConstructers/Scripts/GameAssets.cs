@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace RuntimeComponents.AssetBundle
+namespace RuntimeConstructers
 {
     public class GameAssets
     {

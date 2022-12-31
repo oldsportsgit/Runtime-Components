@@ -2,7 +2,7 @@ using UnityEngine.UI;
 using UnityEngine;
 using System;
 
-namespace RuntimeComponents
+namespace RuntimeConstructers
 {
     /// <summary>
     /// Class for creating basic UI Objects.
