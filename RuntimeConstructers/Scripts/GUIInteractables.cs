@@ -118,13 +118,13 @@ namespace RuntimeConstructers
         {
             GameObject TMPtext = new GameObject(name, typeof(Text));
             TMPtext.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-            TMPtext.GetComponent<RectTransform>().anchoredPosition = position;
             TMPtext.transform.SetParent(Canvas.transform);
             Text textt = TMPtext.GetComponent<Text>();
             textt.text = text;
             textt.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
             textt.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
             TMPtext.layer = 5;
+            TMPtext.GetComponent<RectTransform>().anchoredPosition = position;
             return TMPtext;
         }
 
