@@ -150,7 +150,6 @@ namespace RuntimeConstructers
             PlaceholderText.fontStyle = FontStyles.Italic;
             PlaceholderText.color = new Vector4(0.20f, 0.20f, 0.20f, 0.5f);
             text.transform.SetParent(Text_area.transform);
-            Text_area.GetComponent<RectMask2D>().padding = new Vector4(-8,-5,-8,-5);
             RectTransform textRect = text.GetComponent<RectTransform>();
             textRect.anchorMax = new Vector2(1, 1);
             textRect.anchorMin = new Vector2(0, 0);
