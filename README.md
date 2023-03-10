@@ -8,5 +8,10 @@ The Runtime Constructors or RC for short, Has Scripts that allow you to
 
 -Add UI objects such as a InputField - TextMeshPro
 
+These are must haves or at least to try out.
+
+Obviously you could code these yourself but i'm basically 
+just showing my coding skills
+
 if you want to bake the navmesh at runtime use this
 https://github.com/Unity-Technologies/NavMeshComponents
