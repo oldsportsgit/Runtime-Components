@@ -35,6 +35,19 @@ namespace RuntimeConstructers
             return cprefabs.ToArray();
         }
 
+        public static GameObject FindChildGameObjectByName(GameObject gameObject, string name)
+        {
+            Transform[] children = gameObject.GetComponentsInChildren<Transform>();
+            foreach (Transform transform in children)
+            {
+                if (transform.name == name)
+                {
+                    return transform.gameObject;
+                }
+            }
+            return null;
+        }
+
         public static void CreateScene(string SceneName, bool IsBlankScene)
         {
             Scene newScene = SceneManager.CreateScene(SceneName);
