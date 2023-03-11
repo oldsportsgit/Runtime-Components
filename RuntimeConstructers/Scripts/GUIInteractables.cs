@@ -76,9 +76,9 @@ namespace RuntimeConstructers
         /// <summary>
         /// Make a single press button.
         /// </summary>
-        public static GameObject LegacyButton(string Name, GameObject Canvas, Vector2 Position, string text)
+        public static Button LegacyButton(string Name, GameObject Canvas, Vector2 Position, string text)
         {
-            GameObject button = new GameObject(Name, typeof(Image), typeof(Button));
+            Button button = new GameObject(Name, typeof(Image), typeof(Button)).GetComponent<Button>();
             GameObject GUI_text = new GameObject("Text (Legacy)", typeof(Text));
             button.transform.SetParent(Canvas.transform);
             button.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
@@ -96,34 +96,34 @@ namespace RuntimeConstructers
             rect.offsetMax = new Vector2(0, 0);
             rect.offsetMin = new Vector2(0, 0);
             button.GetComponent<RectTransform>().anchoredPosition = Position;
-            AddLayerForEach(button);
+            AddLayerForEach(button.gameObject);
             return button;
         }
 
         /// <summary>
         /// Creates a Canvas.
         /// </summary>
-        public static GameObject Canvas(string name)
+        public static Canvas Canvas(string name)
         {
-            GameObject Canvas = new GameObject(name, typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster));
-            Canvas.GetComponent<Canvas>().renderMode = RenderMode.ScreenSpaceOverlay;
-            Canvas.layer = 5;
+            Canvas Canvas = new GameObject(name, typeof(Canvas), typeof(CanvasScaler), typeof(GraphicRaycaster)).GetComponent<Canvas>();
+            Canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            Canvas.gameObject.layer = 5;
             return Canvas;
         }
 
         /// <summary>
         /// Make a Legacy UI text.
         /// </summary>
-        public static GameObject LegacyText(string name, GameObject Canvas, Vector2 position, string text)
+        public static Text LegacyText(string name, GameObject Canvas, Vector2 position, string text)
         {
-            GameObject TMPtext = new GameObject(name, typeof(Text));
+            Text TMPtext = new GameObject(name, typeof(Text)).GetComponent<Text>();
             TMPtext.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
             TMPtext.transform.SetParent(Canvas.transform);
             Text textt = TMPtext.GetComponent<Text>();
             textt.text = text;
             textt.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
             textt.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
-            TMPtext.layer = 5;
+            TMPtext.gameObject.layer = 5;
             TMPtext.GetComponent<RectTransform>().anchoredPosition = position;
             return TMPtext;
         }
@@ -131,9 +131,9 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a panel.
         /// </summary>
-        public static GameObject Panel(string name, GameObject Canvas, Vector2 Position)
+        public static Image Panel(string name, GameObject Canvas, Vector2 Position)
         {
-            GameObject Panel = new GameObject(name, typeof(Image));
+            Image Panel = new GameObject(name, typeof(Image)).GetComponent<Image>();
             Panel.transform.SetParent(Canvas.transform);
             Image PanelImg = Panel.GetComponent<Image>();
             PanelImg.sprite = Background();
@@ -146,16 +146,16 @@ namespace RuntimeConstructers
             PanelRect.offsetMax = new Vector2(0, 0);
             PanelRect.offsetMin = new Vector2(0, 0);
             PanelRect.anchoredPosition = Position;
-            Panel.layer = 5;
+            Panel.gameObject.layer = 5;
             return Panel;
         }
 
         /// <summary>
         /// Creates a slider.
         /// </summary>
-        public static GameObject Slider(string name, GameObject Canvas, Vector2 position)
+        public static Slider Slider(string name, GameObject Canvas, Vector2 position)
         {
-            GameObject Slider = new GameObject(name, typeof(Slider));
+            Slider Slider = new GameObject(name, typeof(Slider)).GetComponent<Slider>();
             GameObject Background = new GameObject("Background", typeof(Image));
             GameObject Fill_Area = new GameObject("Fill Area", typeof(RectTransform));
             GameObject Fill = new GameObject("Fill", typeof(Image));
@@ -197,7 +197,7 @@ namespace RuntimeConstructers
             Slider.GetComponent<Slider>().handleRect = HandleRect;
             Slider.GetComponent<Slider>().targetGraphic = Handle.GetComponent<Image>();
             Slider.GetComponent<RectTransform>().anchoredPosition = position;
-            AddLayerForEach(Slider);
+            AddLayerForEach(Slider.gameObject);
             return Slider;
         }
 
@@ -206,9 +206,9 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a Toggler.
         /// </summary>
-        public static GameObject Toggler(string name, GameObject Canvas, Vector2 position,string Text)
+        public static Toggle Toggler(string name, GameObject Canvas, Vector2 position,string Text)
         {
-            GameObject Toggle = new GameObject(name, typeof(Toggle));
+            Toggle Toggle = new GameObject(name, typeof(Toggle)).GetComponent<Toggle>();
             GameObject Background = new GameObject("Background", typeof(Image));
             GameObject Checkmark = new GameObject("Checkmark", typeof(Image));
             GameObject Label = new GameObject("Label", typeof(Text));
@@ -242,16 +242,16 @@ namespace RuntimeConstructers
             CheckmarkRect.anchoredPosition = Vector3.zero;
             Toggle.GetComponent<RectTransform>().anchoredPosition = position;
             Toggle.GetComponent<Toggle>().graphic = Checkmark.GetComponent<Image>();
-            AddLayerForEach(Toggle);
+            AddLayerForEach(Toggle.gameObject);
             return Toggle;
         }
 
         /// <summary>
         /// Creates a ScrollView.
         /// </summary>
-        public static GameObject ScrollView(string name, GameObject canvas, Vector2 position)
+        public static ScrollRect ScrollView(string name, GameObject canvas, Vector2 position)
         {
-            GameObject scrollView = new GameObject(name, typeof(Image), typeof(ScrollRect));
+            ScrollRect scrollView = new GameObject(name, typeof(Image), typeof(ScrollRect)).GetComponent<ScrollRect>();
             GameObject Viewport = new GameObject("Viewport", typeof(Image), typeof(Mask));
             GameObject Content = new GameObject("Content", typeof(RectTransform));
             GameObject ScrollbarH = new GameObject("Scrollbar Horizontal", typeof(Image), typeof(Scrollbar));
@@ -332,16 +332,16 @@ namespace RuntimeConstructers
             ScrollbarV.GetComponent<Scrollbar>().targetGraphic = handleV.GetComponent<Image>();
             ScrollbarV.GetComponent<Scrollbar>().direction = Scrollbar.Direction.BottomToTop;
             scrollView.GetComponent<RectTransform>().anchoredPosition = position;
-            AddLayerForEach(scrollView);
+            AddLayerForEach(scrollView.gameObject);
             return scrollView;
         }
 
         /// <summary>
         /// Creates a scrollbar.
         /// </summary>
-        public static GameObject scrollbar(string name, GameObject Canvas, Vector2 position)
+        public static Scrollbar scrollbar(string name, GameObject Canvas, Vector2 position)
         {
-            GameObject scrollbar = new GameObject(name, typeof(Image), typeof(Scrollbar));
+            Scrollbar scrollbar = new GameObject(name, typeof(Image), typeof(Scrollbar)).GetComponent<Scrollbar>();
             GameObject slidingArea = new GameObject("Sliding Area", typeof(RectTransform));
             GameObject handle = new GameObject("Handle", typeof(Image));
             scrollbar.transform.SetParent(Canvas.transform);
@@ -363,16 +363,16 @@ namespace RuntimeConstructers
             handleRect.anchoredPosition = Vector2.zero;
             scrollbar.GetComponent<Scrollbar>().handleRect = handleRect;
             scrollbar.GetComponent<Scrollbar>().targetGraphic = handle.GetComponent<Image>();
-            AddLayerForEach(scrollbar);
+            AddLayerForEach(scrollbar.gameObject);
             return scrollbar;
         }
 
         /// <summary>
         /// Creates a legacy InputField.
         /// </summary>
-        public static GameObject LegacyInputField(string name, GameObject Canvas, Vector2 position)
+        public static InputField LegacyInputField(string name, GameObject Canvas, Vector2 position)
         {
-            GameObject InputField = new GameObject(name, typeof(Image), typeof(InputField));
+            InputField InputField = new GameObject(name, typeof(Image), typeof(InputField)).GetComponent<InputField>();
             GameObject Placeholder = new GameObject("Placeholder", typeof(Text));
             GameObject text = new GameObject("Text (Legacy)", typeof(Text));
             InputField.transform.SetParent(Canvas.transform);
@@ -409,16 +409,16 @@ namespace RuntimeConstructers
             IFTMP.textComponent = text.GetComponent<Text>();
             IFTMP.placeholder = Placeholder.GetComponent<Text>();
             InputField.GetComponent<RectTransform>().anchoredPosition = position;
-            AddLayerForEach(InputField);
+            AddLayerForEach(InputField.gameObject);
             return InputField;
         }
 
         /// <summary>
         /// Creates a legacy DropDown.
         /// </summary>
-        public static GameObject LegacyDropDown(string name, GameObject Canvas, Vector2 position)
+        public static Dropdown LegacyDropDown(string name, GameObject Canvas, Vector2 position)
         {
-            GameObject Dropdown = new GameObject(name, typeof(Image), typeof(Dropdown));
+            Dropdown Dropdown = new GameObject(name, typeof(Image), typeof(Dropdown)).GetComponent<Dropdown>();
             GameObject Label = new GameObject("Label", typeof(Text));
             GameObject Arrow = new GameObject("Arrow", typeof(Image));
             GameObject Template = new GameObject("Template", typeof(Image), typeof(ScrollRect));
@@ -564,7 +564,7 @@ namespace RuntimeConstructers
             TemplateScrollRect.viewport = Viewport.GetComponent<RectTransform>();
             TemplateScrollRect.verticalScrollbar = scrollbar.GetComponent<Scrollbar>();
             Dropdown.GetComponent<RectTransform>().anchoredPosition = position;
-            AddLayerForEach(Dropdown);
+            AddLayerForEach(Dropdown.gameObject);
             return Dropdown;
         }
     }
