@@ -78,9 +78,9 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a TextMeshPro Button.
         /// </summary>
-        public static GameObject ButtonTMP(string Name, GameObject Canvas, Vector2 Position, string text)
+        public static Button ButtonTMP(string Name, GameObject Canvas, Vector2 Position, string text)
         {
-            GameObject button = new GameObject(Name, typeof(Image), typeof(Button));
+            Button button = new GameObject(Name, typeof(Image), typeof(Button)).GetComponent<Button>();
             GameObject GUI_text = new GameObject("Text (TMP)", typeof(TextMeshProUGUI));
             button.transform.SetParent(Canvas.transform);
             button.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
@@ -98,29 +98,29 @@ namespace RuntimeConstructers
             rect.offsetMax = new Vector2(0, 0);
             rect.offsetMin = new Vector2(0, 0);
             button.GetComponent<RectTransform>().anchoredPosition = Position;
-            AddLayerForEach(button);
+            AddLayerForEach(button.gameObject);
             return button;
         }
 
         /// <summary>
         /// Creates a TextMeshProUGUI Object.
         /// </summary>
-        public static GameObject textTMP(string name, GameObject Canvas, Vector2 position, string text)
+        public static TextMeshProUGUI textTMP(string name, GameObject Canvas, Vector2 position, string text)
         {
-            GameObject TMPtext = new GameObject(name, typeof(TextMeshProUGUI));
+            TextMeshProUGUI TMPtext = new GameObject(name, typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
             TMPtext.transform.SetParent(Canvas.transform);
-            TMPtext.GetComponent<TextMeshProUGUI>().text = text;
+            TMPtext.text = text;
             TMPtext.GetComponent<RectTransform>().anchoredPosition = position;
-            TMPtext.layer = 5;
+            TMPtext.gameObject.layer = 5;
             return TMPtext;
         }
 
         /// <summary>
         /// Creates a TextMeshPro InputField.
         /// </summary>
-        public static GameObject InputFieldTMP(string name, GameObject Canvas, Vector2 position)
+        public static TMP_InputField InputFieldTMP(string name, GameObject Canvas, Vector2 position)
         {
-            GameObject InputField = new GameObject(name, typeof(Image), typeof(TMP_InputField));
+            TMP_InputField InputField = new GameObject(name, typeof(Image), typeof(TMP_InputField)).GetComponent<TMP_InputField>();
             GameObject Text_area = new GameObject("Text Area", typeof(RectMask2D));
             GameObject Placeholder = new GameObject("Placeholder", typeof(TextMeshProUGUI), typeof(LayoutElement));
             GameObject text = new GameObject("Text", typeof(TextMeshProUGUI));
@@ -165,16 +165,16 @@ namespace RuntimeConstructers
             IFTMP.fontAsset = text.GetComponent<TextMeshProUGUI>().font;
             IFTMP.placeholder = Placeholder.GetComponent<TextMeshProUGUI>();
             InputField.GetComponent<RectTransform>().anchoredPosition = position;
-            AddLayerForEach(InputField);
+            AddLayerForEach(InputField.gameObject);
             return InputField;
         }
 
         /// <summary>
         /// Creates a TextMeshPro DropDown.
         /// </summary>
-        public static GameObject DropDownTMP(string name, GameObject Canvas, Vector2 position)
+        public static TMP_Dropdown DropDownTMP(string name, GameObject Canvas, Vector2 position)
         {
-            GameObject Dropdown = new GameObject(name, typeof(UnityEngine.UI.Image), typeof(TMP_Dropdown));
+            TMP_Dropdown Dropdown = new GameObject(name, typeof(UnityEngine.UI.Image), typeof(TMP_Dropdown)).GetComponent<TMP_Dropdown>();
             GameObject Label = new GameObject("Label", typeof(TextMeshProUGUI));
             GameObject Arrow = new GameObject("Arrow", typeof(Image));
             GameObject Template = new GameObject("Template", typeof(Image), typeof(ScrollRect));
@@ -321,7 +321,7 @@ namespace RuntimeConstructers
             TemplateScrollRect.viewport = Viewport.GetComponent<RectTransform>();
             TemplateScrollRect.verticalScrollbar = scrollbar.GetComponent<Scrollbar>();
             Dropdown.GetComponent<RectTransform>().anchoredPosition = position;
-            AddLayerForEach(Dropdown);
+            AddLayerForEach(Dropdown.gameObject);
             return Dropdown;
         }
     }
