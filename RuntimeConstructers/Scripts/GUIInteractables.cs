@@ -206,7 +206,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a Toggler.
         /// </summary>
-        public static GameObject Toggler(string name, GameObject Canvas, Vector2 position)
+        public static GameObject Toggler(string name, GameObject Canvas, Vector2 position,string Text)
         {
             GameObject Toggle = new GameObject(name, typeof(Toggle));
             GameObject Background = new GameObject("Background", typeof(Image));
@@ -227,7 +227,7 @@ namespace RuntimeConstructers
             Background.GetComponent<Image>().type = Image.Type.Sliced;
             Background.GetComponent<Image>().sprite = UISprite();
             Text LabelText = Label.GetComponent<Text>();
-            LabelText.GetComponent<Text>().text = "Toggle";
+            LabelText.GetComponent<Text>().text = Text;
             LabelText.GetComponent<Text>().font = Resources.GetBuiltinResource<Font>("Arial.ttf"); 
             LabelText.GetComponent<Text>().color = new Vector4(0.20f, 0.20f, 0.20f, 1);
             RectTransform LabelRect = Label.GetComponent<RectTransform>();
