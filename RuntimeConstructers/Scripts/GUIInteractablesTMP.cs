@@ -13,7 +13,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a TextMeshPro Button.
         /// </summary>
-        public static Button ButtonTMP(string Name, Canvas Canvas, Vector2 Position, string text)
+        public static Button ButtonTMP(string Name, GameObject Canvas, Vector2 Position, string text)
         {
             Button button = new GameObject(Name, typeof(Image), typeof(Button)).GetComponent<Button>();
             GameObject GUI_text = new GameObject("Text (TMP)", typeof(TextMeshProUGUI));
@@ -40,7 +40,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a TextMeshProUGUI Object.
         /// </summary>
-        public static TextMeshProUGUI textTMP(string name, Canvas Canvas, Vector2 position, string text)
+        public static TextMeshProUGUI textTMP(string name, GameObject Canvas, Vector2 position, string text)
         {
             TextMeshProUGUI TMPtext = new GameObject(name, typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
             TMPtext.transform.SetParent(Canvas.transform);
@@ -53,7 +53,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a TextMeshPro InputField.
         /// </summary>
-        public static TMP_InputField InputFieldTMP(string name, Canvas Canvas, Vector2 position)
+        public static TMP_InputField InputFieldTMP(string name, GameObject Canvas, Vector2 position)
         {
             TMP_InputField InputField = new GameObject(name, typeof(Image), typeof(TMP_InputField)).GetComponent<TMP_InputField>();
             GameObject Text_area = new GameObject("Text Area", typeof(RectMask2D));
@@ -107,7 +107,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a TextMeshPro DropDown.
         /// </summary>
-        public static TMP_Dropdown DropDownTMP(string name, Canvas Canvas, Vector2 position)
+        public static TMP_Dropdown DropDownTMP(string name, GameObject Canvas, Vector2 position)
         {
             TMP_Dropdown Dropdown = new GameObject(name, typeof(UnityEngine.UI.Image), typeof(TMP_Dropdown)).GetComponent<TMP_Dropdown>();
             GameObject Label = new GameObject("Label", typeof(TextMeshProUGUI));
