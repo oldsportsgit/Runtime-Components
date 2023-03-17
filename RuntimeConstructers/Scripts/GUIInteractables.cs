@@ -76,7 +76,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Make a single press button.
         /// </summary>
-        public static Button LegacyButton(string Name, GameObject Canvas, Vector2 Position, string text)
+        public static Button LegacyButton(string Name, Canvas Canvas, Vector2 Position, string text)
         {
             Button button = new GameObject(Name, typeof(Image), typeof(Button)).GetComponent<Button>();
             GameObject GUI_text = new GameObject("Text (Legacy)", typeof(Text));
@@ -114,7 +114,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Make a Legacy UI text.
         /// </summary>
-        public static Text LegacyText(string name, GameObject Canvas, Vector2 position, string text)
+        public static Text LegacyText(string name, Canvas Canvas, Vector2 position, string text)
         {
             Text TMPtext = new GameObject(name, typeof(Text)).GetComponent<Text>();
             TMPtext.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
@@ -131,7 +131,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a panel.
         /// </summary>
-        public static Image Panel(string name, GameObject Canvas, Vector2 Position)
+        public static Image Panel(string name, Canvas Canvas, Vector2 Position)
         {
             Image Panel = new GameObject(name, typeof(Image)).GetComponent<Image>();
             Panel.transform.SetParent(Canvas.transform);
@@ -153,7 +153,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a slider.
         /// </summary>
-        public static Slider Slider(string name, GameObject Canvas, Vector2 position)
+        public static Slider Slider(string name, Canvas Canvas, Vector2 position)
         {
             Slider Slider = new GameObject(name, typeof(Slider)).GetComponent<Slider>();
             GameObject Background = new GameObject("Background", typeof(Image));
@@ -206,7 +206,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a Toggler.
         /// </summary>
-        public static Toggle Toggler(string name, GameObject Canvas, Vector2 position,string Text)
+        public static Toggle Toggler(string name, Canvas Canvas, Vector2 position,string Text)
         {
             Toggle Toggle = new GameObject(name, typeof(Toggle)).GetComponent<Toggle>();
             GameObject Background = new GameObject("Background", typeof(Image));
@@ -249,7 +249,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a ScrollView.
         /// </summary>
-        public static ScrollRect ScrollView(string name, GameObject canvas, Vector2 position)
+        public static ScrollRect ScrollView(string name, Canvas canvas, Vector2 position)
         {
             ScrollRect scrollView = new GameObject(name, typeof(Image), typeof(ScrollRect)).GetComponent<ScrollRect>();
             GameObject Viewport = new GameObject("Viewport", typeof(Image), typeof(Mask));
@@ -339,7 +339,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a scrollbar.
         /// </summary>
-        public static Scrollbar scrollbar(string name, GameObject Canvas, Vector2 position)
+        public static Scrollbar scrollbar(string name, Canvas Canvas, Vector2 position)
         {
             Scrollbar scrollbar = new GameObject(name, typeof(Image), typeof(Scrollbar)).GetComponent<Scrollbar>();
             GameObject slidingArea = new GameObject("Sliding Area", typeof(RectTransform));
@@ -370,7 +370,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a legacy InputField.
         /// </summary>
-        public static InputField LegacyInputField(string name, GameObject Canvas, Vector2 position)
+        public static InputField LegacyInputField(string name, Canvas Canvas, Vector2 position)
         {
             InputField InputField = new GameObject(name, typeof(Image), typeof(InputField)).GetComponent<InputField>();
             GameObject Placeholder = new GameObject("Placeholder", typeof(Text));
@@ -416,7 +416,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a legacy DropDown.
         /// </summary>
-        public static Dropdown LegacyDropDown(string name, GameObject Canvas, Vector2 position)
+        public static Dropdown LegacyDropDown(string name, Canvas Canvas, Vector2 position)
         {
             Dropdown Dropdown = new GameObject(name, typeof(Image), typeof(Dropdown)).GetComponent<Dropdown>();
             GameObject Label = new GameObject("Label", typeof(Text));
