@@ -17,6 +17,20 @@ namespace RuntimeConstructers
             return Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4(10, 10, 10, 10));
         }
 
+        protected static Sprite GetUISprite
+        {
+            get
+            {
+                if (uisp == null)
+                {
+                    uisp = UISprite();
+                }
+                return uisp;
+            }
+        }
+
+        private static Sprite uisp;
+
         protected static Sprite Background()
         {
             Texture2D Backgroundtex = new Texture2D(2, 2);
@@ -24,6 +38,20 @@ namespace RuntimeConstructers
             Backgroundtex.LoadImage(Convert.FromBase64String(BackgroundSprite));
             return Sprite.Create(Backgroundtex, new Rect(0.0f, 0.0f, Backgroundtex.width, Backgroundtex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4(10, 10, 10, 10));
         }
+
+        protected static Sprite GetBackground
+        {
+            get
+            {
+                if (background == null)
+                {
+                    background = Background();
+                }
+                return background;
+            }
+        }
+
+        private static Sprite background;
 
         protected static Sprite Checkmark()
         {
@@ -33,6 +61,20 @@ namespace RuntimeConstructers
             return Sprite.Create(Checkmark_image, new Rect(0.0f, 0.0f, Checkmark_image.width, Checkmark_image.height), new Vector2(20f, 20f), 200.0f, 0, SpriteMeshType.Tight, new Vector4(0, 0, 0, 0));
         }
 
+        protected static Sprite GetCheckmark
+        {
+            get
+            {
+                if (checkmark == null)
+                {
+                    checkmark = Checkmark();
+                }
+                return checkmark;
+            }
+        }
+
+        private static Sprite checkmark;
+
         protected static Sprite Knob()
         {
              string knobsp = "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";
@@ -40,6 +82,20 @@ namespace RuntimeConstructers
              Knob_Sprite.LoadImage(Convert.FromBase64String(knobsp));
              return Sprite.Create(Knob_Sprite, new Rect(0.0f, 0.0f, Knob_Sprite.width, Knob_Sprite.height), new Vector2(20f, 20f), 200.0f, 0, SpriteMeshType.Tight, new Vector4(0, 0, 0, 0));
         }
+
+        protected static Sprite GetKnob
+        {
+            get
+            {
+                if (knob == null)
+                {
+                    knob = Knob();
+                }
+                return knob;
+            }
+        }
+
+        private static Sprite knob;
 
         protected static Sprite UIMask()
         {
@@ -49,6 +105,20 @@ namespace RuntimeConstructers
             return Sprite.Create(UImasktex, new Rect(0.0f, 0.0f, UImasktex.width, UImasktex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4(10, 10, 10, 10));
         }
 
+        protected static Sprite GetUIMask
+        {
+            get
+            {
+                if (uIMask == null)
+                {
+                    uIMask = UIMask();
+                }
+                return uIMask;
+            }
+        }
+
+        private static Sprite uIMask;
+
         protected static Sprite DropdownArrow()
         {
             Texture2D DropdownArrowtex = new Texture2D(2, 2);
@@ -57,6 +127,20 @@ namespace RuntimeConstructers
             return Sprite.Create(DropdownArrowtex, new Rect(0.0f, 0.0f, DropdownArrowtex.width, DropdownArrowtex.height), new Vector2(20f, 20f), 200.0f, 0, SpriteMeshType.Tight, new Vector4(0, 0, 0, 0));
         }
 
+        protected static Sprite GetDropdownArrow
+        {
+            get
+            {
+                if (dropdownArrow == null)
+                {
+                    dropdownArrow = DropdownArrow();
+                }
+                return dropdownArrow;
+            }
+        }
+
+        private static Sprite dropdownArrow;
+
         protected static Sprite InputFieldBackground()
         {
             Texture2D tex = new Texture2D(2, 2);
@@ -64,6 +148,20 @@ namespace RuntimeConstructers
             tex.LoadImage(Convert.FromBase64String(InputFieldBackground));
             return Sprite.Create(tex, new Rect(0.0f, 0.0f, tex.width, tex.height), new Vector2(16f, 16f), 200.0f, 0, SpriteMeshType.Tight, new Vector4(10, 10, 10, 10));
         }
+
+        protected static Sprite GetInputFieldBackground
+        {
+            get
+            {
+                if (inputFieldBackground == null)
+                {
+                    inputFieldBackground = InputFieldBackground();
+                }
+                return inputFieldBackground;
+            }
+        }
+
+        private static Sprite inputFieldBackground;
 
         protected static void AddLayerForEach(GameObject Base)
         {
@@ -97,7 +195,7 @@ namespace RuntimeConstructers
             GameObject GUI_text = new GameObject("Text (Legacy)", typeof(Text));
             button.transform.SetParent(Canvas.transform);
             button.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-            button.GetComponent<Image>().sprite = UISprite();
+            button.GetComponent<Image>().sprite = GetUISprite;
             button.GetComponent<Image>().type = Image.Type.Sliced;
             GUI_text.transform.SetParent(button.transform);
             Text textt = GUI_text.GetComponent<Text>();
@@ -151,7 +249,7 @@ namespace RuntimeConstructers
             Image Panel = new GameObject(name, typeof(Image)).GetComponent<Image>();
             Panel.transform.SetParent(Canvas.transform);
             Image PanelImg = Panel.GetComponent<Image>();
-            PanelImg.sprite = Background();
+            PanelImg.sprite = GetBackground;
             PanelImg.type = Image.Type.Sliced;
             PanelImg.color = new Vector4(1, 1, 1, 0.39f);
             RectTransform PanelRect = Panel.GetComponent<RectTransform>();
@@ -180,7 +278,7 @@ namespace RuntimeConstructers
             Slider.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 20);
             RectTransform BackgroundRect = Background.GetComponent<RectTransform>();
             Background.transform.SetParent(Slider.transform);
-            Background.GetComponent<Image>().sprite = GUIInteractables.Background();
+            Background.GetComponent<Image>().sprite = GetBackground;
             Background.GetComponent<Image>().type = Image.Type.Sliced;
             BackgroundRect.anchorMin = new Vector2(0f, 0.25f);
             BackgroundRect.anchorMax = new Vector2(1f, 0.75f);
@@ -193,7 +291,7 @@ namespace RuntimeConstructers
             Fill_AreaRect.position = new Vector3(-5, 0, 0);
             RectTransform FillRect = Fill.GetComponent<RectTransform>();
             Fill.GetComponent<Image>().type = Image.Type.Sliced;
-            Fill.GetComponent<Image>().sprite = UISprite();
+            Fill.GetComponent<Image>().sprite = GetUISprite;
             Slider.GetComponent<Slider>().fillRect = Fill.GetComponent<RectTransform>();
             Fill.transform.SetParent(Fill_Area.transform);
             FillRect.position = new Vector3(-5, 0, 0);
@@ -206,7 +304,7 @@ namespace RuntimeConstructers
             Handle_Slide_AreaRect.position = new Vector3(0, 0, 0);
             RectTransform HandleRect = Handle.GetComponent<RectTransform>();
             Handle.transform.SetParent(Handle_Slide_Area.transform);
-            Handle.GetComponent<Image>().sprite = Knob();
+            Handle.GetComponent<Image>().sprite = GetKnob;
             HandleRect.localPosition = new Vector3(0, 0, 0);
             HandleRect.sizeDelta = new Vector2(20, 0);
             Slider.GetComponent<Slider>().handleRect = HandleRect;
@@ -240,7 +338,7 @@ namespace RuntimeConstructers
             BackgroundRect.anchorMin = new Vector2(0, 1);
             BackgroundRect.anchorMax = new Vector2(0, 1);
             Background.GetComponent<Image>().type = Image.Type.Sliced;
-            Background.GetComponent<Image>().sprite = UISprite();
+            Background.GetComponent<Image>().sprite = GetUISprite;
             Text LabelText = Label.GetComponent<Text>();
             LabelText.GetComponent<Text>().text = Text;
             LabelText.GetComponent<Text>().font = ArialFont; 
@@ -250,7 +348,7 @@ namespace RuntimeConstructers
             LabelRect.anchorMax = new Vector2(1, 1);
             LabelRect.anchoredPosition = new Vector2(9, -0.50f);
             LabelRect.sizeDelta = new Vector2(-28, -3);
-            Checkmark.GetComponent<Image>().sprite = GUIInteractables.Checkmark();
+            Checkmark.GetComponent<Image>().sprite = GetCheckmark;
             RectTransform CheckmarkRect = Checkmark.GetComponent<RectTransform>();
             CheckmarkRect.offsetMin = new Vector2(-20, -20);
             CheckmarkRect.offsetMax = new Vector2(0, 0);
@@ -280,10 +378,10 @@ namespace RuntimeConstructers
             scrollViewImg.type = Image.Type.Sliced;
             scrollViewImg.color = new Color(1f, 1f, 1f, 0.4f);
             scrollView.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
-            scrollViewImg.sprite = Background();
+            scrollViewImg.sprite = GetBackground;
             Viewport.GetComponent<RectTransform>().pivot = new Vector2(0, 1);
             Viewport.transform.SetParent(scrollView.transform);
-            Viewport.GetComponent<Image>().sprite = UIMask();
+            Viewport.GetComponent<Image>().sprite = GetUIMask;
             Viewport.GetComponent<Image>().type = Image.Type.Sliced;
             Viewport.GetComponent<Mask>().showMaskGraphic = false;
             RectTransform ContentRect = Content.GetComponent<RectTransform>();
@@ -307,7 +405,7 @@ namespace RuntimeConstructers
             slidingAreaRect.sizeDelta = new Vector2(-20, -20);
             slidingAreaRect.anchoredPosition = Vector2.zero;
             handleH.GetComponent<Image>().type = Image.Type.Sliced;
-            handleH.GetComponent<Image>().sprite = UISprite();
+            handleH.GetComponent<Image>().sprite = GetUISprite;
             handleH.transform.SetParent(slidingAreaH.transform);
             handleH.GetComponent<RectTransform>().sizeDelta = new Vector2(20, 20);
             handleH.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
@@ -324,7 +422,7 @@ namespace RuntimeConstructers
             slidingAreaVRect.anchorMin = new Vector2(0, 0);
             slidingAreaVRect.anchorMax = new Vector2(1, 1);
             handleV.GetComponent<Image>().type = Image.Type.Sliced;
-            handleV.GetComponent<Image>().sprite = UISprite();
+            handleV.GetComponent<Image>().sprite = GetUISprite;
             handleV.transform.SetParent(slidingAreaV.transform);
             handleV.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
             handleV.GetComponent<RectTransform>().sizeDelta = new Vector2(20, 20);
@@ -363,7 +461,7 @@ namespace RuntimeConstructers
             scrollbar.GetComponent<Image>().type = Image.Type.Sliced;
             scrollbar.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 20);
             scrollbar.GetComponent<RectTransform>().anchoredPosition = position;
-            scrollbar.GetComponent<Image>().sprite = Background();
+            scrollbar.GetComponent<Image>().sprite = GetBackground;
             slidingArea.transform.SetParent(scrollbar.transform, true);
             RectTransform slidingAreaRect = slidingArea.GetComponent<RectTransform>();
             slidingAreaRect.anchorMin = new Vector2(0, 0);
@@ -371,7 +469,7 @@ namespace RuntimeConstructers
             slidingAreaRect.sizeDelta = new Vector2(-20, -20);
             slidingAreaRect.anchoredPosition = Vector2.zero;
             handle.GetComponent<Image>().type = Image.Type.Sliced;
-            handle.GetComponent<Image>().sprite = UISprite();
+            handle.GetComponent<Image>().sprite = GetUISprite;
             handle.transform.SetParent(slidingArea.transform);
             RectTransform handleRect = handle.GetComponent<RectTransform>();
             handleRect.sizeDelta = new Vector2(20, 20);
@@ -392,7 +490,7 @@ namespace RuntimeConstructers
             GameObject text = new GameObject("Text (Legacy)", typeof(Text));
             InputField.transform.SetParent(Canvas.transform);
             InputField.GetComponent<Image>().type = Image.Type.Sliced;
-            InputField.GetComponent<Image>().sprite = InputFieldBackground();
+            InputField.GetComponent<Image>().sprite = GetInputFieldBackground;
             InputField.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
             Placeholder.transform.SetParent(InputField.transform);
             RectTransform PlaceholderRect = Placeholder.GetComponent<RectTransform>();
@@ -448,7 +546,7 @@ namespace RuntimeConstructers
             GameObject Handle = new GameObject("Handle", typeof(Image));
             Dropdown.transform.SetParent(Canvas.transform);
             Dropdown.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-            Dropdown.GetComponent<Image>().sprite = UISprite();
+            Dropdown.GetComponent<Image>().sprite = GetUISprite;
             Dropdown.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
             Dropdown.GetComponent<Image>().type = Image.Type.Sliced;
             Dropdown.GetComponent<Dropdown>().options.Add(new Dropdown.OptionData("Option A"));
@@ -470,7 +568,7 @@ namespace RuntimeConstructers
             ArrowRT.anchorMin = new Vector2(1, 0.5f);
             ArrowRT.sizeDelta = new Vector2(20, 20);
             ArrowRT.anchoredPosition = new Vector2(-15, 0);
-            Arrow.GetComponent<Image>().sprite = DropdownArrow();
+            Arrow.GetComponent<Image>().sprite = GetDropdownArrow;
             Template.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 150);
             Template.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 2);
             Template.transform.SetParent(Dropdown.transform);
@@ -491,7 +589,7 @@ namespace RuntimeConstructers
             Viewport.GetComponent<RectTransform>().sizeDelta = new Vector2(-18, -0);
             Viewport.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
             Viewport.transform.SetParent(Template.transform);
-            Viewport.GetComponent<Image>().sprite = UIMask();
+            Viewport.GetComponent<Image>().sprite = GetUIMask;
             Viewport.GetComponent<Image>().type = Image.Type.Sliced;
             Viewport.GetComponent<Mask>().showMaskGraphic = false;
             RectTransform VPTMP = Viewport.GetComponent<RectTransform>();
@@ -501,7 +599,7 @@ namespace RuntimeConstructers
             VPTMP.sizeDelta = new Vector2(-18, 0);
             VPTMP.anchoredPosition = Vector2.zero;
             scrollbar.transform.SetParent(Template.transform);
-            scrollbar.GetComponent<Image>().sprite = Background();
+            scrollbar.GetComponent<Image>().sprite = GetBackground;
             scrollbar.GetComponent<Image>().type = Image.Type.Sliced;
             RectTransform sbrt = scrollbar.GetComponent<RectTransform>();
             sbrt.pivot = new Vector2(1, 1);
@@ -516,7 +614,7 @@ namespace RuntimeConstructers
             slareart.sizeDelta = new Vector2(-20, -20);
             slareart.anchoredPosition = Vector2.zero;
             Handle.transform.SetParent(slidingArea.transform);
-            Handle.GetComponent<Image>().sprite = UISprite();
+            Handle.GetComponent<Image>().sprite = GetUISprite;
             Handle.GetComponent<Image>().type = Image.Type.Sliced;
             Handle.GetComponent<RectTransform>().sizeDelta = new Vector2(20, 20);
             Handle.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
@@ -546,7 +644,7 @@ namespace RuntimeConstructers
             ItemBackgroundRect.anchoredPosition = Vector2.zero;
             Item.GetComponent<Toggle>().graphic = ItemCheckmark.GetComponent<Image>();
             ItemCheckmark.transform.SetParent(Item.transform);
-            ItemCheckmark.GetComponent<Image>().sprite = Checkmark();
+            ItemCheckmark.GetComponent<Image>().sprite = GetCheckmark;
             RectTransform ICRect = ItemCheckmark.GetComponent<RectTransform>();
             ICRect.anchorMax = new Vector2(0, 0.5f);
             ICRect.anchorMin = new Vector2(0, 0.5f);
