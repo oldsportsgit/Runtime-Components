@@ -19,7 +19,7 @@ namespace RuntimeConstructers
             GameObject GUI_text = new GameObject("Text (TMP)", typeof(TextMeshProUGUI));
             button.transform.SetParent(Canvas.transform);
             button.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-            button.GetComponent<Image>().sprite = UISprite();
+            button.GetComponent<Image>().sprite = GetUISprite;
             button.GetComponent<Image>().type = Image.Type.Sliced;
             GUI_text.transform.SetParent(button.transform);
             TextMeshProUGUI textMeshProUGUI = GUI_text.GetComponent<TextMeshProUGUI>();
@@ -61,7 +61,7 @@ namespace RuntimeConstructers
             GameObject text = new GameObject("Text", typeof(TextMeshProUGUI));
             InputField.transform.SetParent(Canvas.transform);
             InputField.GetComponent<Image>().type = Image.Type.Sliced;
-            InputField.GetComponent<Image>().sprite = InputFieldBackground();
+            InputField.GetComponent<Image>().sprite = GetInputFieldBackground;
             InputField.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
             Text_area.transform.SetParent(InputField.transform);
             RectTransform Text_areaRect = Text_area.GetComponent<RectTransform>();
@@ -124,7 +124,7 @@ namespace RuntimeConstructers
             GameObject Handle = new GameObject("Handle", typeof(Image));
             Dropdown.transform.SetParent(Canvas.transform);
             Dropdown.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-            Dropdown.GetComponent<Image>().sprite = UISprite();
+            Dropdown.GetComponent<Image>().sprite = GetUISprite;
             Dropdown.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
             Dropdown.GetComponent<Image>().type = Image.Type.Sliced;
             Dropdown.GetComponent<TMP_Dropdown>().options.Add(new TMP_Dropdown.OptionData("Option A"));
@@ -146,7 +146,7 @@ namespace RuntimeConstructers
             ArrowRT.anchorMin = new Vector2(1, 0.5f);
             ArrowRT.sizeDelta = new Vector2(20, 20);
             ArrowRT.anchoredPosition = new Vector2(-15, 0);
-            Arrow.GetComponent<Image>().sprite = DropdownArrow();
+            Arrow.GetComponent<Image>().sprite = GetDropdownArrow;
             Template.GetComponent<RectTransform>().sizeDelta = new Vector2(0, 150);
             Template.GetComponent<RectTransform>().anchoredPosition = new Vector2(0, 2);
             Template.transform.SetParent(Dropdown.transform);
@@ -167,7 +167,7 @@ namespace RuntimeConstructers
             Viewport.GetComponent<RectTransform>().sizeDelta = new Vector2(-18, -0);
             Viewport.GetComponent<RectTransform>().anchoredPosition = Vector2.zero;
             Viewport.transform.SetParent(Template.transform);
-            Viewport.GetComponent<Image>().sprite = UIMask();
+            Viewport.GetComponent<Image>().sprite = GetUIMask;
             Viewport.GetComponent<Image>().type = Image.Type.Sliced;
             Viewport.GetComponent<Mask>().showMaskGraphic = false;
             RectTransform VPTMP = Viewport.GetComponent<RectTransform>();
@@ -177,7 +177,7 @@ namespace RuntimeConstructers
             VPTMP.sizeDelta = new Vector2(-18, 0);
             VPTMP.anchoredPosition = Vector2.zero;
             scrollbar.transform.SetParent(Template.transform);
-            scrollbar.GetComponent<Image>().sprite = Background();
+            scrollbar.GetComponent<Image>().sprite = GetBackground;
             RectTransform sbrt = scrollbar.GetComponent<RectTransform>();
             sbrt.pivot = new Vector2(1, 1);
             sbrt.anchorMax = new Vector2(1, 1);
@@ -223,7 +223,7 @@ namespace RuntimeConstructers
             ItemBackgroundRect.anchoredPosition = Vector2.zero;
             Item.GetComponent<Toggle>().graphic = ItemCheckmark.GetComponent<Image>();
             ItemCheckmark.transform.SetParent(Item.transform);
-            ItemCheckmark.GetComponent<Image>().sprite = Checkmark();
+            ItemCheckmark.GetComponent<Image>().sprite = GetCheckmark;
             RectTransform ICRect = ItemCheckmark.GetComponent<RectTransform>();
             ICRect.anchorMax = new Vector2(0, 0.5f);
             ICRect.anchorMin = new Vector2(0, 0.5f);
