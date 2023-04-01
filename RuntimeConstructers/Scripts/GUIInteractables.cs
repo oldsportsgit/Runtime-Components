@@ -73,6 +73,21 @@ namespace RuntimeConstructers
                 transforms[i].gameObject.layer = 5;
             }
         }
+
+        protected static Font ArialFont
+        {
+            get
+            {
+                if (_arialFont == null)
+                {
+                    _arialFont = Resources.GetBuiltinResource<Font>("Arial.ttf");
+                }
+                return _arialFont;
+            }
+        }
+
+        protected static Font _arialFont;
+
         /// <summary>
         /// Make a single press button.
         /// </summary>
@@ -86,7 +101,7 @@ namespace RuntimeConstructers
             button.GetComponent<Image>().type = Image.Type.Sliced;
             GUI_text.transform.SetParent(button.transform);
             Text textt = GUI_text.GetComponent<Text>();
-            textt.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+            textt.font = ArialFont;
             textt.text = text;
             textt.alignment = TextAnchor.MiddleCenter;
             textt.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
@@ -121,7 +136,7 @@ namespace RuntimeConstructers
             TMPtext.transform.SetParent(Canvas.transform);
             Text textt = TMPtext.GetComponent<Text>();
             textt.text = text;
-            textt.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+            textt.font = ArialFont;
             textt.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
             TMPtext.gameObject.layer = 5;
             TMPtext.GetComponent<RectTransform>().anchoredPosition = position;
@@ -228,7 +243,7 @@ namespace RuntimeConstructers
             Background.GetComponent<Image>().sprite = UISprite();
             Text LabelText = Label.GetComponent<Text>();
             LabelText.GetComponent<Text>().text = Text;
-            LabelText.GetComponent<Text>().font = Resources.GetBuiltinResource<Font>("Arial.ttf"); 
+            LabelText.GetComponent<Text>().font = ArialFont; 
             LabelText.GetComponent<Text>().color = new Vector4(0.20f, 0.20f, 0.20f, 1);
             RectTransform LabelRect = Label.GetComponent<RectTransform>();
             LabelRect.anchorMin = new Vector2(0, 0);
@@ -389,7 +404,7 @@ namespace RuntimeConstructers
             PlaceholderRect.sizeDelta = new Vector2(-20,-13);
             Text PlaceholderText = Placeholder.GetComponent<Text>();
             PlaceholderText.text = "Enter text...";
-            PlaceholderText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+            PlaceholderText.font = ArialFont;
             PlaceholderText.fontStyle = FontStyle.Italic;
             PlaceholderText.color = new Color(0.20f, 0.20f, 0.20f, 0.5f);
             text.transform.SetParent(InputField.transform);
@@ -404,7 +419,7 @@ namespace RuntimeConstructers
             textt.fontSize = 14;
             textt.color = new Color(0.20f, 0.20f, 0.20f, 1f);
             textt.supportRichText = false;
-            textt.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+            textt.font = ArialFont;
             InputField IFTMP = InputField.GetComponent<InputField>();
             IFTMP.textComponent = text.GetComponent<Text>();
             IFTMP.placeholder = Placeholder.GetComponent<Text>();
@@ -441,7 +456,7 @@ namespace RuntimeConstructers
             Dropdown.GetComponent<Dropdown>().options.Add(new Dropdown.OptionData("Option C"));
             Label.transform.SetParent(Dropdown.transform);
             Text LabelText = Label.GetComponent<Text>();
-            LabelText.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+            LabelText.font = ArialFont;
             LabelText.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
             LabelText.alignment = TextAnchor.MiddleLeft;
             RectTransform LabelRT = Label.GetComponent<RectTransform>();
@@ -541,7 +556,7 @@ namespace RuntimeConstructers
             RectTransform ItemLabelRect = ItemLabel.GetComponent<RectTransform>();
             Text ItemLabelTMPU = ItemLabel.GetComponent<Text>();
             ItemLabelTMPU.alignment = TextAnchor.MiddleLeft;
-            ItemLabelTMPU.font = Resources.GetBuiltinResource<Font>("Arial.ttf");
+            ItemLabelTMPU.font = ArialFont;
             ItemLabelTMPU.text = "Option A";
             ItemLabelTMPU.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
             ItemLabelRect.anchorMax = new Vector2(1, 1);
