@@ -5,7 +5,7 @@ using UnityEngine.SceneManagement;
 
 namespace RuntimeConstructers
 {
-    public class UnityObject : UnityEngine.Object
+    public class GameplayStatics 
     {
         public static T GetAssetInMemoryByName<T>(string name) where T : UnityEngine.Object
         {
