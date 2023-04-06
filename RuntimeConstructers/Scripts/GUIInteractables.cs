@@ -178,7 +178,14 @@ namespace RuntimeConstructers
             {
                 if (_arialFont == null)
                 {
-                    _arialFont = Resources.GetBuiltinResource<Font>("Arial.ttf");
+                    if (Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf"))
+                    {
+                        _arialFont = Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+                    }
+                    else
+                    {
+                        _arialFont = Resources.GetBuiltinResource<Font>("Arial.ttf");
+                    }
                 }
                 return _arialFont;
             }
