@@ -193,6 +193,24 @@ namespace RuntimeConstructers
 
         protected static Font _arialFont;
 
+        public static RawImage rawImage(string name, GameObject Canvas, Vector2 position)
+        {
+            GameObject rawimage = new GameObject(name, typeof(RawImage));
+            rawimage.transform.SetParent(Canvas.transform);
+            rawimage.GetComponent<RectTransform>().anchoredPosition = position;
+            rawimage.layer = 5;
+            return rawimage.GetComponent<RawImage>();
+        }
+
+        public static Image image(string name, GameObject Canvas, Vector2 position)
+        {
+            GameObject image = new GameObject(name, typeof(RawImage));
+            image.transform.SetParent(Canvas.transform);
+            image.GetComponent<RectTransform>().anchoredPosition = position;
+            image.layer = 5;
+            return image.GetComponent<Image>();
+        }
+
         /// <summary>
         /// Make a single press button.
         /// </summary>
