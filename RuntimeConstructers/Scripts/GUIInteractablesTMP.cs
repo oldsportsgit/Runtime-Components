@@ -13,9 +13,9 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a TextMeshPro Button.
         /// </summary>
-        public static Button ButtonTMP(string Name, GameObject Canvas, Vector2 Position, string text)
+        public static Button ButtonTMP(GameObject Canvas, Vector2 Position, string text,string ButtonName = "Button")
         {
-            Button button = new GameObject(Name, typeof(Image), typeof(Button)).GetComponent<Button>();
+            Button button = new GameObject(ButtonName, typeof(Image), typeof(Button)).GetComponent<Button>();
             TextMeshProUGUI GUI_text = new GameObject("Text (TMP)", typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
             button.transform.SetParent(Canvas.transform);
             button.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
@@ -38,9 +38,9 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a TextMeshProUGUI Object.
         /// </summary>
-        public static TextMeshProUGUI textTMP(string name, GameObject Canvas, Vector2 position, string text)
+        public static TextMeshProUGUI textTMP(GameObject Canvas, Vector2 position, string text,string TextName = "Text (TMP)")
         {
-            TextMeshProUGUI TMPtext = new GameObject(name, typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
+            TextMeshProUGUI TMPtext = new GameObject(TextName, typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
             TMPtext.transform.SetParent(Canvas.transform);
             TMPtext.text = text;
             TMPtext.rectTransform.anchoredPosition = position;
@@ -51,9 +51,9 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a TextMeshPro InputField.
         /// </summary>
-        public static TMP_InputField InputFieldTMP(string name, GameObject Canvas, Vector2 position)
+        public static TMP_InputField InputFieldTMP(GameObject Canvas, Vector2 position,string InputFieldName = "InputField (TMP)")
         {
-            TMP_InputField InputField = new GameObject(name, typeof(Image), typeof(TMP_InputField)).GetComponent<TMP_InputField>();
+            TMP_InputField InputField = new GameObject(InputFieldName, typeof(Image), typeof(TMP_InputField)).GetComponent<TMP_InputField>();
             RectMask2D Text_area = new GameObject("Text Area", typeof(RectMask2D)).GetComponent<RectMask2D>();
             TextMeshProUGUI Placeholder = new GameObject("Placeholder", typeof(TextMeshProUGUI), typeof(LayoutElement)).GetComponent<TextMeshProUGUI>();
             TextMeshProUGUI text = new GameObject("Text", typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
@@ -100,9 +100,9 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a TextMeshPro DropDown.
         /// </summary>
-        public static TMP_Dropdown DropDownTMP(string name, GameObject Canvas, Vector2 position)
+        public static TMP_Dropdown DropDownTMP(GameObject Canvas, Vector2 position,string DropDownName = "Dropdown")
         {
-            TMP_Dropdown Dropdown = new GameObject(name, typeof(UnityEngine.UI.Image), typeof(TMP_Dropdown)).GetComponent<TMP_Dropdown>();
+            TMP_Dropdown Dropdown = new GameObject(DropDownName, typeof(UnityEngine.UI.Image), typeof(TMP_Dropdown)).GetComponent<TMP_Dropdown>();
             TextMeshProUGUI Label = new GameObject("Label", typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
             Image Arrow = new GameObject("Arrow", typeof(Image)).GetComponent<Image>();
             Image Template = new GameObject("Template", typeof(Image), typeof(ScrollRect)).GetComponent<Image>();
