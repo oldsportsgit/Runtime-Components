@@ -118,8 +118,8 @@ namespace RuntimeConstructers
             Dropdown.transform.SetParent(Canvas.transform);
             Dropdown.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
             Dropdown.GetComponent<Image>().sprite = GetUISprite;
-            Dropdown.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
             Dropdown.GetComponent<Image>().type = Image.Type.Sliced;
+            Dropdown.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
             Dropdown.options.Add(new TMP_Dropdown.OptionData("Option A"));
             Dropdown.options.Add(new TMP_Dropdown.OptionData("Option B"));
             Dropdown.options.Add(new TMP_Dropdown.OptionData("Option C"));
@@ -132,11 +132,10 @@ namespace RuntimeConstructers
             Label.rectTransform.sizeDelta = new Vector2(-35, -13);
             Label.rectTransform.anchoredPosition = new Vector2(-7.50f, -0.50f);
             Arrow.transform.SetParent(Dropdown.transform);
-            RectTransform ArrowRT = Arrow.rectTransform;
-            ArrowRT.anchorMax = new Vector2(1, 0.5f);
-            ArrowRT.anchorMin = new Vector2(1, 0.5f);
-            ArrowRT.sizeDelta = new Vector2(20, 20);
-            ArrowRT.anchoredPosition = new Vector2(-15, 0);
+            Arrow.rectTransform.anchorMax = new Vector2(1, 0.5f);
+            Arrow.rectTransform.anchorMin = new Vector2(1, 0.5f);
+            Arrow.rectTransform.sizeDelta = new Vector2(20, 20);
+            Arrow.rectTransform.anchoredPosition = new Vector2(-15, 0);
             Arrow.sprite = GetDropdownArrow;
             Template.rectTransform.sizeDelta = new Vector2(0, 150);
             Template.rectTransform.anchoredPosition = new Vector2(0, 2);
