@@ -546,12 +546,10 @@ namespace RuntimeConstructers
             Image Handle = new GameObject("Handle", typeof(Image)).GetComponent<Image>();
             Dropdown.transform.SetParent(Canvas.transform);
             Dropdown.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-            Dropdown.GetComponent<Image>().sprite = GetUISprite;
             Dropdown.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
+            Dropdown.GetComponent<Image>().sprite = GetUISprite;
             Dropdown.GetComponent<Image>().type = Image.Type.Sliced;
-            Dropdown.options.Add(new Dropdown.OptionData("Option A"));
-            Dropdown.options.Add(new Dropdown.OptionData("Option B"));
-            Dropdown.options.Add(new Dropdown.OptionData("Option C"));
+            Dropdown.options.AddRange(new Dropdown.OptionData[] { new Dropdown.OptionData("Option A"), new Dropdown.OptionData("Option B"), new Dropdown.OptionData("Option C") });
             Label.transform.SetParent(Dropdown.transform);
             Label.font = ArialFont;
             Label.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
