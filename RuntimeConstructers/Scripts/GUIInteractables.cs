@@ -233,7 +233,7 @@ namespace RuntimeConstructers
             GUI_text.font = ArialFont;
             GUI_text.text = text;
             GUI_text.alignment = TextAnchor.MiddleCenter;
-            GUI_text.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
+            GUI_text.color = new Color32(50, 50, 50, 255);
             GUI_text.rectTransform.anchorMin = new Vector2(0, 0);
             GUI_text.rectTransform.anchorMax = new Vector2(1, 1);
             GUI_text.rectTransform.offsetMax = new Vector2(0, 0);
@@ -264,7 +264,7 @@ namespace RuntimeConstructers
             TMPtext.transform.SetParent(Canvas.transform);
             TMPtext.text = text;
             TMPtext.font = ArialFont;
-            TMPtext.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
+            TMPtext.color = new Color32(50, 50, 50, 255);
             TMPtext.gameObject.layer = 5;
             TMPtext.rectTransform.anchoredPosition = position;
             return TMPtext;
@@ -279,7 +279,7 @@ namespace RuntimeConstructers
             Panel.transform.SetParent(Canvas.transform);
             Panel.sprite = GetBackground;
             Panel.type = Image.Type.Sliced;
-            Panel.color = new Vector4(1, 1, 1, 0.39f);
+            Panel.color = new Color32(255,255,255,100);
             Panel.rectTransform.anchorMax = new Vector2(1, 1);
             Panel.rectTransform.anchorMin = new Vector2(0, 0);
             Panel.rectTransform.sizeDelta = new Vector2(0, 0);
@@ -363,7 +363,7 @@ namespace RuntimeConstructers
             Background.sprite = GetUISprite;
             Label.text = Text;
             Label.font = ArialFont; 
-            Label.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
+            Label.color = new Color32(50, 50, 50, 255);
             Label.rectTransform.anchorMin = new Vector2(0, 0);
             Label.rectTransform.anchorMax = new Vector2(1, 1);
             Label.rectTransform.anchoredPosition = new Vector2(9, -0.50f);
@@ -395,8 +395,8 @@ namespace RuntimeConstructers
             scrollView.transform.SetParent(canvas.transform);
             Image scrollViewImg = scrollView.GetComponent<Image>();
             scrollViewImg.type = Image.Type.Sliced;
-            scrollViewImg.color = new Color(1f, 1f, 1f, 0.4f);
-            scrollView.GetComponent<RectTransform>().sizeDelta = new Vector2(200, 200);
+            scrollViewImg.color = new Color32(255, 255, 255, 100);
+            scrollViewImg.rectTransform.sizeDelta = new Vector2(200, 200);
             scrollViewImg.sprite = GetBackground;
             Viewport.rectTransform.pivot = new Vector2(0, 1);
             Viewport.transform.SetParent(scrollView.transform);
@@ -408,14 +408,14 @@ namespace RuntimeConstructers
             Content.anchorMax = new Vector2(1, 1);
             Content.pivot = new Vector2(0, 1);
             Content.transform.SetParent(Viewport.transform);
+            ScrollbarH.image.sprite = scrollViewImg.sprite;
             ScrollbarH.transform.SetParent(scrollView.transform);
-            RectTransform ScrollbarHRect = ScrollbarH.GetComponent<RectTransform>();
-            ScrollbarHRect.pivot = Vector2.zero;
-            ScrollbarHRect.anchorMin = new Vector2(0, 0);
-            ScrollbarHRect.anchorMax = new Vector2(0, 0);
-            ScrollbarHRect.sizeDelta = new Vector2(0, 20);
-            ScrollbarHRect.anchoredPosition = Vector2.zero;
-            ScrollbarH.GetComponent<Image>().type = Image.Type.Sliced;
+            ScrollbarH.image.rectTransform.pivot = Vector2.zero;
+            ScrollbarH.image.rectTransform.anchorMin = new Vector2(0, 0);
+            ScrollbarH.image.rectTransform.anchorMax = new Vector2(0, 0);
+            ScrollbarH.image.rectTransform.sizeDelta = new Vector2(0, 20);
+            ScrollbarH.image.rectTransform.anchoredPosition = Vector2.zero;
+            ScrollbarH.image.type = Image.Type.Sliced;
             slidingAreaH.transform.SetParent(ScrollbarH.transform);
             slidingAreaH.anchorMin = new Vector2(0, 0);
             slidingAreaH.anchorMax = new Vector2(1, 1);
@@ -427,11 +427,10 @@ namespace RuntimeConstructers
             handleH.rectTransform.sizeDelta = new Vector2(20, 20);
             handleH.rectTransform.anchoredPosition = Vector2.zero;
             ScrollbarV.transform.SetParent(scrollView.transform);
-            RectTransform ScrollbarVRect = ScrollbarV.GetComponent<RectTransform>();
-            ScrollbarVRect.sizeDelta = new Vector2(20, 0);
-            ScrollbarVRect.anchorMin = new Vector2(1, 0);
-            ScrollbarVRect.anchorMax = new Vector2(1, 0);
-            ScrollbarVRect.pivot = new Vector2(1, 1);
+            ScrollbarV.image.rectTransform.sizeDelta = new Vector2(20, 0);
+            ScrollbarV.image.rectTransform.anchorMin = new Vector2(1, 0);
+            ScrollbarV.image.rectTransform.anchorMax = new Vector2(1, 0);
+            ScrollbarV.image.rectTransform.pivot = new Vector2(1, 1);
             slidingAreaV.transform.SetParent(ScrollbarV.transform);
             slidingAreaV.sizeDelta = new Vector2(-20, -20);
             slidingAreaV.anchoredPosition = Vector2.zero;
@@ -453,12 +452,11 @@ namespace RuntimeConstructers
             ScrollbarH.handleRect = handleH.rectTransform;
             ScrollbarH.targetGraphic = handleH;
             ScrollbarV.handleRect = handleV.rectTransform;
-            ScrollbarH.GetComponent<Image>().sprite = scrollView.GetComponent<Image>().sprite;
-            ScrollbarV.GetComponent<Image>().sprite = scrollView.GetComponent<Image>().sprite;
-            ScrollbarV.GetComponent<Image>().type = Image.Type.Sliced;
+            ScrollbarV.image.sprite = scrollViewImg.sprite;
+            ScrollbarV.image.type = Image.Type.Sliced;
             ScrollbarV.targetGraphic = handleV;
             ScrollbarV.direction = Scrollbar.Direction.BottomToTop;
-            scrollView.GetComponent<RectTransform>().anchoredPosition = position;
+            scrollViewImg.rectTransform.anchoredPosition = position;
             AddLayerForEach(scrollView.gameObject);
             return scrollView;
         }
@@ -514,7 +512,7 @@ namespace RuntimeConstructers
             Placeholder.text = "Enter text...";
             Placeholder.font = ArialFont;
             Placeholder.fontStyle = FontStyle.Italic;
-            Placeholder.color = new Color(0.20f, 0.20f, 0.20f, 0.5f);
+            Placeholder.color = new Color32(50, 50, 50, 128);
             text.transform.SetParent(InputField.transform);
             text.rectTransform.anchorMax = new Vector2(1, 1);
             text.rectTransform.anchorMin = new Vector2(0, 0);
@@ -523,7 +521,7 @@ namespace RuntimeConstructers
             text.rectTransform.sizeDelta = new Vector2(-20,-13);
             text.rectTransform.anchoredPosition = new Vector2(0,-0.50f);
             text.fontSize = 14;
-            text.color = new Color(0.20f, 0.20f, 0.20f, 1f);
+            text.color = new Color32(50, 50, 50, 255);
             text.supportRichText = false;
             text.font = ArialFont;
             InputField.textComponent = text;
@@ -560,7 +558,7 @@ namespace RuntimeConstructers
             Dropdown.options.AddRange(new Dropdown.OptionData[] { new Dropdown.OptionData("Option A"), new Dropdown.OptionData("Option B"), new Dropdown.OptionData("Option C") });
             Label.transform.SetParent(Dropdown.transform);
             Label.font = ArialFont;
-            Label.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
+            Label.color = new Color32(50, 50, 50, 255);
             Label.alignment = TextAnchor.MiddleLeft;
             Label.rectTransform.anchorMax = new Vector2(1, 1);
             Label.rectTransform.anchorMin = new Vector2(0, 0);
@@ -649,8 +647,8 @@ namespace RuntimeConstructers
             ItemLabel.transform.SetParent(Item.transform);
             ItemLabel.alignment = TextAnchor.MiddleLeft;
             ItemLabel.font = ArialFont;
-            ItemLabel.text = "Option A";
-            ItemLabel.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
+            ItemLabel.text = Dropdown.options[0].text;
+            ItemLabel.color = new Color32(50, 50, 50, 255);
             ItemLabel.rectTransform.anchorMax = new Vector2(1, 1);
             ItemLabel.rectTransform.anchorMin = new Vector2(0, 0);
             ItemLabel.rectTransform.sizeDelta = new Vector2(-30, -3);
