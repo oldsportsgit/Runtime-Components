@@ -18,9 +18,9 @@ namespace RuntimeConstructers
             Button button = new GameObject(ButtonName, typeof(Image), typeof(Button)).GetComponent<Button>();
             TextMeshProUGUI GUI_text = new GameObject("Text (TMP)", typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
             button.transform.SetParent(Canvas.transform);
-            button.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-            button.GetComponent<Image>().sprite = GetUISprite;
-            button.GetComponent<Image>().type = Image.Type.Sliced;
+            button.image.rectTransform.sizeDelta = new Vector2(160, 30);
+            button.image.sprite = GetUISprite;
+            button.image.type = Image.Type.Sliced;
             GUI_text.transform.SetParent(button.transform);
             GUI_text.text = text;
             GUI_text.alignment = TextAlignmentOptions.Center;
@@ -30,7 +30,7 @@ namespace RuntimeConstructers
             GUI_text.rectTransform.anchorMax = new Vector2(1, 1);
             GUI_text.rectTransform.offsetMax = new Vector2(0, 0);
             GUI_text.rectTransform.offsetMin = new Vector2(0, 0);
-            button.GetComponent<RectTransform>().anchoredPosition = Position;
+            button.image.rectTransform.anchoredPosition = Position;
             AddLayerForEach(button.gameObject);
             return button;
         }
@@ -58,9 +58,9 @@ namespace RuntimeConstructers
             TextMeshProUGUI Placeholder = new GameObject("Placeholder", typeof(TextMeshProUGUI), typeof(LayoutElement)).GetComponent<TextMeshProUGUI>();
             TextMeshProUGUI text = new GameObject("Text", typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
             InputField.transform.SetParent(Canvas.transform);
-            InputField.GetComponent<Image>().type = Image.Type.Sliced;
-            InputField.GetComponent<Image>().sprite = GetInputFieldBackground;
-            InputField.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
+            InputField.image.type = Image.Type.Sliced;
+            InputField.image.sprite = GetInputFieldBackground;
+            InputField.image.rectTransform.sizeDelta = new Vector2(160, 30);
             Text_area.transform.SetParent(InputField.transform);
             Text_area.rectTransform.anchorMax = new Vector2(1, 1);
             Text_area.rectTransform.anchorMin = new Vector2(0, 0);
@@ -92,7 +92,7 @@ namespace RuntimeConstructers
             InputField.textComponent = text;
             InputField.fontAsset = text.font;
             InputField.placeholder = Placeholder;
-            InputField.GetComponent<RectTransform>().anchoredPosition = position;
+            InputField.image.rectTransform.anchoredPosition = position;
             AddLayerForEach(InputField.gameObject);
             return InputField;
         }
@@ -116,10 +116,10 @@ namespace RuntimeConstructers
             RectTransform slidingArea = new GameObject("Sliding Area", typeof(RectTransform)).GetComponent<RectTransform>();
             Image Handle = new GameObject("Handle", typeof(Image)).GetComponent<Image>();
             Dropdown.transform.SetParent(Canvas.transform);
-            Dropdown.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
-            Dropdown.GetComponent<Image>().sprite = GetUISprite;
-            Dropdown.GetComponent<Image>().type = Image.Type.Sliced;
-            Dropdown.GetComponent<RectTransform>().sizeDelta = new Vector2(160, 30);
+            Dropdown.targetGraphic = Dropdown.GetComponent<Image>();
+            Dropdown.image.sprite = GetUISprite;
+            Dropdown.image.type = Image.Type.Sliced;
+            Dropdown.image.rectTransform.sizeDelta = new Vector2(160, 30);
             Dropdown.options.AddRange(new TMP_Dropdown.OptionData[] { new TMP_Dropdown.OptionData("Option A"), new TMP_Dropdown.OptionData("Option B"), new TMP_Dropdown.OptionData("Option C") });
             Label.transform.SetParent(Dropdown.transform);
             Label.fontSize = 14;
@@ -139,7 +139,7 @@ namespace RuntimeConstructers
             Template.rectTransform.anchoredPosition = new Vector2(0, 2);
             Template.transform.SetParent(Dropdown.transform);
             Template.gameObject.SetActive(false);
-            Template.sprite = Dropdown.GetComponent<Image>().sprite;
+            Template.sprite = Dropdown.image.sprite;
             Template.type = Image.Type.Sliced;
             Template.rectTransform.anchorMax = new Vector2(1, 0);
             Template.rectTransform.anchorMin = new Vector2(0, 0);
@@ -176,11 +176,11 @@ namespace RuntimeConstructers
             slidingArea.sizeDelta = new Vector2(-20, -20);
             slidingArea.anchoredPosition = Vector2.zero;
             Handle.transform.SetParent(slidingArea.transform);
-            Handle.sprite = scrollbar.GetComponent<Image>().sprite;
+            Handle.sprite = scrollbar.image.sprite;
             Handle.type = Image.Type.Sliced;
             Handle.rectTransform.sizeDelta = new Vector2(20, 20);
             Handle.rectTransform.anchoredPosition = Vector2.zero;
-            scrollbar.GetComponent<Image>().type = Image.Type.Sliced;
+            scrollbar.image.type = Image.Type.Sliced;
             scrollbar.targetGraphic = Handle;
             scrollbar.handleRect = Handle.rectTransform;
             scrollbar.direction = Scrollbar.Direction.BottomToTop;
@@ -219,7 +219,6 @@ namespace RuntimeConstructers
             ItemLabel.rectTransform.anchorMin = new Vector2(0, 0);
             ItemLabel.rectTransform.sizeDelta = new Vector2(-30, -3);
             ItemLabel.rectTransform.anchoredPosition = new Vector2(5, -0.50f);
-            Dropdown.targetGraphic = Dropdown.GetComponent<Image>();
             Dropdown.template = Template.rectTransform;
             Dropdown.captionText = Label;
             Dropdown.itemText = ItemLabel;
@@ -227,7 +226,7 @@ namespace RuntimeConstructers
             TemplateScrollRect.content = Content;
             TemplateScrollRect.viewport = Viewport.rectTransform;
             TemplateScrollRect.verticalScrollbar = scrollbar;
-            Dropdown.GetComponent<RectTransform>().anchoredPosition = position;
+            Dropdown.image.rectTransform.anchoredPosition = position;
             AddLayerForEach(Dropdown.gameObject);
             return Dropdown;
         }
