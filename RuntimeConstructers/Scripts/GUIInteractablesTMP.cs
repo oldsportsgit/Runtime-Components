@@ -78,7 +78,7 @@ namespace RuntimeConstructers
             Placeholder.enableWordWrapping = false;
             Placeholder.fontSize = 14;
             Placeholder.fontStyle = FontStyles.Italic;
-            Placeholder.color = new Vector4(0.20f, 0.20f, 0.20f, 0.5f);
+            Placeholder.color = new Color32(50,50,50,128);
             text.transform.SetParent(Text_area.transform);
             text.rectTransform.anchorMax = new Vector2(1, 1);
             text.rectTransform.anchorMin = new Vector2(0, 0);
@@ -87,7 +87,7 @@ namespace RuntimeConstructers
             text.rectTransform.sizeDelta = Vector2.zero;
             text.rectTransform.anchoredPosition = Vector2.zero;
             text.fontSize = 14;
-            text.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
+            text.color = new Color32(50, 50, 50, 255);
             InputField.textViewport = Text_area.rectTransform;
             InputField.textComponent = text;
             InputField.fontAsset = text.font;
@@ -123,7 +123,7 @@ namespace RuntimeConstructers
             Dropdown.options.AddRange(new TMP_Dropdown.OptionData[] { new TMP_Dropdown.OptionData("Option A"), new TMP_Dropdown.OptionData("Option B"), new TMP_Dropdown.OptionData("Option C") });
             Label.transform.SetParent(Dropdown.transform);
             Label.fontSize = 14;
-            Label.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
+            Label.color = new Color32(50, 50, 50, 255);
             Label.alignment = TextAlignmentOptions.Left;
             Label.rectTransform.anchorMax = new Vector2(1, 1);
             Label.rectTransform.anchorMin = new Vector2(0, 0);
@@ -163,13 +163,12 @@ namespace RuntimeConstructers
             Viewport.rectTransform.sizeDelta = new Vector2(-18, 0);
             Viewport.rectTransform.anchoredPosition = Vector2.zero;
             scrollbar.transform.SetParent(Template.transform);
-            scrollbar.GetComponent<Image>().sprite = GetBackground;
-            RectTransform sbrt = scrollbar.GetComponent<RectTransform>();
-            sbrt.pivot = new Vector2(1, 1);
-            sbrt.anchorMax = new Vector2(1, 1);
-            sbrt.anchorMin = new Vector2(1, 0);
-            sbrt.sizeDelta = new Vector2(20, 0);
-            sbrt.anchoredPosition = Vector2.zero;
+            scrollbar.image.sprite = GetBackground;
+            scrollbar.image.rectTransform.pivot = new Vector2(1, 1);
+            scrollbar.image.rectTransform.anchorMax = new Vector2(1, 1);
+            scrollbar.image.rectTransform.anchorMin = new Vector2(1, 0);
+            scrollbar.image.rectTransform.sizeDelta = new Vector2(20, 0);
+            scrollbar.image.rectTransform.anchoredPosition = Vector2.zero;
             slidingArea.transform.SetParent(scrollbar.transform);
             slidingArea.anchorMax = new Vector2(1, 1);
             slidingArea.anchorMin = new Vector2(0, 0);
@@ -212,9 +211,9 @@ namespace RuntimeConstructers
             ItemCheckmark.rectTransform.anchoredPosition = new Vector2(10, 0);
             ItemLabel.transform.SetParent(Item.transform);
             ItemLabel.alignment = TextAlignmentOptions.Left;
-            ItemLabel.text = "Option A";
+            ItemLabel.text = Dropdown.options[0].text;
             ItemLabel.fontSize = 14;
-            ItemLabel.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
+            ItemLabel.color = new Color32(50, 50, 50, 255);
             ItemLabel.rectTransform.anchorMax = new Vector2(1, 1);
             ItemLabel.rectTransform.anchorMin = new Vector2(0, 0);
             ItemLabel.rectTransform.sizeDelta = new Vector2(-30, -3);
