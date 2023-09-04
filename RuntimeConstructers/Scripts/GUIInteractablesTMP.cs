@@ -24,7 +24,7 @@ namespace RuntimeConstructers
             GUI_text.transform.SetParent(button.transform);
             GUI_text.text = text;
             GUI_text.alignment = TextAlignmentOptions.Center;
-            GUI_text.color = new Vector4(0.20f, 0.20f, 0.20f, 1);
+            GUI_text.color = new Color32(50, 50, 50, 255);
             GUI_text.fontSize = 24;
             GUI_text.rectTransform.anchorMin = new Vector2(0, 0);
             GUI_text.rectTransform.anchorMax = new Vector2(1, 1);
