@@ -13,7 +13,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a TextMeshPro Button.
         /// </summary>
-        public static Button ButtonTMP(GameObject Canvas, Vector2 Position, string text,string ButtonName = "Button")
+        public static Button ButtonTMP(GameObject Canvas, Vector2 Position, string text, string ButtonName = "Button")
         {
             Button button = new GameObject(ButtonName, typeof(Image), typeof(Button)).GetComponent<Button>();
             TextMeshProUGUI GUI_text = new GameObject("Text (TMP)", typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
@@ -26,10 +26,10 @@ namespace RuntimeConstructers
             GUI_text.alignment = TextAlignmentOptions.Center;
             GUI_text.color = new Color32(50, 50, 50, 255);
             GUI_text.fontSize = 24;
-            GUI_text.rectTransform.anchorMin = new Vector2(0, 0);
-            GUI_text.rectTransform.anchorMax = new Vector2(1, 1);
-            GUI_text.rectTransform.offsetMax = new Vector2(0, 0);
-            GUI_text.rectTransform.offsetMin = new Vector2(0, 0);
+            GUI_text.rectTransform.anchorMin = Vector2.zero;
+            GUI_text.rectTransform.anchorMax = Vector2.one;
+            GUI_text.rectTransform.offsetMax = Vector2.zero;
+            GUI_text.rectTransform.offsetMin = Vector2.zero;
             button.image.rectTransform.anchoredPosition = Position;
             AddLayerForEach(button.gameObject);
             return button;
@@ -38,7 +38,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a TextMeshProUGUI Object.
         /// </summary>
-        public static TextMeshProUGUI textTMP(GameObject Canvas, Vector2 position, string text,string TextName = "Text (TMP)")
+        public static TextMeshProUGUI textTMP(GameObject Canvas, Vector2 position, string text, string TextName = "Text (TMP)")
         {
             TextMeshProUGUI TMPtext = new GameObject(TextName, typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
             TMPtext.transform.SetParent(Canvas.transform);
@@ -51,7 +51,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a TextMeshPro InputField.
         /// </summary>
-        public static TMP_InputField InputFieldTMP(GameObject Canvas, Vector2 position,string InputFieldName = "InputField (TMP)")
+        public static TMP_InputField InputFieldTMP(GameObject Canvas, Vector2 position, string InputFieldName = "InputField (TMP)")
         {
             TMP_InputField InputField = new GameObject(InputFieldName, typeof(Image), typeof(TMP_InputField)).GetComponent<TMP_InputField>();
             RectMask2D Text_area = new GameObject("Text Area", typeof(RectMask2D)).GetComponent<RectMask2D>();
@@ -62,28 +62,29 @@ namespace RuntimeConstructers
             InputField.image.sprite = GetInputFieldBackground;
             InputField.image.rectTransform.sizeDelta = new Vector2(160, 30);
             Text_area.transform.SetParent(InputField.transform);
-            Text_area.rectTransform.anchorMax = new Vector2(1, 1);
-            Text_area.rectTransform.anchorMin = new Vector2(0, 0);
+            Text_area.rectTransform.anchorMax = Vector2.one;
+            Text_area.rectTransform.anchorMin = Vector2.zero;
             Text_area.rectTransform.anchoredPosition = new Vector2(0, -0.50f);
             Text_area.rectTransform.sizeDelta = new Vector2(-20, -13);
+            Text_area.padding = new Vector4(-8,-8,-8,-8);
             Placeholder.transform.SetParent(Text_area.transform);
             Placeholder.GetComponent<LayoutElement>().ignoreLayout = true;
-            Placeholder.rectTransform.anchorMax = new Vector2(1, 1);
-            Placeholder.rectTransform.anchorMin = new Vector2(0, 0);
-            Placeholder.rectTransform.offsetMax = new Vector2(0, 0);
-            Placeholder.rectTransform.offsetMin = new Vector2(0, 0);
+            Placeholder.rectTransform.anchorMax = Vector2.one;
+            Placeholder.rectTransform.anchorMin = Vector2.zero;
+            Placeholder.rectTransform.offsetMax = Vector2.zero;
+            Placeholder.rectTransform.offsetMin = Vector2.zero;
             Placeholder.rectTransform.anchoredPosition = Vector2.zero;
             Placeholder.rectTransform.sizeDelta = Vector2.zero;
             Placeholder.text = "Enter text...";
             Placeholder.enableWordWrapping = false;
             Placeholder.fontSize = 14;
             Placeholder.fontStyle = FontStyles.Italic;
-            Placeholder.color = new Color32(50,50,50,128);
+            Placeholder.color = new Color32(50, 50, 50, 128);
             text.transform.SetParent(Text_area.transform);
-            text.rectTransform.anchorMax = new Vector2(1, 1);
-            text.rectTransform.anchorMin = new Vector2(0, 0);
-            text.rectTransform.offsetMax = new Vector2(0, 0);
-            text.rectTransform.offsetMin = new Vector2(0, 0);
+            text.rectTransform.anchorMax = Vector2.one;
+            text.rectTransform.anchorMin = Vector2.zero;
+            text.rectTransform.offsetMax = Vector2.zero;
+            text.rectTransform.offsetMin = Vector2.zero;
             text.rectTransform.sizeDelta = Vector2.zero;
             text.rectTransform.anchoredPosition = Vector2.zero;
             text.fontSize = 14;
@@ -100,7 +101,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a TextMeshPro DropDown.
         /// </summary>
-        public static TMP_Dropdown DropDownTMP(GameObject Canvas, Vector2 position,string DropDownName = "Dropdown")
+        public static TMP_Dropdown DropDownTMP(GameObject Canvas, Vector2 position, string DropDownName = "Dropdown")
         {
             TMP_Dropdown Dropdown = new GameObject(DropDownName, typeof(UnityEngine.UI.Image), typeof(TMP_Dropdown)).GetComponent<TMP_Dropdown>();
             TextMeshProUGUI Label = new GameObject("Label", typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
@@ -125,8 +126,8 @@ namespace RuntimeConstructers
             Label.fontSize = 14;
             Label.color = new Color32(50, 50, 50, 255);
             Label.alignment = TextAlignmentOptions.Left;
-            Label.rectTransform.anchorMax = new Vector2(1, 1);
-            Label.rectTransform.anchorMin = new Vector2(0, 0);
+            Label.rectTransform.anchorMax = Vector2.one;
+            Label.rectTransform.anchorMin = Vector2.zero;
             Label.rectTransform.sizeDelta = new Vector2(-35, -13);
             Label.rectTransform.anchoredPosition = new Vector2(-7.50f, -0.50f);
             Arrow.transform.SetParent(Dropdown.transform);
@@ -141,8 +142,8 @@ namespace RuntimeConstructers
             Template.gameObject.SetActive(false);
             Template.sprite = Dropdown.image.sprite;
             Template.type = Image.Type.Sliced;
-            Template.rectTransform.anchorMax = new Vector2(1, 0);
-            Template.rectTransform.anchorMin = new Vector2(0, 0);
+            Template.rectTransform.anchorMax = Vector2.right;
+            Template.rectTransform.anchorMin = Vector2.zero;
             Template.rectTransform.pivot = new Vector2(0.5f, 1);
             Template.rectTransform.sizeDelta = new Vector2(0, 150);
             Template.rectTransform.anchoredPosition = new Vector2(0, 2);
@@ -157,21 +158,21 @@ namespace RuntimeConstructers
             Viewport.sprite = GetUIMask;
             Viewport.type = Image.Type.Sliced;
             Viewport.GetComponent<Mask>().showMaskGraphic = false;
-            Viewport.rectTransform.pivot = new Vector2(0, 1);
-            Viewport.rectTransform.anchorMax = new Vector2(1, 1);
-            Viewport.rectTransform.anchorMin = new Vector2(0, 0);
+            Viewport.rectTransform.pivot = Vector2.up;
+            Viewport.rectTransform.anchorMax = Vector2.one;
+            Viewport.rectTransform.anchorMin = Vector2.zero;
             Viewport.rectTransform.sizeDelta = new Vector2(-18, 0);
             Viewport.rectTransform.anchoredPosition = Vector2.zero;
             scrollbar.transform.SetParent(Template.transform);
             scrollbar.image.sprite = GetBackground;
-            scrollbar.image.rectTransform.pivot = new Vector2(1, 1);
-            scrollbar.image.rectTransform.anchorMax = new Vector2(1, 1);
-            scrollbar.image.rectTransform.anchorMin = new Vector2(1, 0);
+            scrollbar.image.rectTransform.pivot = Vector2.one;
+            scrollbar.image.rectTransform.anchorMax = Vector2.one;
+            scrollbar.image.rectTransform.anchorMin = Vector2.right;
             scrollbar.image.rectTransform.sizeDelta = new Vector2(20, 0);
             scrollbar.image.rectTransform.anchoredPosition = Vector2.zero;
             slidingArea.transform.SetParent(scrollbar.transform);
-            slidingArea.anchorMax = new Vector2(1, 1);
-            slidingArea.anchorMin = new Vector2(0, 0);
+            slidingArea.anchorMax = Vector2.one;
+            slidingArea.anchorMin = Vector2.zero;
             slidingArea.sizeDelta = new Vector2(-20, -20);
             slidingArea.anchoredPosition = Vector2.zero;
             Handle.transform.SetParent(slidingArea.transform);
@@ -185,8 +186,8 @@ namespace RuntimeConstructers
             scrollbar.direction = Scrollbar.Direction.BottomToTop;
             Content.transform.SetParent(Viewport.transform);
             Content.pivot = new Vector2(0.5f, 1);
-            Content.anchorMax = new Vector2(1, 1);
-            Content.anchorMin = new Vector2(0, 1);
+            Content.anchorMax = Vector2.one;
+            Content.anchorMin = Vector2.up;
             Content.sizeDelta = new Vector2(0, 28);
             Content.anchoredPosition = Vector2.zero;
             Item.isOn = true;
@@ -198,8 +199,8 @@ namespace RuntimeConstructers
             ItemRect.anchoredPosition = Vector2.zero;
             Item.targetGraphic = ItemBackground;
             ItemBackground.transform.SetParent(Item.transform);
-            ItemBackground.rectTransform.anchorMax = new Vector2(1, 1);
-            ItemBackground.rectTransform.anchorMin = new Vector2(0, 0);
+            ItemBackground.rectTransform.anchorMax = Vector2.one;
+            ItemBackground.rectTransform.anchorMin = Vector2.zero;
             ItemBackground.rectTransform.sizeDelta = Vector2.zero;
             ItemBackground.rectTransform.anchoredPosition = Vector2.zero;
             Item.graphic = ItemCheckmark;
@@ -214,17 +215,16 @@ namespace RuntimeConstructers
             ItemLabel.text = Dropdown.options[0].text;
             ItemLabel.fontSize = 14;
             ItemLabel.color = new Color32(50, 50, 50, 255);
-            ItemLabel.rectTransform.anchorMax = new Vector2(1, 1);
-            ItemLabel.rectTransform.anchorMin = new Vector2(0, 0);
+            ItemLabel.rectTransform.anchorMax = Vector2.one;
+            ItemLabel.rectTransform.anchorMin = Vector2.zero;
             ItemLabel.rectTransform.sizeDelta = new Vector2(-30, -3);
             ItemLabel.rectTransform.anchoredPosition = new Vector2(5, -0.50f);
             Dropdown.template = Template.rectTransform;
             Dropdown.captionText = Label;
             Dropdown.itemText = ItemLabel;
-            ScrollRect TemplateScrollRect = Template.GetComponent<ScrollRect>();
-            TemplateScrollRect.content = Content;
-            TemplateScrollRect.viewport = Viewport.rectTransform;
-            TemplateScrollRect.verticalScrollbar = scrollbar;
+            TPTMP.content = Content;
+            TPTMP.viewport = Viewport.rectTransform;
+            TPTMP.verticalScrollbar = scrollbar;
             Dropdown.image.rectTransform.anchoredPosition = position;
             AddLayerForEach(Dropdown.gameObject);
             return Dropdown;
