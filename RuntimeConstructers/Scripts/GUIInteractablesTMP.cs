@@ -121,7 +121,7 @@ namespace RuntimeConstructers
             Dropdown.image.sprite = GetUISprite;
             Dropdown.image.type = Image.Type.Sliced;
             Dropdown.image.rectTransform.sizeDelta = new Vector2(160, 30);
-            Dropdown.options.AddRange(new TMP_Dropdown.OptionData[] { new TMP_Dropdown.OptionData("Option A"), new TMP_Dropdown.OptionData("Option B"), new TMP_Dropdown.OptionData("Option C") });
+            Dropdown.AddOptions(new List<string> { "Option A", "Option B", "Option C" });
             Label.transform.SetParent(Dropdown.transform);
             Label.fontSize = 14;
             Label.color = new Color32(50, 50, 50, 255);
