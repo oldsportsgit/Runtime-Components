@@ -14,7 +14,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a TextMeshPro Button.
         /// </summary>
-        public static Button ButtonTMP(GameObject Canvas, Vector2 Position, string text, string ButtonName = "Button")
+        public static Button ButtonTMP(GameObject Canvas, Vector2 Position, string text, float fontSize = 24, string ButtonName = "Button")
         {
             Button button = new GameObject(ButtonName, typeof(Image), typeof(Button)).GetComponent<Button>();
             TextMeshProUGUI GUI_text = new GameObject("Text (TMP)", typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
@@ -26,7 +26,7 @@ namespace RuntimeConstructers
             GUI_text.text = text;
             GUI_text.alignment = TextAlignmentOptions.Center;
             GUI_text.color = new Color32(50, 50, 50, 255);
-            GUI_text.fontSize = 24;
+            GUI_text.fontSize = fontSize;
             GUI_text.rectTransform.anchorMin = Vector2.zero;
             GUI_text.rectTransform.anchorMax = Vector2.one;
             GUI_text.rectTransform.offsetMax = Vector2.zero;
