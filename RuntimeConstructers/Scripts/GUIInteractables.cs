@@ -222,7 +222,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Make a single press button.
         /// </summary>
-        public static Button LegacyButton(GameObject Canvas, Vector2 Position, string text, string ButtonName = "Button (Legacy)")
+        public static Button LegacyButton(GameObject Canvas, Vector2 Position, string text, int fontSize = 14, string ButtonName = "Button (Legacy)")
         {
             Button button = new GameObject(ButtonName, typeof(Image), typeof(Button)).GetComponent<Button>();
             Text GUI_text = new GameObject("Text (Legacy)", typeof(Text)).GetComponent<Text>();
@@ -233,6 +233,7 @@ namespace RuntimeConstructers
             GUI_text.transform.SetParent(button.transform);
             GUI_text.font = ArialFont;
             GUI_text.text = text;
+            GUI_text.fontSize = fontSize;
             GUI_text.alignment = TextAnchor.MiddleCenter;
             GUI_text.color = new Color32(50, 50, 50, 255);
             GUI_text.rectTransform.anchorMin = Vector2.zero;
