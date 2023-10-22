@@ -39,11 +39,12 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a TextMeshProUGUI Object.
         /// </summary>
-        public static TextMeshProUGUI textTMP(GameObject Canvas, Vector2 position, string text, string TextName = "Text (TMP)")
+        public static TextMeshProUGUI textTMP(GameObject Canvas, Vector2 position, string text, float fontSize = 36, string TextName = "Text (TMP)")
         {
             TextMeshProUGUI TMPtext = new GameObject(TextName, typeof(TextMeshProUGUI)).GetComponent<TextMeshProUGUI>();
             TMPtext.transform.SetParent(Canvas.transform);
             TMPtext.text = text;
+            TMPtext.fontSize = fontSize;
             TMPtext.rectTransform.anchoredPosition = position;
             TMPtext.gameObject.layer = 5;
             return TMPtext;
