@@ -53,7 +53,7 @@ namespace RuntimeConstructers
         /// <summary>
         /// Creates a TextMeshPro InputField.
         /// </summary>
-        public static TMP_InputField InputFieldTMP(GameObject Canvas, Vector2 position, string InputFieldName = "InputField (TMP)")
+        public static TMP_InputField InputFieldTMP(GameObject Canvas, Vector2 position, string InputFieldtext = "", string InputFieldName = "InputField (TMP)")
         {
             TMP_InputField InputField = new GameObject(InputFieldName, typeof(Image), typeof(TMP_InputField)).GetComponent<TMP_InputField>();
             RectMask2D Text_area = new GameObject("Text Area", typeof(RectMask2D)).GetComponent<RectMask2D>();
@@ -96,6 +96,7 @@ namespace RuntimeConstructers
             InputField.fontAsset = text.font;
             InputField.placeholder = Placeholder;
             InputField.image.rectTransform.anchoredPosition = position;
+            InputField.text = InputFieldtext;
             AddLayerForEach(InputField.gameObject);
             return InputField;
         }
