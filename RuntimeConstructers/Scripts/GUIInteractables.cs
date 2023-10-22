@@ -259,12 +259,13 @@ namespace RuntimeConstructers
         /// <summary>
         /// Make a Legacy UI text.
         /// </summary>
-        public static Text LegacyText(GameObject Canvas, Vector2 position, string text, string TextName = "Text (Legacy)")
+        public static Text LegacyText(GameObject Canvas, Vector2 position, string text, int fontSize = 14, string TextName = "Text (Legacy)")
         {
             Text TMPtext = new GameObject(TextName, typeof(Text)).GetComponent<Text>();
             TMPtext.rectTransform.sizeDelta = new Vector2(160, 30);
             TMPtext.transform.SetParent(Canvas.transform);
             TMPtext.text = text;
+            TMPtext.fontSize = fontSize;
             TMPtext.font = ArialFont;
             TMPtext.color = new Color32(50, 50, 50, 255);
             TMPtext.gameObject.layer = 5;
