@@ -9,7 +9,7 @@ namespace RuntimeConstructers
     /// <summary>
     /// Class for creating basic TextMeshPro UI Objects.
     /// </summary>
-    public class GUIInteractablesTMP : GUIInteractables
+    public class GUIElementsTMP : GUIElements
     {
         /// <summary>
         /// Creates a TextMeshPro Button.
