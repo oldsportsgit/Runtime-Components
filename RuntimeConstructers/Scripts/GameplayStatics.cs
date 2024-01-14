@@ -1,75 +1,91 @@
-using System;
-using System.Collections.Generic;
+using ModMenu;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-namespace RuntimeConstructers
+namespace RuntimeGUI;
+
+public static class GameplayStatics
 {
-    public class GameplayStatics 
+    public static List<Component> FindAllPrefabsWithComponent(Type type)
     {
-        public static T GetAssetInMemoryByName<T>(string name) where T : UnityEngine.Object
+        if (type == null || !type.IsSubclassOf(typeof(Component)))
         {
-            T[] memoryassets = Resources.FindObjectsOfTypeAll(typeof(T)) as T[];
-            T matvar = null;
-            for (int i = 0; i < memoryassets.Length; i++)
-            {
-                if (memoryassets[i].name == name)
-                {
-                    matvar = memoryassets[i];
-                }
-            }
-            return matvar;
+            throw new Exception("type must be type of Component and not Component or null");
         }
-
-        public static GameObject[] GetAllPrefabs()
+        var foundPrefabs = Resources.FindObjectsOfTypeAll(type) as Component[];
+        var list = new List<Component>();
+        for (int i = 0; i < foundPrefabs.Length; i++)
         {
-            GameObject[] prefabs = Resources.FindObjectsOfTypeAll<GameObject>();
-            List<GameObject> cprefabs = new List<GameObject>();
-            for (int i = 0; i < prefabs.Length; i++)
+            if (foundPrefabs[i].gameObject.IsPrefab())
             {
-                if (!prefabs[i].scene.IsValid() & prefabs[i].transform.parent == null)
-                {
-                    cprefabs.Add(prefabs[i]);
-                }
-            }
-            return cprefabs.ToArray();
-        }
-
-        public static GameObject FindChildGameObjectByName(GameObject gameObject, string name)
-        {
-            Transform[] children = gameObject.GetComponentsInChildren<Transform>();
-            foreach (Transform transform in children)
-            {
-                if (transform.name == name)
-                {
-                    return transform.gameObject;
-                }
-            }
-            return null;
-        }
-
-        public static void CreateScene(string SceneName, bool IsBlankScene)
-        {
-            Scene newScene = SceneManager.CreateScene(SceneName);
-            SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
-            SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
-            if (!IsBlankScene)
-            {
-                GameObject MainCamera = new GameObject("Main Camera", typeof(Camera), typeof(AudioListener));
-                GameObject DirectionalLight = new GameObject("Directional Light", typeof(Light));
-                RenderSettings.sun = DirectionalLight.GetComponent<Light>();
-                DirectionalLight.GetComponent<Light>().type = LightType.Directional;
-                DirectionalLight.GetComponent<Transform>().localEulerAngles = new Vector3(50, -30, 0);
+                list.Add(foundPrefabs[i]);
             }
         }
+        return list;
+    }
 
-        public static void CreateScene(string SceneName,bool IsBlankScene, params GameObject[] GameObjectsToAdd)
+    public static List<T> FindAllPrefabsWithComponent<T>() where T : Component
+    {
+        var foundPrefabs = Resources.FindObjectsOfTypeAll<T>();
+        var list = new List<T>();
+        for (int i = 0; i < foundPrefabs.Length; i++)
         {
-            CreateScene(SceneName, IsBlankScene);
-            for (int i = 0; i < GameObjectsToAdd.Length; i++)
+            if (foundPrefabs[i].gameObject.IsPrefab())
             {
-                UnityEngine.Object.Instantiate(GameObjectsToAdd[i]);
+                list.Add(foundPrefabs[i]);
             }
+        }
+        return list;
+    }
+
+    public static List<GameObject> FindAllPrefabs()
+    {
+        var foundPrefabs = Resources.FindObjectsOfTypeAll<GameObject>();
+        var list = new List<GameObject>();
+        for (int i = 0; i < foundPrefabs.Length; i++)
+        {
+            if (foundPrefabs[i].gameObject.IsPrefab())
+            {
+                list.Add(foundPrefabs[i]);
+            }
+        }
+        return list;
+    }
+
+    public static GameObject FindChildGameObjectByName(this GameObject gameObject, string name)
+    {
+        for (int i = 0; i < gameObject.transform.childCount; i++)
+        {
+            var child = gameObject.transform.GetChild(i);
+            if (child.name == name)
+            {
+                return child.gameObject;
+            }
+        }
+        return null;
+    }
+
+    public static void CreateScene(string SceneName, bool IsBlankScene)
+    {
+        SceneManager.CreateScene(SceneName);
+        SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+        SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneName));
+        if (!IsBlankScene)
+        {
+            new GameObject("Main Camera", typeof(Camera), typeof(AudioListener));
+            GameObject gameObject = new GameObject("Directional Light", typeof(Light));
+            RenderSettings.sun = gameObject.GetComponent<Light>();
+            gameObject.GetComponent<Light>().type = LightType.Directional;
+            gameObject.GetComponent<Transform>().localEulerAngles = new Vector3(50f, -30f, 0f);
+        }
+    }
+
+    public static void CreateScene(string SceneName, bool IsBlankScene, params GameObject[] GameObjectsToAdd)
+    {
+        CreateScene(SceneName, IsBlankScene);
+        for (int i = 0; i < GameObjectsToAdd.Length; i++)
+        {
+            UnityEngine.Object.Instantiate(GameObjectsToAdd[i]);
         }
     }
 }
