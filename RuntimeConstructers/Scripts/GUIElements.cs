@@ -8,7 +8,7 @@ namespace RuntimeConstructers
     /// <summary>
     /// Class for creating basic UI Objects.
     /// </summary>
-    public class GUIInteractables
+    public class GUIElements
     {
         protected static Sprite UISprite()
         {
